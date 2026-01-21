@@ -76,7 +76,7 @@
         <item name="colorAccent">@color/dreamocr_accent</item>
     </style>
 
-    <!-- Override SmartEngines Theme -->
+    <!-- Legacy theme aliases for backward compatibility -->
     <style name="Theme.SmartEngines" parent="Theme.DreamOCR" />
     <style name="Theme.SmartEngines.Dark" parent="Theme.DreamOCR.Dark" />
 

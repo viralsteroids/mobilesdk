@@ -79,7 +79,7 @@
     <color name="dreamocr_selection">#BB86FC</color>
     <color name="dreamocr_selection_handle">#6B4EE6</color>
 
-    <!-- Override SmartEngines colors with DreamOCR colors -->
+    <!-- Standard Android color aliases -->
     <color name="colorPrimary">@color/dreamocr_primary</color>
     <color name="colorPrimaryDark">@color/dreamocr_primary_dark</color>
     <color name="colorAccent">@color/dreamocr_accent</color>
