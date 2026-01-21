@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="108.0dip" android:width="108.0dip" android:viewportWidth="108.0" android:viewportHeight="108.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- DreamOCR Launcher Icon - Stylized "D" with scanning lines -->
+    <!-- Main "D" shape - White -->
+    <path android:fillColor="#ffffffff" android:pathData="M30,30h20c13.3,0 24,10.7 24,24s-10.7,24 -24,24H30V30z M38,38v32h12c8.8,0 16,-7.2 16,-16s-7.2,-16 -16,-16H38z" />
+    <!-- Scanning line accents - White with transparency -->
+    <path android:fillColor="#bbffffff" android:pathData="M58,40h16v3H58z M58,52h14v3H58z M58,64h12v3H58z" />
+</vector>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="30.0dip" android:width="52.0dip" android:viewportWidth="52.0" android:viewportHeight="30.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- DreamOCR Abbreviated Logo - Stylized "D" with scanning lines -->
+    <!-- Main "D" shape - Purple primary color -->
+    <path android:fillColor="#ff6B4EE6" android:pathData="M5,0h15c8.3,0 15,6.7 15,15s-6.7,15 -15,15H5V0z M10,5v20h10c5.5,0 10,-4.5 10,-10s-4.5,-10 -10,-10H10z" />
+    <!-- Scanning line accent - Magenta -->
+    <path android:fillColor="#ffE04E9E" android:pathData="M38,7h12v2H38z M38,14h10v2H38z M38,21h8v2H38z" />
+    <!-- Dot accent - Electric Blue -->
+    <path android:fillColor="#ff4EA6E0" android:pathData="M48,7a2,2 0,1 1,0 4a2,2 0,1 1,0 -4z" />
+</vector>

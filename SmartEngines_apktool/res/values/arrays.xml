@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="eula">
+        <item>License Agreement</item>
+        <item>IMPORTANT! Before any using Smart Engines mobile application (hereinafter – Application), please read carefully the terms and conditions of its use contained in this Agreement.</item>
+        <item>Launch, or otherwise using the Application shall constitute the proper conclusion of this Agreement and Your full acceptance of all its terms and conditions.</item>
+        <item>If You do not agree to accept unconditionally the terms and conditions of this Agreement, You may not use the Application and must remove a copy of the Application and all its components from all Your devices.</item>
+        <item>1. LICENSING TERMS</item>
+        <item>1.1. User may use the Application solely for the purpose of familiarizing with the functionality of Smart Engines products, with the restrictions described below. The following is hereby strictly prohibited (not permitted use):</item>
+        <item>(a) commercial use of the Application (i.e. its use within the framework of or in connection with any business activities, as well as deriving any benefit from using the Application other than familiarizing with its functions);</item>
+        <item>(b) publication or other distribution of the recognition results (information about them), comparison of such results with the results of other similar applications and publication of information about such comparison.</item>
+        <item>1.2. The right to use the application is provided under the terms of non-exclusive license for the use of the Application for its direct functional purposes by way of installation on a mobile device. Other ways and purposes of using the Application not expressly provided by this Agreement are unpermitted.</item>
+        <item>1.3. Unless the Licensor determines otherwise, the license is provided without charging any license fees.</item>
+        <item>2. LIABILITY</item>
+        <item>In case of violation of the terms of use of the Application, the Licensor has the right to call the User to pay a penalty in the amount of 5,000,000 Russian rubles, as well as to recover any damages caused to the Licensor in full.</item>
+        <item>3. DISPUTE RESOLUTION</item>
+        <item>Any disputes arising from this Agreement shall be resolved by the Commercial court of Moscow (state arbitration court). Law of the Russian Federation shall be applicable to the merits of dispute.</item>
+        <item>LICENSOR CONTACT INFORMATION</item>
+        <item>"Limited Liability Company «SMART ENGINES SERVICE»
+Primary State Registration Number (PSRN) 1116670031972
+Taxpayer Identification Number (TIN) 7728328449
+Email: mailbox@smartengines.com
+Address: 9 Ave. 60th Anniversary of October, Moscow, 117312, Russia"</item>
+    </string-array>
+</resources>
