@@ -1,0 +1,19 @@
+package androidx.compose.p000ui.graphics.layer;
+
+import android.view.View;
+import androidx.compose.p000ui.graphics.RenderEffect;
+import kotlin.Metadata;
+
+/* compiled from: GraphicsViewLayer.android.kt */
+@Metadata(m513d1 = {"\u0000\u001e\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\bÃ\u0002\u0018\u00002\u00020\u0001B\u0007\b\u0002¢\u0006\u0002\u0010\u0002J\u0018\u0010\u0003\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\b\u0010\u0007\u001a\u0004\u0018\u00010\b¨\u0006\t"}, m514d2 = {"Landroidx/compose/ui/graphics/layer/ViewLayerVerificationHelper31;", "", "()V", "setRenderEffect", "", "view", "Landroid/view/View;", "target", "Landroidx/compose/ui/graphics/RenderEffect;", "ui-graphics_release"}, m515k = 1, m516mv = {1, 8, 0}, m518xi = 48)
+/* loaded from: classes.dex */
+final class ViewLayerVerificationHelper31 {
+    public static final ViewLayerVerificationHelper31 INSTANCE = new ViewLayerVerificationHelper31();
+
+    private ViewLayerVerificationHelper31() {
+    }
+
+    public final void setRenderEffect(View view, RenderEffect target) {
+        view.setRenderEffect(target != null ? target.asAndroidRenderEffect() : null);
+    }
+}

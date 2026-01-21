@@ -1,0 +1,63 @@
+package com.smartengines.doc;
+
+/* loaded from: classes3.dex */
+public class DocTableObjectsIterator {
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
+
+    public DocTableObjectsIterator(long j, boolean z) {
+        this.swigCMemOwn = z;
+        this.swigCPtr = j;
+    }
+
+    public static long getCPtr(DocTableObjectsIterator docTableObjectsIterator) {
+        if (docTableObjectsIterator == null) {
+            return 0L;
+        }
+        return docTableObjectsIterator.swigCPtr;
+    }
+
+    public static long swigRelease(DocTableObjectsIterator docTableObjectsIterator) {
+        if (docTableObjectsIterator == null) {
+            return 0L;
+        }
+        if (!docTableObjectsIterator.swigCMemOwn) {
+            throw new RuntimeException("Cannot release ownership as memory is not owned");
+        }
+        long j = docTableObjectsIterator.swigCPtr;
+        docTableObjectsIterator.swigCMemOwn = false;
+        docTableObjectsIterator.delete();
+        return j;
+    }
+
+    protected void finalize() {
+        delete();
+    }
+
+    public synchronized void delete() {
+        long j = this.swigCPtr;
+        if (j != 0) {
+            if (this.swigCMemOwn) {
+                this.swigCMemOwn = false;
+                jnidocengineJNI.delete_DocTableObjectsIterator(j);
+            }
+            this.swigCPtr = 0L;
+        }
+    }
+
+    public DocTableObjectsIterator(DocTableObjectsIterator docTableObjectsIterator) {
+        this(jnidocengineJNI.new_DocTableObjectsIterator(getCPtr(docTableObjectsIterator), docTableObjectsIterator), true);
+    }
+
+    public DocTableObject GetTableObject() {
+        return new DocTableObject(jnidocengineJNI.DocTableObjectsIterator_GetTableObject(this.swigCPtr, this), false);
+    }
+
+    public void Advance() {
+        jnidocengineJNI.DocTableObjectsIterator_Advance(this.swigCPtr, this);
+    }
+
+    public boolean Equals(DocTableObjectsIterator docTableObjectsIterator) {
+        return jnidocengineJNI.DocTableObjectsIterator_Equals(this.swigCPtr, this, getCPtr(docTableObjectsIterator), docTableObjectsIterator);
+    }
+}

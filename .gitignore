@@ -1,0 +1,17 @@
+# Temporary files
+jadx_errors.txt
+*.log
+
+# Build artifacts
+*.apk
+*.apks
+*.aab
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
