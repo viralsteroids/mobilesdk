@@ -5,7 +5,7 @@
     android:viewportWidth="52"
     android:viewportHeight="30">
 
-    <!-- DreamOCR Abbreviated Logo - Replaces SE branding -->
+    <!-- DreamOCR Abbreviated Logo - Stylized "D" with scanning line effect -->
 
     <!-- Main "D" shape - Purple primary color -->
     <path

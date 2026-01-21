@@ -1,102 +1,108 @@
-  * {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-  }
+/* DreamOCR Text Result Styles */
+/* Rebranded with purple/magenta color scheme */
 
-  * {
-    font-family: Helvetica, sans-serif;
-  }
+* {
+   -webkit-touch-callout: none;
+   -webkit-user-select: none;
+ }
 
-  table,
-  th,
-  td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    font: 100% sans-serif;
-  }
+ * {
+   font-family: Helvetica, sans-serif;
+ }
 
-  tr:nth-of-type(odd) {
-    background: #eee;
-  }
+ table,
+ th,
+ td {
+   border: 1px solid #6B4EE6;
+   border-collapse: collapse;
+   font: 100% sans-serif;
+ }
 
-  input[type="checkbox"] {
-    margin-right: 1rem;
-  }
+ tr:nth-of-type(odd) {
+   background: #F5F3FF;
+ }
 
-  html {
-    scroll-behavior: smooth;
-  }
+ input[type="checkbox"] {
+   margin-right: 1rem;
+ }
 
-  .svg_container {
-    overflow: auto;
-  }
+ html {
+   scroll-behavior: smooth;
+ }
 
-  h2 {
-    text-align: left;
-  }
+ .svg_container {
+   overflow: auto;
+ }
 
-  .container {
-    background: rgba(216, 239, 236, 0.2);
-    border-radius: 10px;
-    padding: 0;
-    margin: 15px 0;
-    overflow: hidden;
-  }
+ h2 {
+   text-align: left;
+   color: #6B4EE6;
+ }
 
-  .item {
-    padding: 12px 15px;
-    border-bottom: 1px solid rgba(124, 153, 149, 0.2);
-  }
+ .container {
+   background: rgba(245, 243, 255, 0.5);
+   border-radius: 16px;
+   padding: 0;
+   margin: 15px 0;
+   overflow: hidden;
+   border: 1px solid #E8E4F6;
+ }
 
-  .item:last-child {
-    border-bottom: none;
-  }
+ .item {
+   padding: 12px 15px;
+   border-bottom: 1px solid rgba(107, 78, 230, 0.15);
+ }
 
-  .key {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 4px;
-    color: #00B09A;
-  }
+ .item:last-child {
+   border-bottom: none;
+ }
 
-  .value {
-    display: block;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: pre-wrap;
-  }
+ .key {
+   font-weight: bold;
+   display: block;
+   margin-bottom: 4px;
+   color: #6B4EE6;
+ }
 
-  .p_selected {
-    background-color: rgba(180, 238, 180, 0.813);
-    border-radius: 4px;
-    padding: 4px 8px;
-    margin: -4px 0;
-  }
+ .value {
+   display: block;
+   word-wrap: break-word;
+   overflow-wrap: break-word;
+   white-space: pre-wrap;
+   color: #1C1B1F;
+ }
 
-  .selected_poly {
-    stroke: #000000;
-    fill: #70A269;
-    fill-opacity: 30%;
-  }
+ .p_selected {
+   background-color: rgba(155, 133, 240, 0.4);
+   border-radius: 8px;
+   padding: 4px 8px;
+   margin: -4px 0;
+ }
 
-  .dot_green {
-    height: 16px;
-    width: 16px;
-    background-color: #A2D6A2;
-    border-radius: 50%;
-    display: inline-block;
-  }
+ .selected_poly {
+   stroke: #6B4EE6;
+   fill: #9B85F0;
+   fill-opacity: 30%;
+ }
 
-  .dot_yellow {
-    height: 16px;
-    width: 16px;
-    background-color: #FEFAAD;
-    border-radius: 50%;
-    display: inline-block;
-  }
+ .dot_green {
+   height: 16px;
+   width: 16px;
+   background-color: #9B85F0;
+   border-radius: 50%;
+   display: inline-block;
+ }
 
-  polygon.poly {
-    stroke: #00B09A;
-    fill: rgba(0, 176, 154, 0.2);
-    fill-opacity: 30%;
-  }
+ .dot_yellow {
+   height: 16px;
+   width: 16px;
+   background-color: #F07CBD;
+   border-radius: 50%;
+   display: inline-block;
+ }
+
+ polygon.poly {
+   stroke: #6B4EE6;
+   fill: rgba(107, 78, 230, 0.2);
+   fill-opacity: 30%;
+ }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- DreamOCR Branding -->
+    <string name="app_name">DreamOCR</string>
+    <string name="app_name_full">DreamOCR SDK</string>
+    <string name="company_name">DreamOCR</string>
+    <string name="company_name_full">DreamOCR Technologies</string>
+
+    <!-- Contact Information -->
+    <string name="contact_email">support@dreamocr.com</string>
+    <string name="contact_website">https://dreamocr.com/</string>
+    <string name="contact_support">https://dreamocr.com/support/</string>
+
+    <!-- App Description -->
+    <string name="app_description">Welcome to DreamOCR - the advanced OCR SDK for optical character recognition in identity documents, business forms, and more using cutting-edge AI technology.</string>
+    <string name="app_tagline">Intelligent Document Recognition</string>
+
+    <!-- Product Descriptions -->
+    <string name="product_doc_engine">DreamOCR Document Engine recognizes text and data from identity documents, business documents, financial forms, legal papers, and standard questionnaires with exceptional accuracy.</string>
+    <string name="product_text_engine">DreamOCR Text Engine provides powerful text recognition (OCR) capabilities for any document type.</string>
+
+    <!-- Feature Names -->
+    <string name="feature_ocr">Text Recognition (OCR)</string>
+    <string name="feature_doc_recognition">Document Recognition</string>
+    <string name="feature_id_recognition">ID Document Recognition</string>
+    <string name="feature_barcode">Barcode Scanning</string>
+    <string name="feature_mrz">MRZ Reading</string>
+
+    <!-- UI Labels -->
+    <string name="label_scan">Scan Document</string>
+    <string name="label_result">Recognition Result</string>
+    <string name="label_settings">Settings</string>
+    <string name="label_about">About DreamOCR</string>
+    <string name="label_help">Help</string>
+    <string name="label_privacy">Privacy Policy</string>
+    <string name="label_terms">Terms of Service</string>
+
+    <!-- Status Messages -->
+    <string name="status_processing">Processing document...</string>
+    <string name="status_success">Recognition complete</string>
+    <string name="status_error">Recognition failed</string>
+    <string name="status_no_document">No document detected</string>
+
+    <!-- Action Labels -->
+    <string name="action_retry">Try Again</string>
+    <string name="action_copy">Copy</string>
+    <string name="action_share">Share</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_confirm">Confirm</string>
+
+    <!-- Theme Name -->
+    <string name="theme_name">Theme.DreamOCR</string>
+
+    <!-- Version Info -->
+    <string name="powered_by">Powered by DreamOCR AI</string>
+    <string name="copyright">Copyright DreamOCR Technologies</string>
+</resources>

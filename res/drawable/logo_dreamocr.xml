@@ -5,7 +5,7 @@
     android:viewportWidth="240"
     android:viewportHeight="48">
 
-    <!-- DreamOCR Logo - Replaces SmartEngines branding -->
+    <!-- DreamOCR Logo - Stylized text with gradient effect -->
 
     <!-- "D" letter -->
     <path
@@ -32,17 +32,17 @@
         android:fillColor="#6B4EE6"
         android:pathData="M120,18h5v3.5c1.5,-2.5 4,-4 7,-4c3.5,0 6,1.5 7.5,4.5c1.8,-3 4.5,-4.5 8,-4.5c5,0 8.5,3.5 8.5,9V40h-5.5V28c0,-3.5 -1.8,-5.5 -4.5,-5.5c-3,0 -5,2.5 -5,6V40h-5.5V28c0,-3.5 -1.8,-5.5 -4.5,-5.5c-3,0 -5,2.5 -5,6V40H120V18z"/>
 
-    <!-- "O" letter - Magenta accent -->
+    <!-- "O" letter - with accent color -->
     <path
         android:fillColor="#E04E9E"
         android:pathData="M168,24c0,-8.8 7.2,-16 16,-16s16,7.2 16,16s-7.2,16 -16,16s-16,-7.2 -16,-16zM174,24c0,5.5 4.5,10 10,10s10,-4.5 10,-10s-4.5,-10 -10,-10s-10,4.5 -10,10z"/>
 
-    <!-- "C" letter - Magenta accent -->
+    <!-- "C" letter - with accent color -->
     <path
         android:fillColor="#E04E9E"
         android:pathData="M204,24c0,-8.8 7.2,-16 16,-16c5.5,0 10.3,2.8 13.2,7l-4.8,3.5c-1.8,-2.8 -4.8,-4.5 -8.4,-4.5c-5.5,0 -10,4.5 -10,10s4.5,10 10,10c3.6,0 6.6,-1.7 8.4,-4.5l4.8,3.5c-2.9,4.2 -7.7,7 -13.2,7c-8.8,0 -16,-7.2 -16,-16z"/>
 
-    <!-- "R" letter - Blue tertiary -->
+    <!-- "R" letter - with tertiary color -->
     <path
         android:fillColor="#4EA6E0"
         android:pathData="M236,8v32h-6V27h-0.5l-8,13h-7l8.5,-13.5c-4,-1 -7,-4.5 -7,-9c0,-5.2 4,-9.5 9.5,-9.5H236zM230,14h-4c-2.5,0 -4.5,2 -4.5,4.5s2,4.5 4.5,4.5h4V14z"/>
