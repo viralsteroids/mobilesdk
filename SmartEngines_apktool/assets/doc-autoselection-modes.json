@@ -1,0 +1,8 @@
+{
+  "crop":               {"name":{"en":"Сrop",                         "ru":"Обрезка"}},
+  "autoselection":      {"name":{"en":"Any Russian Document",         "ru":"Любые российские документы"}},
+  "primary_accounting": {"name":{"en":"Primary Accounting Documents", "ru":"Первичные бухгалтерские документы"}},
+  "universal":          {"name":{"en":"Universal",                    "ru":"Универсальные"}},
+  "documents":          {"name":{"en":"Documents",                    "ru":"Документы"}},
+  "text_documents":     {"name":{"en":"Text Documents",               "ru":"Текстовые документы"}}
+}

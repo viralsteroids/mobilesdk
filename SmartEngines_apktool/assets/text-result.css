@@ -1,0 +1,102 @@
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+  }
+
+  * {
+    font-family: Helvetica, sans-serif;
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font: 100% sans-serif;
+  }
+
+  tr:nth-of-type(odd) {
+    background: #eee;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 1rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .svg_container {
+    overflow: auto;
+  }
+
+  h2 {
+    text-align: left;
+  }
+
+  .container {
+    background: rgba(216, 239, 236, 0.2);
+    border-radius: 10px;
+    padding: 0;
+    margin: 15px 0;
+    overflow: hidden;
+  }
+
+  .item {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(124, 153, 149, 0.2);
+  }
+
+  .item:last-child {
+    border-bottom: none;
+  }
+
+  .key {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+    color: #00B09A;
+  }
+
+  .value {
+    display: block;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+  }
+
+  .p_selected {
+    background-color: rgba(180, 238, 180, 0.813);
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin: -4px 0;
+  }
+
+  .selected_poly {
+    stroke: #000000;
+    fill: #70A269;
+    fill-opacity: 30%;
+  }
+
+  .dot_green {
+    height: 16px;
+    width: 16px;
+    background-color: #A2D6A2;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .dot_yellow {
+    height: 16px;
+    width: 16px;
+    background-color: #FEFAAD;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  polygon.poly {
+    stroke: #00B09A;
+    fill: rgba(0, 176, 154, 0.2);
+    fill-opacity: 30%;
+  }
