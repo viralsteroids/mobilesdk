@@ -3768,7 +3768,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="Theme.SmartEngines" parent="@android:style/Theme.Material.Light.NoActionBar" />
+    <style name="Theme.DreamOCR" parent="@android:style/Theme.Material.Light.NoActionBar" />
     <style name="ThemeOverlay.AppCompat" parent="@style/Base.ThemeOverlay.AppCompat" />
     <style name="ThemeOverlay.AppCompat.ActionBar" parent="@style/Base.ThemeOverlay.AppCompat.ActionBar" />
     <style name="ThemeOverlay.AppCompat.Dark" parent="@style/Base.ThemeOverlay.AppCompat.Dark" />

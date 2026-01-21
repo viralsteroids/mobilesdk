@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector android:height="108.0dip" android:width="108.0dip" android:viewportWidth="108.0" android:viewportHeight="108.0"
-  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt">
-    <group>
-        <clip-path android:pathData="M0,0h108v108h-108z" />
-        <path android:fillColor="@drawable/$ic_launcher_background__0" android:pathData="M108,0H0V108H108V0Z" />
-    </group>
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- DreamOCR Background - Brand Purple Gradient -->
+    <path android:fillColor="#ff6B4EE6" android:pathData="M0,0h108v108h-108z" />
 </vector>

@@ -338,4 +338,13 @@
     <color name="tooltip_background_dark">#e6616161</color>
     <color name="tooltip_background_light">#e6ffffff</color>
     <color name="white">#ffffffff</color>
+
+    <!-- DreamOCR Brand Colors -->
+    <color name="dreamocr_primary">#ff6B4EE6</color>
+    <color name="dreamocr_primary_dark">#ff5239CC</color>
+    <color name="dreamocr_primary_light">#ff9B85F0</color>
+    <color name="dreamocr_secondary">#ffE04E9E</color>
+    <color name="dreamocr_tertiary">#ff4EA6E0</color>
+    <color name="dreamocr_surface">#ffF5F3FF</color>
+    <color name="dreamocr_background">#ffFFFBFE</color>
 </resources>

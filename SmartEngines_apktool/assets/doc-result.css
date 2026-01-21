@@ -1,0 +1,246 @@
+ * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+  }
+
+  * {
+    font-family: Helvetica, sans-serif;
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font: 100% sans-serif;
+  }
+
+  tr:nth-of-type(odd) {
+    background: #eee;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 1rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .svg_container {
+    overflow: auto;
+  }
+
+  h2 {
+    text-align: left;
+  }
+
+  p {
+    background: #ededed;
+    border-bottom: 1px solid darkgrey;
+  }
+
+  p:last-child {
+    border-bottom: none;
+  }
+
+  p {
+    text-align: left;
+    margin: 0;
+    padding: 1em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+  }
+
+  .p_selected {
+    background-color: rgba(180, 238, 180, 0.813);
+  }
+
+  .hidden-poly {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .selected_row {
+    background: #c2ff11;
+  }
+
+  .dot_green {
+    height: 16px;
+    width: 16px;
+    background-color: #A2D6A2;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .dot_yellow {
+    height: 16px;
+    width: 16px;
+    background-color: #FEFAAD;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .doc-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+    position: relative;
+    width: 100%;
+    gap: 8px;
+  }
+  
+  .carousel-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 8px;
+    padding: 8px 0;
+    width: calc(100% - 80px);
+    justify-content: center;
+  }
+  
+  .doc-thumbnail {
+    width: 60px;
+    height: auto;
+    min-height: 40px;
+    flex: 0 0 auto;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+    overflow: hidden;
+    scroll-snap-align: center;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    box-sizing: border-box;
+  }
+
+.doc-thumbnail img {
+    width: 100%;
+    height: auto;
+    max-height: 85px;
+    object-fit: contain;
+    border-radius: 2px;
+  }
+
+.doc-thumbnail.active img {
+    border: 2px solid #00B09A;
+  }
+
+.doc-thumbnail.active {
+    opacity: 1;
+    border-color: #00B09A;
+  }
+
+.carousel-btn {
+    background: #00B09A;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+.carousel-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+.container {
+    background: rgba(216, 239, 236, 0.2);
+    border-radius: 10px;
+    padding: 0;
+    margin: 15px 0;
+    overflow: hidden;
+  }
+
+.item {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(124, 153, 149, 0.2);
+  }
+
+.item:last-child {
+    border-bottom: none;
+  }
+
+.key {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+    color: #00B09A;
+  }
+
+.value {
+    display: block;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+  }
+  
+  /* Document sections */
+  .doc-section {
+  display: none;
+}
+
+.container p {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.container .value {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+.container .p_selected {
+  background-color: rgba(180, 238, 180, 0.813);
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin: -4px 0;
+}
+
+.container table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.container table thead tr {
+  background-color: #00B09A;
+  color: white;
+}
+
+.container table th,
+.container table td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #D6E0FF;
+}
+
+.container table tbody tr:nth-child(odd) {
+  background-color: white;
+}
+
+.container table tbody tr:nth-child(even) {
+  background-color: rgba(98, 255, 235, 0.2);
+}
+
+.doc-section:first-child {
+    display: block;
+}
