@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- DreamOCR Branding -->
+    <!-- ============================================== -->
+    <!-- DreamOCR Branding - Complete String Resources  -->
+    <!-- DreamOCR Complete String Resources             -->
+    <!-- ============================================== -->
+
+    <!-- App Identity -->
     <string name="app_name">DreamOCR</string>
     <string name="app_name_full">DreamOCR SDK</string>
     <string name="company_name">DreamOCR</string>
@@ -8,16 +13,30 @@
 
     <!-- Contact Information -->
     <string name="contact_email">support@dreamocr.com</string>
+    <string name="contact_email_display">Email: support@dreamocr.com</string>
     <string name="contact_website">https://dreamocr.com/</string>
-    <string name="contact_support">https://dreamocr.com/support/</string>
+    <string name="contact_support">https://dreamocr.com/contact/</string>
+    <string name="contact_support_full">https://dreamocr.com/contact/</string>
 
-    <!-- App Description -->
+    <!-- App Welcome & Description -->
     <string name="app_description">Welcome to DreamOCR - the advanced OCR SDK for optical character recognition in identity documents, business forms, and more using cutting-edge AI technology.</string>
     <string name="app_tagline">Intelligent Document Recognition</string>
+    <string name="app_welcome">Welcome to DreamOCR mobile application</string>
 
-    <!-- Product Descriptions -->
-    <string name="product_doc_engine">DreamOCR Document Engine recognizes text and data from identity documents, business documents, financial forms, legal papers, and standard questionnaires with exceptional accuracy.</string>
-    <string name="product_text_engine">DreamOCR Text Engine provides powerful text recognition (OCR) capabilities for any document type.</string>
+    <!-- Product Names - Replacing Smart Engines Products -->
+    <string name="product_name">DreamOCR</string>
+    <string name="product_document_engine">DreamOCR Document Engine</string>
+    <string name="product_text_engine">DreamOCR Text Engine</string>
+    <string name="product_id_engine">DreamOCR ID Engine</string>
+    <string name="product_code_engine">DreamOCR Code Engine</string>
+    <string name="product_decoding">DreamOCR Decoding</string>
+
+    <!-- Product Descriptions - Replacing Smart Engines Descriptions -->
+    <string name="desc_document_engine">DreamOCR Document Engine recognizes text and other data of primary, business, statutory, accounting, tax, legal and banking documents, as well as standard questionnaires and strict reporting forms.</string>
+    <string name="desc_text_engine">DreamOCR Text Engine recognizes text in the form of pages or lines.</string>
+    <string name="desc_id_engine">DreamOCR ID Engine recognizes data from more than 2989 types of identification documents from 240 jurisdictions around the world.</string>
+    <string name="desc_code_engine">DreamOCR Code Engine extracts information from bank cards, linear and matrix barcodes, machine readable zone (MRZ) of passport and visa documents and telephone numbers.</string>
+    <string name="desc_decoding">DreamOCR Decoding (for Universal Pay and Payment Barcode)</string>
 
     <!-- Feature Names -->
     <string name="feature_ocr">Text Recognition (OCR)</string>
@@ -25,6 +44,7 @@
     <string name="feature_id_recognition">ID Document Recognition</string>
     <string name="feature_barcode">Barcode Scanning</string>
     <string name="feature_mrz">MRZ Reading</string>
+    <string name="feature_bank_card">Bank Card Recognition</string>
 
     <!-- UI Labels -->
     <string name="label_scan">Scan Document</string>
@@ -34,12 +54,18 @@
     <string name="label_help">Help</string>
     <string name="label_privacy">Privacy Policy</string>
     <string name="label_terms">Terms of Service</string>
+    <string name="label_license">License Agreement</string>
+
+    <!-- License & Legal Text -->
+    <string name="license_intro">IMPORTANT! Before any using DreamOCR mobile application (hereinafter referred to as the Application), please read this License Agreement carefully.</string>
+    <string name="license_usage">1.1. User may use the Application solely for the purpose of familiarizing with the functionality of DreamOCR products, with the restrictions described below. The following is hereby strictly prohibited (not permitted use):</string>
 
     <!-- Status Messages -->
     <string name="status_processing">Processing document...</string>
     <string name="status_success">Recognition complete</string>
     <string name="status_error">Recognition failed</string>
     <string name="status_no_document">No document detected</string>
+    <string name="status_initializing">Initializing DreamOCR...</string>
 
     <!-- Action Labels -->
     <string name="action_retry">Try Again</string>
@@ -48,11 +74,38 @@
     <string name="action_save">Save</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_confirm">Confirm</string>
+    <string name="action_continue">Continue</string>
+    <string name="action_back">Back</string>
+
+    <!-- Error Messages -->
+    <string name="error_camera_permission">Camera permission required</string>
+    <string name="error_no_camera">No camera available</string>
+    <string name="error_recognition_failed">Document recognition failed</string>
+    <string name="error_network">Network error occurred</string>
 
     <!-- Theme Name -->
     <string name="theme_name">Theme.DreamOCR</string>
 
     <!-- Version Info -->
     <string name="powered_by">Powered by DreamOCR AI</string>
-    <string name="copyright">Copyright DreamOCR Technologies</string>
+    <string name="copyright">© DreamOCR Technologies. All rights reserved.</string>
+
+    <!-- Accessibility -->
+    <string name="content_desc_logo">DreamOCR Logo</string>
+    <string name="content_desc_scan_button">Scan document button</string>
+    <string name="content_desc_result">Recognition result</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_scan">Scan</string>
+    <string name="nav_history">History</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Document Types -->
+    <string name="doc_type_passport">Passport</string>
+    <string name="doc_type_id_card">ID Card</string>
+    <string name="doc_type_driver_license">Driver License</string>
+    <string name="doc_type_bank_card">Bank Card</string>
+    <string name="doc_type_invoice">Invoice</string>
+    <string name="doc_type_receipt">Receipt</string>
 </resources>
