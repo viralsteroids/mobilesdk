@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- DreamOCR Launcher Icon Foreground -->
+    <!-- Stylized "D" with scanning effect -->
+
+    <!-- Background circle with gradient effect -->
+    <group
+        android:translateX="27"
+        android:translateY="27">
+
+        <!-- Main "D" letter - White on colored background -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M12,4h18c11,0 20,9 20,20s-9,20 -20,20H12V4z
+                              M18,10v28h12c7.7,0 14,-6.3 14,-14s-6.3,-14 -14,-14H18z"/>
+
+        <!-- Scanning lines accent -->
+        <path
+            android:fillColor="#E04E9E"
+            android:strokeColor="#E04E9E"
+            android:strokeWidth="1.5"
+            android:pathData="M26,18h16
+                              M26,24h14
+                              M26,30h12"/>
+
+    </group>
+
+</vector>

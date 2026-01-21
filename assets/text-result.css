@@ -1,0 +1,108 @@
+/* DreamOCR Text Result Styles */
+/* Rebranded with purple/magenta color scheme */
+
+* {
+   -webkit-touch-callout: none;
+   -webkit-user-select: none;
+ }
+
+ * {
+   font-family: Helvetica, sans-serif;
+ }
+
+ table,
+ th,
+ td {
+   border: 1px solid #6B4EE6;
+   border-collapse: collapse;
+   font: 100% sans-serif;
+ }
+
+ tr:nth-of-type(odd) {
+   background: #F5F3FF;
+ }
+
+ input[type="checkbox"] {
+   margin-right: 1rem;
+ }
+
+ html {
+   scroll-behavior: smooth;
+ }
+
+ .svg_container {
+   overflow: auto;
+ }
+
+ h2 {
+   text-align: left;
+   color: #6B4EE6;
+ }
+
+ .container {
+   background: rgba(245, 243, 255, 0.5);
+   border-radius: 16px;
+   padding: 0;
+   margin: 15px 0;
+   overflow: hidden;
+   border: 1px solid #E8E4F6;
+ }
+
+ .item {
+   padding: 12px 15px;
+   border-bottom: 1px solid rgba(107, 78, 230, 0.15);
+ }
+
+ .item:last-child {
+   border-bottom: none;
+ }
+
+ .key {
+   font-weight: bold;
+   display: block;
+   margin-bottom: 4px;
+   color: #6B4EE6;
+ }
+
+ .value {
+   display: block;
+   word-wrap: break-word;
+   overflow-wrap: break-word;
+   white-space: pre-wrap;
+   color: #1C1B1F;
+ }
+
+ .p_selected {
+   background-color: rgba(155, 133, 240, 0.4);
+   border-radius: 8px;
+   padding: 4px 8px;
+   margin: -4px 0;
+ }
+
+ .selected_poly {
+   stroke: #6B4EE6;
+   fill: #9B85F0;
+   fill-opacity: 30%;
+ }
+
+ .dot_green {
+   height: 16px;
+   width: 16px;
+   background-color: #9B85F0;
+   border-radius: 50%;
+   display: inline-block;
+ }
+
+ .dot_yellow {
+   height: 16px;
+   width: 16px;
+   background-color: #F07CBD;
+   border-radius: 50%;
+   display: inline-block;
+ }
+
+ polygon.poly {
+   stroke: #6B4EE6;
+   fill: rgba(107, 78, 230, 0.2);
+   fill-opacity: 30%;
+ }

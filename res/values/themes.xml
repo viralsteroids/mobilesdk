@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- DreamOCR Base Theme - Light -->
+    <style name="Theme.DreamOCR" parent="Theme.Material3.Light">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/dreamocr_primary</item>
+        <item name="colorPrimaryDark">@color/dreamocr_primary_dark</item>
+        <item name="colorPrimaryVariant">@color/dreamocr_primary_light</item>
+        <item name="colorOnPrimary">@color/dreamocr_on_primary</item>
+
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/dreamocr_secondary</item>
+        <item name="colorSecondaryVariant">@color/dreamocr_secondary_dark</item>
+        <item name="colorOnSecondary">@color/dreamocr_on_secondary</item>
+
+        <!-- Tertiary brand color -->
+        <item name="colorTertiary">@color/dreamocr_tertiary</item>
+        <item name="colorOnTertiary">@color/dreamocr_on_tertiary</item>
+
+        <!-- Background and Surface -->
+        <item name="android:colorBackground">@color/dreamocr_background</item>
+        <item name="colorSurface">@color/dreamocr_surface</item>
+        <item name="colorSurfaceVariant">@color/dreamocr_surface_variant</item>
+        <item name="colorOnSurface">@color/dreamocr_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/dreamocr_on_surface_variant</item>
+
+        <!-- Error -->
+        <item name="colorError">@color/dreamocr_error</item>
+        <item name="colorOnError">@color/dreamocr_on_error</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/dreamocr_status_bar</item>
+        <item name="android:navigationBarColor">@color/dreamocr_navigation_bar</item>
+
+        <!-- Accent color for widgets -->
+        <item name="colorAccent">@color/dreamocr_accent</item>
+
+        <!-- Control highlight -->
+        <item name="colorControlHighlight">@color/dreamocr_ripple</item>
+        <item name="colorControlActivated">@color/dreamocr_primary</item>
+    </style>
+
+    <!-- DreamOCR Dark Theme -->
+    <style name="Theme.DreamOCR.Dark" parent="Theme.Material3.Dark">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/dreamocr_primary_light</item>
+        <item name="colorPrimaryDark">@color/dreamocr_primary</item>
+        <item name="colorPrimaryVariant">@color/dreamocr_primary_dark</item>
+        <item name="colorOnPrimary">#1C1B1F</item>
+
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/dreamocr_secondary_light</item>
+        <item name="colorSecondaryVariant">@color/dreamocr_secondary</item>
+        <item name="colorOnSecondary">#1C1B1F</item>
+
+        <!-- Tertiary brand color -->
+        <item name="colorTertiary">@color/dreamocr_tertiary_light</item>
+        <item name="colorOnTertiary">#1C1B1F</item>
+
+        <!-- Background and Surface -->
+        <item name="android:colorBackground">#1C1B1F</item>
+        <item name="colorSurface">#2D2A35</item>
+        <item name="colorSurfaceVariant">#49454F</item>
+        <item name="colorOnSurface">#E6E1E5</item>
+        <item name="colorOnSurfaceVariant">#CAC4D0</item>
+
+        <!-- Error -->
+        <item name="colorError">#F2B8B5</item>
+        <item name="colorOnError">#601410</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">#1C1B1F</item>
+        <item name="android:navigationBarColor">#1C1B1F</item>
+
+        <!-- Accent color for widgets -->
+        <item name="colorAccent">@color/dreamocr_accent</item>
+    </style>
+
+    <!-- Legacy theme aliases for backward compatibility -->
+    <style name="Theme.SmartEngines" parent="Theme.DreamOCR" />
+    <style name="Theme.SmartEngines.Dark" parent="Theme.DreamOCR.Dark" />
+
+    <!-- DreamOCR Button Styles -->
+    <style name="Widget.DreamOCR.Button" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/dreamocr_primary</item>
+        <item name="android:textColor">@color/dreamocr_on_primary</item>
+        <item name="cornerRadius">24dp</item>
+    </style>
+
+    <style name="Widget.DreamOCR.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="strokeColor">@color/dreamocr_primary</item>
+        <item name="android:textColor">@color/dreamocr_primary</item>
+        <item name="cornerRadius">24dp</item>
+    </style>
+
+    <style name="Widget.DreamOCR.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">@color/dreamocr_primary</item>
+    </style>
+
+    <!-- DreamOCR Card Style -->
+    <style name="Widget.DreamOCR.CardView" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/dreamocr_card_background</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">4dp</item>
+    </style>
+
+    <!-- DreamOCR Toolbar Style -->
+    <style name="Widget.DreamOCR.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/dreamocr_primary</item>
+        <item name="titleTextColor">@color/dreamocr_on_primary</item>
+    </style>
+</resources>
