@@ -419,6 +419,13 @@
 
     invoke-static {v10, v2}, Landroidx/compose/runtime/ComposerKt;->sourceInformation(Landroidx/compose/runtime/Composer;Ljava/lang/String;)V
 
+    # BYPASS BACKGROUND IMAGE - skip bg_home display
+    const/4 v13, 0x0
+    const/4 v14, 0x0
+    const/4 v15, 0x1
+    const/4 v4, 0x0
+    goto :skip_bg_home
+
     .line 67
     sget v2, Lcom/smartengines/app/R$drawable;->bg_home:I
 
@@ -467,6 +474,7 @@
 
     invoke-static/range {v3 .. v12}, Landroidx/compose/foundation/ImageKt;->Image(Landroidx/compose/ui/graphics/painter/Painter;Ljava/lang/String;Landroidx/compose/ui/Modifier;Landroidx/compose/ui/Alignment;Landroidx/compose/ui/layout/ContentScale;FLandroidx/compose/ui/graphics/ColorFilter;Landroidx/compose/runtime/Composer;II)V
 
+    :skip_bg_home
     .line 71
     new-instance v3, Lcom/smartengines/app/ui/HomeScreenKt$HomeScreen$1;
 
@@ -488,7 +496,8 @@
 
     invoke-static {v3, v10, v4}, Lcom/smartengines/app/ui/BodyBoxKt;->BodyBox(Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;I)V
 
-    if-nez v0, :cond_4
+    # BYPASS LOADING ANIMATION - always skip to loaded state
+    goto :cond_4
 
     .line 136
     sget-object v3, Landroidx/compose/ui/Modifier;->Companion:Landroidx/compose/ui/Modifier$Companion;

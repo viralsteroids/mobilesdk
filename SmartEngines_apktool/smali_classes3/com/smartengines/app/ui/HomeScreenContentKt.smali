@@ -1105,43 +1105,6 @@
 
     invoke-static {v2, v5, v14}, Landroidx/compose/foundation/layout/SpacerKt;->Spacer(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;I)V
 
-    .line 97
-    sget-object v2, Lcom/smartengines/engine/EngineId;->CODE:Lcom/smartengines/engine/EngineId;
-
-    .line 98
-    sget v3, Lcom/smartengines/app/R$string;->code_engine_name:I
-
-    invoke-virtual {v7, v3}, Landroid/content/Context;->getString(I)Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-static {v3, v13}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
-
-    .line 99
-    invoke-static {v9}, Lcom/smartengines/app/ui/HomeScreenContentKt;->HomeScreenContent$lambda$0(Landroidx/compose/runtime/State;)Lcom/smartengines/engine/EngineLoadingState;
-
-    move-result-object v4
-
-    const/16 v6, 0x1036
-
-    .line 96
-    invoke-static/range {v1 .. v6}, Lcom/smartengines/app/ui/HomeScreenContentKt;->EngineButton(Landroidx/compose/foundation/layout/RowScope;Lcom/smartengines/engine/EngineId;Ljava/lang/String;Lcom/smartengines/engine/EngineLoadingState;Landroidx/compose/runtime/Composer;I)V
-
-    .line 101
-    sget-object v2, Landroidx/compose/ui/Modifier;->Companion:Landroidx/compose/ui/Modifier$Companion;
-
-    check-cast v2, Landroidx/compose/ui/Modifier;
-
-    invoke-static {}, Lcom/smartengines/app/ui/HomeCardKt;->getMENU_PADDING()F
-
-    move-result v3
-
-    invoke-static {v2, v3}, Landroidx/compose/foundation/layout/SizeKt;->width-3ABfNKs(Landroidx/compose/ui/Modifier;F)Landroidx/compose/ui/Modifier;
-
-    move-result-object v2
-
-    invoke-static {v2, v5, v14}, Landroidx/compose/foundation/layout/SpacerKt;->Spacer(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;I)V
-
     .line 103
     sget-object v2, Lcom/smartengines/engine/EngineId;->ID:Lcom/smartengines/engine/EngineId;
 
@@ -1159,42 +1122,9 @@
 
     move-result-object v4
 
+    const/16 v6, 0x1036
+
     .line 102
-    invoke-static/range {v1 .. v6}, Lcom/smartengines/app/ui/HomeScreenContentKt;->EngineButton(Landroidx/compose/foundation/layout/RowScope;Lcom/smartengines/engine/EngineId;Ljava/lang/String;Lcom/smartengines/engine/EngineLoadingState;Landroidx/compose/runtime/Composer;I)V
-
-    .line 107
-    sget-object v2, Landroidx/compose/ui/Modifier;->Companion:Landroidx/compose/ui/Modifier$Companion;
-
-    check-cast v2, Landroidx/compose/ui/Modifier;
-
-    invoke-static {}, Lcom/smartengines/app/ui/HomeCardKt;->getMENU_PADDING()F
-
-    move-result v3
-
-    invoke-static {v2, v3}, Landroidx/compose/foundation/layout/SizeKt;->width-3ABfNKs(Landroidx/compose/ui/Modifier;F)Landroidx/compose/ui/Modifier;
-
-    move-result-object v2
-
-    invoke-static {v2, v5, v14}, Landroidx/compose/foundation/layout/SpacerKt;->Spacer(Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;I)V
-
-    .line 109
-    sget-object v2, Lcom/smartengines/engine/EngineId;->DOC:Lcom/smartengines/engine/EngineId;
-
-    .line 110
-    sget v3, Lcom/smartengines/app/R$string;->doc_engine_name:I
-
-    invoke-virtual {v7, v3}, Landroid/content/Context;->getString(I)Ljava/lang/String;
-
-    move-result-object v3
-
-    invoke-static {v3, v13}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
-
-    .line 111
-    invoke-static {v10}, Lcom/smartengines/app/ui/HomeScreenContentKt;->HomeScreenContent$lambda$1(Landroidx/compose/runtime/State;)Lcom/smartengines/engine/EngineLoadingState;
-
-    move-result-object v4
-
-    .line 108
     invoke-static/range {v1 .. v6}, Lcom/smartengines/app/ui/HomeScreenContentKt;->EngineButton(Landroidx/compose/foundation/layout/RowScope;Lcom/smartengines/engine/EngineId;Ljava/lang/String;Lcom/smartengines/engine/EngineLoadingState;Landroidx/compose/runtime/Composer;I)V
 
     .line 113

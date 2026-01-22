@@ -164,7 +164,7 @@
 .end method
 
 .method public final invokeSuspend(Ljava/lang/Object;)Ljava/lang/Object;
-    .locals 10
+    .locals 11
 
     invoke-static {}, Lkotlin/coroutines/intrinsics/IntrinsicsKt;->getCOROUTINE_SUSPENDED()Ljava/lang/Object;
 
@@ -211,6 +211,10 @@
     move-result-object p1
 
     invoke-virtual {v0, p1}, Lcom/smartengines/app/EngineStaff;->setTargets(Lcom/smartengines/app/targets/TreeItem;)V
+
+    # AUTO-OPEN RUSSIAN PASSPORT - search in loaded targets (p1 is TreeItem root)
+    # Save p1 (TreeItem) to v10 before it gets overwritten
+    move-object v10, p1
 
     .line 323
     invoke-static {}, Lcom/smartengines/app/Model;->access$getTAG$p()Ljava/lang/String;
@@ -266,6 +270,85 @@
     const/4 v6, 0x0
 
     invoke-static/range {v4 .. v9}, Lkotlinx/coroutines/BuildersKt;->launch$default(Lkotlinx/coroutines/CoroutineScope;Lkotlin/coroutines/CoroutineContext;Lkotlinx/coroutines/CoroutineStart;Lkotlin/jvm/functions/Function2;ILjava/lang/Object;)Lkotlinx/coroutines/Job;
+
+    # AUTO-OPEN RUSSIAN PASSPORT
+    # Use v10 which has the loaded TreeItem (root of target tree)
+    # The TreeItem should be a TreeNode with children
+    if-eqz v10, :skip_auto_open
+
+    # Check if v10 is a TreeGroup (has children)
+    instance-of v0, v10, Lcom/smartengines/app/targets/TreeGroup;
+
+    if-eqz v0, :skip_auto_open
+
+    # Get children of the root node
+    check-cast v10, Lcom/smartengines/app/targets/TreeGroup;
+
+    invoke-virtual {v10}, Lcom/smartengines/app/targets/TreeGroup;->getChildren()Ljava/util/List;
+
+    move-result-object v1
+
+    if-eqz v1, :skip_auto_open
+
+    # Get Model instance for onNodeClick
+    sget-object v0, Lcom/smartengines/app/Model;->INSTANCE:Lcom/smartengines/app/Model;
+
+    # Iterate through children to find Russian passport
+    invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
+    :auto_open_loop
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v2
+
+    if-eqz v2, :skip_auto_open
+
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v2
+
+    # Check if it's a TreeLeaf
+    instance-of v4, v2, Lcom/smartengines/app/targets/TreeLeaf;
+
+    if-eqz v4, :auto_open_loop
+
+    # Cast to TreeLeaf and get target
+    move-object v3, v2
+
+    check-cast v3, Lcom/smartengines/app/targets/TreeLeaf;
+
+    invoke-virtual {v3}, Lcom/smartengines/app/targets/TreeLeaf;->getTarget()Lcom/smartengines/engine/RecognitionTarget;
+
+    move-result-object v4
+
+    # Check if it's an IdTarget
+    instance-of v5, v4, Lcom/smartengines/targets/id/IdTarget;
+
+    if-eqz v5, :auto_open_loop
+
+    # Get the mask and check for Russian passport
+    check-cast v4, Lcom/smartengines/targets/id/IdTarget;
+
+    invoke-virtual {v4}, Lcom/smartengines/targets/id/IdTarget;->getMask()Ljava/lang/String;
+
+    move-result-object v4
+
+    const-string v5, "rus.passport.national"
+
+    invoke-virtual {v4, v5}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v4
+
+    if-eqz v4, :auto_open_loop
+
+    # Found Russian passport - click it!
+    check-cast v2, Lcom/smartengines/app/targets/TreeItem;
+
+    invoke-virtual {v0, v2}, Lcom/smartengines/app/Model;->onNodeClick(Lcom/smartengines/app/targets/TreeItem;)V
+
+    :skip_auto_open
 
     .line 340
     sget-object p1, Lkotlin/Unit;->INSTANCE:Lkotlin/Unit;

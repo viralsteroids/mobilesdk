@@ -29,7 +29,7 @@
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="androidx_startup">androidx.startup</string>
     <string name="app_exit_confirmation">Close the application?</string>
-    <string name="app_name">DreamOCR</string>
+    <string name="app_name">Сканер паспорта РФ</string>
     <string name="appbar_scrolling_view_behavior">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="back">Back</string>
     <string name="bottom_sheet_behavior">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
@@ -53,11 +53,11 @@
     <string name="clear_text_end_icon_content_description">Clear text</string>
     <string name="close_drawer">Close navigation menu</string>
     <string name="close_sheet">Close sheet</string>
-    <string name="code_engine_name">DreamOCR Code</string>
+    <string name="code_engine_name">Сканер Code</string>
     <string name="common_google_play_services_unknown_issue">%1$s is having trouble with Google Play services. Please try again.</string>
     <string name="default_error_message">Invalid input</string>
     <string name="default_popup_window_title">Pop-Up Window</string>
-    <string name="doc_engine_name">DreamOCR Document</string>
+    <string name="doc_engine_name">Сканер Document</string>
     <string name="dropdown_menu">Dropdown menu</string>
     <string name="error_a11y_label">Error: invalid</string>
     <string name="error_icon_content_description">Error</string>
@@ -70,26 +70,26 @@
     <string name="faces_selfie">Selfie</string>
     <string name="faces_similarity">Similarity</string>
     <string name="faces_title">Compare Faces</string>
-    <string name="help_code_engine">"DreamOCR Code extracts information from bank cards, linear and matrix barcodes, machine readable zone (MRZ) of passport and visa documents and telephone numbers.
+    <string name="help_code_engine">"Сканер Code extracts information from bank cards, linear and matrix barcodes, machine readable zone (MRZ) of passport and visa documents and telephone numbers.
 
 How to recognize a document:
 1. Select recognition method: video, photo or gallery
 2. Select the document type to be recognized and scan the document
 3. Compare the recognition results with the data in the document"</string>
-    <string name="help_doc_engine">"DreamOCR Document recognizes text and other data of primary, business, statutory, accounting, tax, legal and banking documents, as well as standard questionnaires and strict reporting forms.
+    <string name="help_doc_engine">"Сканер Document recognizes text and other data of primary, business, statutory, accounting, tax, legal and banking documents, as well as standard questionnaires and strict reporting forms.
 
 How to recognize a document:
 1. Select recognition method: photo or gallery
 2. Select the document type to be recognized and scan the document
 3. Compare the recognition results with the data in the document"</string>
-    <string name="help_id_engine">"DreamOCR ID recognizes data from more than 2989 types of identification documents from 240 jurisdictions around the world.
+    <string name="help_id_engine">"Сканер ID recognizes data from more than 2989 types of identification documents from 240 jurisdictions around the world.
 
 How to recognize a document:
 1. Select recognition method: video, photo or gallery
 2. Select the document type to be recognized and scan the document
 3. Compare the recognition results with the data in the document"</string>
     <string name="help_no_engine">There is no selected engine</string>
-    <string name="help_text_engine">"DreamOCR Text recognizes text in the form of pages or lines
+    <string name="help_text_engine">"Сканер Text recognizes text in the form of pages or lines
 
 How to recognize a document:
 1. Select recognition method: photo or gallery 2. Enable one or more languages
@@ -98,12 +98,12 @@ How to recognize a document:
     <string name="help_title">Instructions</string>
     <string name="hide_bottom_view_on_scroll_behavior">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
     <string name="home_engines">All the features of our products</string>
-    <string name="home_loading">Initialization...</string>
-    <string name="home_quick">Quick start</string>
+    <string name="home_loading">Загрузка...</string>
+    <string name="home_quick">Паспорт</string>
     <string name="icon_content_description">Dialog Icon</string>
-    <string name="id_engine_button">"DreamOCR
+    <string name="id_engine_button">"Сканер
 ID"</string>
-    <string name="id_engine_name">DreamOCR ID</string>
+    <string name="id_engine_name">Сканер ID</string>
     <string name="in_progress">In progress</string>
     <string name="indeterminate">Partially checked</string>
     <string name="info_app">Application</string>
@@ -368,10 +368,10 @@ ID"</string>
     <string name="tab">Tab</string>
     <string name="target_text">Text recognition (OCR)</string>
     <string name="template_percent">%1$d percent.</string>
-    <string name="text_engine_name">DreamOCR Text</string>
+    <string name="text_engine_name">Сканер Text</string>
     <string name="tooltip_description">tooltip</string>
     <string name="tooltip_label">show tooltip</string>
-    <string name="tut_1_text">Welcome to DreamOCR - advanced optical character recognition for identity and business documents using artificial intelligence</string>
+    <string name="tut_1_text">Welcome to Сканер - advanced optical character recognition for identity and business documents using artificial intelligence</string>
     <string name="tut_1_title">Accurate and secure document recognition</string>
     <string name="tut_2_text">"The application does not require internet access to operate, your data is not transmitted anywhere.
 

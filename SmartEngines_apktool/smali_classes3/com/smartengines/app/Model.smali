@@ -2656,6 +2656,9 @@
 .method public final onBack()V
     .locals 2
 
+    # BYPASS BACK BUTTON - completely disable back navigation
+    return-void
+
     .line 237
     sget-object v0, Lcom/smartengines/app/Model;->TAG:Ljava/lang/String;
 

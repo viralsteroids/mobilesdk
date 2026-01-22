@@ -830,7 +830,8 @@
 
     cmp-long p2, v1, v6
 
-    if-eqz p2, :cond_d
+    # BYPASS EULA - always skip to tutorial check
+    goto :cond_d
 
     const p2, 0x201667b5
 
@@ -858,7 +859,8 @@
 
     move-result p2
 
-    if-nez p2, :cond_e
+    # BYPASS TUTORIAL - always skip
+    goto :cond_e
 
     const p2, 0x201670f3
 

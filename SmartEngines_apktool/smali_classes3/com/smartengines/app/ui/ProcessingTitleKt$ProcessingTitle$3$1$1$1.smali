@@ -75,12 +75,6 @@
 .method public final invoke()V
     .locals 1
 
-    .line 93
-    iget-object v0, p0, Lcom/smartengines/app/ui/ProcessingTitleKt$ProcessingTitle$3$1$1$1;->receiver:Ljava/lang/Object;
-
-    check-cast v0, Lcom/smartengines/app/Model;
-
-    invoke-virtual {v0}, Lcom/smartengines/app/Model;->onBack()V
-
+    # DISABLED - do not go back, keep user on scanning screen
     return-void
 .end method

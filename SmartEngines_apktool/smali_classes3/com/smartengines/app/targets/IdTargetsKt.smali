@@ -1262,25 +1262,27 @@
     .line 37
     new-instance v7, Lcom/smartengines/utils/Name;
 
-    const-string v4, "Compare Faces"
+    const-string v4, "Russian Passport"
 
-    const-string/jumbo v8, "\u0421\u0440\u0430\u0432\u043d\u0438\u0442\u044c \u043b\u0438\u0446\u0430"
+    const-string/jumbo v8, "\u041f\u0430\u0441\u043f\u043e\u0440\u0442 \u0420\u0424"
 
     invoke-direct {v7, v4, v8}, Lcom/smartengines/utils/Name;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 
     .line 38
-    sget v4, Lcom/smartengines/dictionaries/R$drawable;->id_faces:I
+    sget v4, Lcom/smartengines/app/R$drawable;->home_rus_passport:I
 
     invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v8
 
     .line 39
-    new-instance v4, Lcom/smartengines/targets/FacesTarget;
+    new-instance v4, Lcom/smartengines/targets/id/IdTarget;
 
-    const/4 v9, 0x0
+    const-string v9, "default"
 
-    invoke-direct {v4, v9}, Lcom/smartengines/targets/FacesTarget;-><init>(Landroid/graphics/Bitmap;)V
+    const-string v10, "rus.passport.national"
+
+    invoke-direct {v4, v9, v10}, Lcom/smartengines/targets/id/IdTarget;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 
     move-object v13, v4
 
@@ -1300,187 +1302,6 @@
     invoke-direct/range {v6 .. v15}, Lcom/smartengines/app/targets/TreeLeaf;-><init>(Lcom/smartengines/utils/Name;Ljava/lang/Object;Ljava/lang/Object;IZLjava/util/List;Lcom/smartengines/engine/RecognitionTarget;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 
     invoke-virtual {v3, v6}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-
-    .line 41
-    sget-object v4, Lcom/smartengines/app/Model;->INSTANCE:Lcom/smartengines/app/Model;
-
-    invoke-virtual {v4}, Lcom/smartengines/app/Model;->getBuildFlavor()Lcom/smartengines/app/settings/BuildFlavor;
-
-    move-result-object v4
-
-    invoke-virtual {v4}, Lcom/smartengines/app/settings/BuildFlavor;->isPrivate()Z
-
-    move-result v4
-
-    if-eqz v4, :cond_0
-
-    .line 43
-    new-instance v6, Lcom/smartengines/app/targets/TreeLeaf;
-
-    .line 44
-    new-instance v7, Lcom/smartengines/utils/Name;
-
-    const-string v4, "Face Liveness"
-
-    const-string/jumbo v8, "\u0416\u0438\u0432\u043e\u0441\u0442\u044c \u043b\u0438\u0446\u0430"
-
-    invoke-direct {v7, v4, v8}, Lcom/smartengines/utils/Name;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-
-    .line 45
-    sget v4, Lcom/smartengines/dictionaries/R$drawable;->id_liveness:I
-
-    invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v8
-
-    .line 46
-    new-instance v4, Lcom/smartengines/targets/id/LivenessTarget;
-
-    invoke-direct {v4}, Lcom/smartengines/targets/id/LivenessTarget;-><init>()V
-
-    move-object v13, v4
-
-    check-cast v13, Lcom/smartengines/engine/RecognitionTarget;
-
-    const/16 v14, 0x3c
-
-    const/4 v15, 0x0
-
-    const/4 v9, 0x0
-
-    const/4 v10, 0x0
-
-    const/4 v11, 0x0
-
-    const/4 v12, 0x0
-
-    .line 43
-    invoke-direct/range {v6 .. v15}, Lcom/smartengines/app/targets/TreeLeaf;-><init>(Lcom/smartengines/utils/Name;Ljava/lang/Object;Ljava/lang/Object;IZLjava/util/List;Lcom/smartengines/engine/RecognitionTarget;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-
-    .line 42
-    invoke-virtual {v3, v6}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-
-    .line 53
-    :cond_0
-    sget-object v4, Lcom/smartengines/dictionaries/IdAutoselectionModes;->INSTANCE:Lcom/smartengines/dictionaries/IdAutoselectionModes;
-
-    invoke-virtual {v4}, Lcom/smartengines/dictionaries/IdAutoselectionModes;->getData()Ljava/util/List;
-
-    move-result-object v4
-
-    check-cast v4, Ljava/lang/Iterable;
-
-    .line 259
-    invoke-interface {v4}, Ljava/lang/Iterable;->iterator()Ljava/util/Iterator;
-
-    move-result-object v4
-
-    :cond_1
-    :goto_0
-    invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
-
-    move-result v6
-
-    if-eqz v6, :cond_2
-
-    invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-
-    move-result-object v6
-
-    check-cast v6, Lcom/smartengines/dictionaries/IdAutoselectionModes$Item;
-
-    .line 54
-    invoke-virtual {v1}, Lcom/smartengines/targets/id/IdSessionOptions;->getModes()Ljava/util/Map;
-
-    move-result-object v7
-
-    invoke-interface {v7}, Ljava/util/Map;->keySet()Ljava/util/Set;
-
-    move-result-object v7
-
-    invoke-virtual {v6}, Lcom/smartengines/dictionaries/IdAutoselectionModes$Item;->getMode()Ljava/lang/String;
-
-    move-result-object v8
-
-    invoke-interface {v7, v8}, Ljava/util/Set;->contains(Ljava/lang/Object;)Z
-
-    move-result v7
-
-    if-eqz v7, :cond_1
-
-    .line 56
-    new-instance v8, Lcom/smartengines/app/targets/TreeLeaf;
-
-    .line 57
-    new-instance v9, Lcom/smartengines/utils/Name;
-
-    invoke-virtual {v6}, Lcom/smartengines/dictionaries/IdAutoselectionModes$Item;->getName()Ljava/util/Map;
-
-    move-result-object v7
-
-    invoke-direct {v9, v7}, Lcom/smartengines/utils/Name;-><init>(Ljava/util/Map;)V
-
-    .line 58
-    invoke-virtual {v6}, Lcom/smartengines/dictionaries/IdAutoselectionModes$Item;->getIcon()I
-
-    move-result v7
-
-    invoke-static {v7}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
-
-    move-result-object v10
-
-    .line 59
-    new-instance v7, Lcom/smartengines/targets/id/IdTarget;
-
-    .line 60
-    invoke-virtual {v6}, Lcom/smartengines/dictionaries/IdAutoselectionModes$Item;->getMode()Ljava/lang/String;
-
-    move-result-object v11
-
-    .line 61
-    invoke-virtual {v6}, Lcom/smartengines/dictionaries/IdAutoselectionModes$Item;->getMask()Ljava/lang/String;
-
-    move-result-object v6
-
-    .line 59
-    invoke-direct {v7, v11, v6}, Lcom/smartengines/targets/id/IdTarget;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-
-    move-object v15, v7
-
-    check-cast v15, Lcom/smartengines/engine/RecognitionTarget;
-
-    const/16 v16, 0x3c
-
-    const/16 v17, 0x0
-
-    const/4 v11, 0x0
-
-    const/4 v12, 0x0
-
-    const/4 v13, 0x0
-
-    const/4 v14, 0x0
-
-    .line 56
-    invoke-direct/range {v8 .. v17}, Lcom/smartengines/app/targets/TreeLeaf;-><init>(Lcom/smartengines/utils/Name;Ljava/lang/Object;Ljava/lang/Object;IZLjava/util/List;Lcom/smartengines/engine/RecognitionTarget;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-
-    .line 55
-    invoke-virtual {v3, v8}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-
-    goto :goto_0
-
-    :cond_2
-    move-object/from16 v6, p2
-
-    .line 70
-    invoke-static {v0, v1, v6}, Lcom/smartengines/app/targets/IdTargetsKt;->loadCountryList(Landroid/content/Context;Lcom/smartengines/targets/id/IdSessionOptions;Lcom/smartengines/targets/DocumentTypesStatistics;)Ljava/util/List;
-
-    move-result-object v0
-
-    check-cast v0, Ljava/util/Collection;
-
-    .line 69
-    invoke-virtual {v3, v0}, Ljava/util/ArrayList;->addAll(Ljava/util/Collection;)Z
 
     .line 29
     new-instance v4, Lcom/smartengines/app/targets/TreeGroup;

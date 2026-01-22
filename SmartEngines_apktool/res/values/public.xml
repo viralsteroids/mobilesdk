@@ -2063,14 +2063,6 @@
     <public type="color" name="material_dynamic_tertiary90" id="0x7f060260" />
     <public type="color" name="material_dynamic_tertiary95" id="0x7f060261" />
     <public type="color" name="material_dynamic_tertiary99" id="0x7f060262" />
-    <public type="color" name="m3_sys_color_dynamic_dark_error" id="0x7f06017d" />
-    <public type="color" name="m3_sys_color_dynamic_dark_error_container" id="0x7f06017e" />
-    <public type="color" name="m3_sys_color_dynamic_dark_on_error" id="0x7f060183" />
-    <public type="color" name="m3_sys_color_dynamic_dark_on_error_container" id="0x7f060184" />
-    <public type="color" name="m3_sys_color_dynamic_light_error" id="0x7f06019f" />
-    <public type="color" name="m3_sys_color_dynamic_light_error_container" id="0x7f0601a0" />
-    <public type="color" name="m3_sys_color_dynamic_light_on_error" id="0x7f0601a5" />
-    <public type="color" name="m3_sys_color_dynamic_light_on_error_container" id="0x7f0601a6" />
     <public type="dimen" name="abc_action_bar_content_inset_material" id="0x7f070000" />
     <public type="dimen" name="abc_action_bar_content_inset_with_nav" id="0x7f070001" />
     <public type="dimen" name="abc_action_bar_default_height_material" id="0x7f070002" />
@@ -5186,7 +5178,6 @@
     <public type="style" name="Theme.MaterialComponents.Light.NoActionBar.Bridge" id="0x7f110276" />
     <public type="style" name="Theme.MaterialComponents.NoActionBar" id="0x7f110277" />
     <public type="style" name="Theme.MaterialComponents.NoActionBar.Bridge" id="0x7f110278" />
-    <public type="style" name="Theme.SmartEngines" id="0x7f110279" />
     <public type="style" name="ThemeOverlay.AppCompat" id="0x7f11027a" />
     <public type="style" name="ThemeOverlay.AppCompat.ActionBar" id="0x7f11027b" />
     <public type="style" name="ThemeOverlay.AppCompat.Dark" id="0x7f11027c" />
