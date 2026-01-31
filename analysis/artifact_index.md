@@ -1,0 +1,708 @@
+# Artifact Index (Bundle RE)
+
+Concise index of reports, scripts, and outputs related to bundle reverse engineering. Paths are relative to the repo root.
+
+## Reports and guides
+- BUNDLE_FORMAT_SPECIFICATION.md - bundle format notes and structure overview.
+- BUNDLE_LOADER_ANALYSIS.md - loader control-flow and bundle loading notes.
+- DECRYPTION_ANALYSIS_REPORT.md - current decryption findings.
+- DECRYPTION_FUNCTION_ANALYSIS.md - function-level decryption analysis.
+- DECRYPTION_GUIDE.md - operational steps for decryption work.
+- FUNCTION_ANALYSIS.md - end-to-end loader chain and callsite notes.
+- MASTER_AGENT_PARALLEL_INSTRUCTIONS.md - coordination guide for parallel master agent.
+- analysis/assets_config_mining.md - APK/assets inventory with config/key/dict mining results.
+- analysis/bundle_structure.md - header/layout observations for .se bundles.
+- analysis/compression_crypto.md - compression/crypto indicators and offsets.
+- analysis/stream_extract_sliding_report.md - sliding gzip/zlib attempt report (no valid streams).
+- analysis/extra_magic_scan.md - extra compression/container magic scan (lz4/xz/lzma/bzip2/lzip/lzo).
+- analysis/extra_magic_scan.csv - offsets from extra magic scan.
+- analysis/zstd_dict_skippable_scan.md - scan for ZSTD dictionary + skippable frame magics in assets/decrypted outputs.
+- analysis/zstd_dict_skippable_scan.csv - offsets for ZSTD dictionary/skippable magic hits.
+- analysis/bzip2_extract_report.md - bzip2 extraction attempts from magic hits (all failed).
+- analysis/crypto_constants_scan.md - scan for AES/SHA/ChaCha/BLAKE2s constants in libjnimultiengine.so.
+- analysis/sha1_constants_scan.md - SHA1 IV/K constant scan with file-offset mapping.
+- analysis/header_key_sha1_report.md - tests for SHA1-derived 20-byte header key (no matches).
+- analysis/header_key_kdf_hypotheses.md - SHA1 KDF hypothesis checks (concatenation/const combos).
+- analysis/header_key_xor_analysis.md - XOR relation between header key and license hash.
+- analysis/header_key_relation_check.md - confirms post-XOR payload[0:20] = key20 XOR license_hash20.
+- analysis/version_key_locations.md - scan for version keys/const/license hash in libjnimultiengine.so.
+- analysis/postxor_markers_in_lib.md - scan for post-XOR header markers in libjnimultiengine.so.
+- analysis/payload_stat_extended.md - extended sampled stats (entropy/IoC/chi-square/correlation/zlib ratio).
+- analysis/payload_stat_extended.csv - data for extended sampled stats.
+- analysis/payload_window_stats.md - 1MB window stats across payload offsets.
+- analysis/payload_window_stats.csv - data for 1MB window stats.
+- analysis/decrypted_window_stats.md - 1MB window stats across decrypted_raw outputs.
+- analysis/decrypted_window_stats.csv - data for decrypted window stats.
+- analysis/decrypted_stat_extended.md - sampled stats (entropy/IoC/correlation/zlib ratio) for decrypted_raw.
+- analysis/decrypted_stat_extended.csv - data for sampled decrypted_raw stats.
+- analysis/install_gadget_apk.ps1 - install gadget APK + push Frida script to device.
+- analysis/check_device.ps1 - quick ADB device presence check.
+- analysis/attach_gadget.ps1 - attach to Frida Gadget (loads hook script).
+- analysis/zstd_out_latest_scan.md - quick scan of latest zstd_out dumps (entropy/head/ascii hits).
+- analysis/zstd_out_common_prefix.md - common prefix check across latest zstd_out dumps.
+- analysis/zstd_out_u64_head.md - first 64 bytes of latest zstd_out dumps decoded as u64.
+- analysis/zstd_out_struct_parse.md - parsed header fields and short record list from latest zstd_out dumps.
+- analysis/payload_head_compare.md - first 64 bytes across XOR payloads.
+- analysis/payload_tail_compare.md - last 64 bytes across XOR payloads.
+- analysis/payload_common_bytes.md - common-byte ranges within first 256 bytes of XOR payloads.
+- analysis/postxor_binary_header_compare.md - first 36 bytes (binary header) of XOR payloads, per bundle.
+- analysis/loader_chain.md - detailed loader chain breakdown.
+- analysis/decompiled_bundle_trace.md - decompiled JNI/native bundle entrypoints (string search results).
+- analysis/decoder_chain.md - loader/decoder chain mapping into libarchive/ZSTD cluster.
+- analysis/libjnimultiengine_decode_map.md - dynsym decode map (SmartEngines_full) with vaddr + file offsets.
+- analysis/libjnimultiengine_bundle_strings.md - bundle-related string anchors with vaddr + file offsets.
+- analysis/bundle_string_xrefs.md - ADRP/ADD + LDR literal xref probe for bundle strings (no hits).
+- analysis/bundle_string_xrefs_ptr.md - pointer-table xref scan for bundle strings (no hits).
+- analysis/jni_create_bl_scan.md - BL target scan around JNI Create entrypoints (no direct archive/ZSTD targets in first 0x2000 bytes).
+- analysis/jni_create_bl_targets_mapped.md - top JNI Create BL targets mapped to sections/symbols (dynsym-only, mostly PLT).
+- analysis/jni_create_bl_cluster_hits.md - BL scan (0x10000 window) for JNI Create entrypoints; no calls into archive/ZSTD cluster.
+- analysis/jni_create_blr_backtrace.md - heuristic BLR backtrace in TextEngine::Create (vtable-style call pattern).
+- analysis/jni_create_blr_reg_sources.md - heuristic BLR base-register source tracing in TextEngine::Create.
+- analysis/jni_create_blr_vtable_sources.md - heuristic vtable-source tracing for BLR sites in TextEngine::Create.
+- analysis/jni_create_stack_offset_trace.md - LDR/STR scan for key stack/context offsets near TextEngine::Create.
+- analysis/jni_create_stack_offset_trace_wide.md - wider LDR/STR scan for key stack/context offsets near TextEngine::Create.
+- analysis/jni_create_stack_offset_pairs.md - LDP/STP scan for key stack/context offsets near TextEngine::Create (none found).
+- analysis/jni_create_stackframe.md - basic prologue/stackframe probe for TextEngine::Create.
+- analysis/jni_create_blr_windows.txt - minimal disassembly windows around BLR callsites in TextEngine::Create.
+- analysis/vtable_candidates_cluster.md - vtable candidate scan for cluster entries (none found).
+- analysis/bl_callers_textengine_create.md - BL caller scan for TextEngine::Create (none found).
+- analysis/x22_248_ref_scan.md - LDR [x22+0x248] reference scan across .text.
+- analysis/x22_248_ref_windows.txt - annotated windows around LDR [x22+0x248] sites.
+- analysis/x22_248_store_scan.md - STR [x22+0x248] reference scan across .text.
+- analysis/x22_248_store_windows.txt - annotated windows around STR [x22+0x248] sites.
+- analysis/decoder_chain_offsets.md - ELF file offsets for decoder-chain functions.
+- analysis/decoder_chain_callers.md - BL xrefs to decoder-chain functions.
+- analysis/decoder_chain_callers_dynsym.md - dynsym mapping for decoder callsites (approximate).
+- analysis/zstd_decompress_stream_callsites.md - decoded windows around ZSTD_decompressStream callsites.
+- analysis/zstd_stream_callers_dynsym.md - dynsym mapping for ZSTD_decompressStream callsites.
+- analysis/_dump_zstd_stream_callsite.py - extract/decode ZSTD_decompressStream callsite windows.
+- analysis/_map_zstd_callers_to_dynsym.py - map ZSTD_decompressStream callsites to dynsym names.
+- analysis/zstd_dctx_callsites.md - decoded windows around ZSTD_decompressDCtx callsites from legacy map.
+- analysis/zstd_dctx_callsites_real.md - direct BL scan for ZSTD_decompressDCtx (no callsites).
+- analysis/zstd_dict_callsites_full.md - dynsym/PLT scan for ZSTD dictionary API callsites in SmartEngines_full.
+- analysis/_dump_zstd_dctx_callsites.py - decode windows for ZSTD_decompressDCtx callsites listed in mapping file.
+- analysis/_dump_zstd_dctx_callsites_real.py - scan for direct BL to ZSTD_decompressDCtx symbol.
+- analysis/_find_dynsym_zstd_dctx.py - locate ZSTD_decompressDCtx in dynsym.
+- analysis/_scan_zstd_dict_callsites_full.py - scan dynsym/PLT for ZSTD dictionary APIs + BL callsites in SmartEngines_full.
+- analysis/_scan_context_swap_prologues.py - find nearest prologue for context-swap helper callsites.
+- analysis/context_swap_callsite_prologues.md - callsite -> nearest prologue map for 0x0074a7e0/0x0074a810 helpers.
+- analysis/_group_context_swap_callsites.py - group context-swap helper callsites by nearest prologue.
+- analysis/context_swap_callsite_groups.md - callsites grouped by prologue with approximate function ranges.
+- analysis/_map_x22_context_to_prologues.py - map x22+0x230/0x240/0x248 LDR/STR accesses to nearest prologue.
+- analysis/x22_context_prologue_map.md - prologue map for x22 context field accesses (0x230/0x240/0x248).
+- analysis/_dump_context_swap_windows.py - dump windows around x22 context accesses and helper callsites for TextEngine ranges.
+- analysis/context_swap_key_windows.txt - annotated windows around x22+0x230/0x240/0x248 and 0x0074a7e0/0x0074a810 callsites (TextEngine ranges).
+- ghidra_scripts/auto_trace_textengine_vtable.py - Ghidra script to auto-trace x22 field accesses and CALLIND sites in TextEngine ranges.
+- analysis/_extract_streams_sliding.py - sliding-window gzip/zlib/raw decompression attempt.
+- analysis/_scan_extra_magics.py - scan for additional compression/container magics.
+- analysis/_scan_zstd_dict_skippable.py - scan assets/decrypted outputs for ZSTD dictionary and skippable frame magics.
+- analysis/_validate_zstd_skippable.py - validate ZSTD skippable frame hits (parse size, bounds check).
+- analysis/zstd_skippable_validation.md - validation of skippable-frame hits (size/bounds; false positive check).
+- analysis/_extract_bzip2_offsets.py - attempt bzip2 decompression at magic offsets.
+- analysis/_payload_head_compare.py - compare first 64 bytes across XOR payloads.
+- analysis/_payload_tail_compare.py - compare last 64 bytes across XOR payloads.
+- analysis/_payload_common_bytes.py - detect common byte ranges in XOR payload prefixes.
+- analysis/_dump_postxor_binary_header.py - dump first 36 bytes of XOR payloads.
+- analysis/_scan_crypto_constants.py - scan libjnimultiengine.so for common crypto constant tables.
+- analysis/_scan_sha1_constants.py - scan libjnimultiengine.so for SHA1 IV/K constants.
+- analysis/_map_sha1_constants.py - map SHA1 constant file offset to vaddr via ELF PT_LOAD.
+- analysis/_test_header_key_sha1.py - test if header 20-byte key equals SHA1 of header fields.
+- analysis/loader_func_calls.txt - direct call targets for loader-adjacent functions (PyGhidra).
+- analysis/loader_func_eor_counts.txt - EOR counts for loader-adjacent functions.
+- analysis/loader_callees_eor_counts.csv - EOR counts for direct callees of FUN_02558224.
+- analysis/disasm_02557c60.txt - raw disassembly window around 0x02557c60 (analyzed project).
+- analysis/aes_instr_hits.txt - AES instruction scan results (AESE/AESD/AESMC/AESIMC).
+- analysis/run_pyghidra_decompile_bundle_symbols.py - decompile dynsym bundle entrypoints.
+- analysis/run_pyghidra_decompile_loader_funcs.py - decompile loader-adjacent functions.
+- analysis/run_pyghidra_decompile_loader_helpers.py - decompile helper functions (error tables/bitpack).
+- analysis/run_pyghidra_decompile_callsite_helpers2.py - decompile callsite helper targets.
+- analysis/run_pyghidra_decompile_026ea800.py - decompile helper at 0x026ea800.
+- analysis/run_pyghidra_callgraph_for_funcs.py - list direct call targets for selected functions.
+- analysis/run_pyghidra_count_loader_eor.py - count EOR instructions in loader functions.
+- analysis/run_pyghidra_loader_callees_eor.py - count EORs for loader callees.
+- analysis/run_pyghidra_disasm_02557c60.py - dump disassembly around 0x02557c60.
+- analysis/run_pyghidra_scan_aes_instr.py - scan .text for AES instructions.
+- analysis/run_pyghidra_decompile_bundle_symbols_phdr.py - attempt decompile in PHDR project (no functions at original addrs).
+- analysis/run_pyghidra_phdr_symbol_search.py - find CreateFromEmbeddedBundle symbols in PHDR project.
+- analysis/phdr_symbol_search.txt - PHDR project symbol search results.
+- analysis/run_pyghidra_decompile_bundle_symbols_phdr2.py - decompile PHDR symbols at rebased addrs.
+- analysis/run_pyghidra_phdr_bundle_create_calls.py - call graph for PHDR CreateFromEmbeddedBundle (no calls).
+- analysis/phdr_bundle_create_calls.txt - call graph output (empty).
+- analysis/run_pyghidra_decompile_phdr_jni_bundle.py - decompile PHDR JNI CreateFromEmbeddedBundle stubs.
+- analysis/phdr_jni_bundle_calls.txt - call graph for PHDR JNI stubs (empty).
+- analysis/phdr_jni_bundle_call_mnems.txt - BL/BLR scan in PHDR JNI stubs (empty).
+- analysis/phdr_jni_bundle_body_sizes.txt - instruction counts for PHDR JNI stubs (0-length).
+- analysis/run_pyghidra_bundle_analysis_symbol_search.py - symbol search in analyzed project.
+- analysis/bundle_analysis_symbol_search.txt - analyzed project symbol results.
+- analysis/run_pyghidra_decompile_bundle_symbols_analyzed.py - decompile rebased CreateFromEmbeddedBundle + JNI wrappers.
+- analysis/run_pyghidra_decompile_fun_00c965cc.py - decompile DocEngine embedded bundle error stub.
+- analysis/run_pyghidra_bundle_processor_callgraph.py - call graph for legacy bundle processor addresses (init blocks only).
+- analysis/bundle_processor_callgraph.txt - call graph output.
+- analysis/run_pyghidra_decoder_chain_xrefs_updated.py - xrefs for decoder chain (non-entry addresses).
+- analysis/decoder_chain_xrefs_updated.txt - xref output.
+- analysis/run_pyghidra_decoder_chain_xrefs_entries.py - xrefs for decoder chain entrypoints.
+- analysis/decoder_chain_xrefs_entries.txt - xref output for entrypoints.
+- analysis/run_pyghidra_dump_decoder_vtables.py - dump u64 tables near decoder chain refs.
+- analysis/decoder_chain_vtable_refs.txt - u64 dump around suspected vtables.
+- analysis/run_pyghidra_dump_decoder_vtables_u32.py - dump u32 values around suspected vtables.
+- analysis/decoder_chain_vtable_u32.txt - u32 dump around suspected vtables.
+- analysis/run_pyghidra_dump_decoder_vtable_funcs.py - map u32 table entries to functions.
+- analysis/decoder_chain_vtable_funcs.txt - raw u32 function table entries.
+- analysis/run_pyghidra_dump_decoder_vtable_funcs_rebased.py - rebase u32 entries to function names.
+- analysis/decoder_chain_vtable_funcs_rebased.txt - rebased vtable function mapping.
+- analysis/decoder_chain_vtable_xrefs.txt - xrefs to vtable base addresses.
+- analysis/from_embedded_call_targets.txt - call targets for `FUN_0104d20c` (FromEmbeddedBundle).
+- analysis/from_embedded_call_no_flow_windows.txt - BLR windows inside `FUN_0104d20c`.
+- analysis/from_embedded_call_chain_targets.txt - call targets for key callees from FromEmbeddedBundle.
+- analysis/addr_immediate_hits_68170c.txt - scan for immediates referencing 0x0068170c/0x0062e000 ranges (no hits).
+- analysis/reloc_refs_68170c.txt - relocation refs to vtable base (none).
+- analysis/decoder_chain_tables_rebase_scan.txt - rebase scan for tables at 0x0062e050/0x0062e140.
+- analysis/xrefs_fun_0130958c.txt - xrefs to XOR cluster function entry.
+- analysis/xref_table_005536a0_dump.txt - u32 dump around data refs to XOR cluster.
+- analysis/xref_table_00658580_dump.txt - u64 dump around indirection ref to XOR cluster.
+- analysis/run_pyghidra_from_embedded_calls.py - call target dump for FromEmbeddedBundle.
+- analysis/run_pyghidra_from_embedded_call_noflow.py - BLR window dump for FromEmbeddedBundle.
+- analysis/run_pyghidra_from_embedded_call_chain_targets.py - call target dump for selected callees.
+- analysis/run_pyghidra_scan_addr_immediates.py - scan for scalar immediates near vtable bases.
+- analysis/run_pyghidra_reloc_refs_68170c.py - relocation scan for vtable base.
+- analysis/run_pyghidra_rebase_scan_tables.py - rebase scan for data tables.
+- analysis/run_pyghidra_xrefs_fun_0130958c.py - xref scan for XOR cluster function.
+- analysis/run_pyghidra_dump_xref_table_005536a0.py - u32 dump around xref data.
+- analysis/run_pyghidra_dump_xref_table_00658580.py - u64 dump around indirection data.
+- analysis/run_pyghidra_decompile_loader_func_02557bc0.py - decompile loader function containing open_memory2 callsite.
+- decompiled_code/loader_func_02557bc0.c - decompiled loader function (archive open + matrix loading).
+- analysis/run_pyghidra_xrefs_to_xor_tables.py - xrefs to XOR-related data tables.
+- analysis/xrefs_to_xor_tables.txt - xref results for XOR-related tables.
+- analysis/run_pyghidra_dump_xref_data_0080d680.py - dump u32 data around XOR table xrefs.
+- analysis/xref_data_0080d680_dump.txt - data dump around 0x0080d680.
+- analysis/run_pyghidra_string_sebundle_xrefs.py - search for "sebundle1" string xrefs.
+- analysis/string_sebundle_xrefs.txt - string xref results (empty).
+- decompiled_code/phdr_bundle_symbol_0096588c.c - PHDR DocEngine CreateFromEmbeddedBundle (stub).
+- decompiled_code/phdr_bundle_symbol_01146748.c - PHDR TextEngine CreateFromEmbeddedBundle (stub).
+- decompiled_code/phdr_jni_bundle_008d4984.c - PHDR JNI DocEngine CreateFromEmbeddedBundle stub.
+- decompiled_code/phdr_jni_bundle_008d4d74.c - PHDR JNI DocEngine CreateFromEmbeddedBundle stub.
+- decompiled_code/phdr_jni_bundle_00936da8.c - PHDR JNI TextEngine CreateFromEmbeddedBundle stub.
+- decompiled_code/phdr_jni_bundle_009371a4.c - PHDR JNI TextEngine CreateFromEmbeddedBundle stub.
+- decompiled_code/bundle_analysis_symbol_00acdc3c.c - analyzed project DocEngine CreateFromEmbeddedBundle stub.
+- decompiled_code/bundle_analysis_symbol_0136b290.c - analyzed project TextEngine CreateFromEmbeddedBundle stub.
+- decompiled_code/bundle_analysis_symbol_00a246c4.c - analyzed project JNI DocEngine SWIG_10.
+- decompiled_code/bundle_analysis_symbol_00a24ab4.c - analyzed project JNI DocEngine SWIG_11.
+- decompiled_code/bundle_analysis_symbol_00a9f224.c - analyzed project JNI TextEngine SWIG_10.
+- decompiled_code/bundle_analysis_symbol_00a9f620.c - analyzed project JNI TextEngine SWIG_11.
+- decompiled_code/bundle_analysis_symbol_00c965cc.c - analyzed project DocEngine embedded bundle error helper.
+- decompiled_code/bundle_symbol_01047838.c - decompiled InitFromOwnedZipBuffer region.
+- decompiled_code/bundle_symbol_010483b8.c - decompiled GetBundleMainFilename region.
+- decompiled_code/bundle_symbol_0104e9c0.c - decompiled FromEmbeddedBundle region.
+- decompiled_code/bundle_symbol_0104ea10.c - decompiled HasEmbeddedBundle region.
+- decompiled_code/loader_func_02557a90.c - decompiled loader-adjacent function (cleanup stub).
+- decompiled_code/loader_func_02557a14.c - decompiled helper in loader chain.
+- decompiled_code/loader_func_02558a08.c - decompiled loader-adjacent function.
+- decompiled_code/loader_func_026eaef0.c - decompiled open_memory2 wrapper region.
+- decompiled_code/loader_helper_0282e08c.c - error-table lookup helper.
+- decompiled_code/loader_helper_0282e068.c - error-table lookup helper.
+- decompiled_code/loader_helper_026c0164.c - bit-packed data helper.
+- decompiled_code/loader_helper_026ea800.c - helper decompile from decoder chain.
+- decompiled_code/callsite_helper_025f0504.c - string/entry match helper used near callsites.
+- decompiled_code/callsite_helper_025c320c.c - FilePath GetBinaryFileContentAsString helper.
+- decompiled_code/callsite_helper_02865bd0.c - operator+ helper.
+- analysis/_test_header_key_kdf.py - test SHA1 KDF hypotheses using header field concatenations.
+- analysis/_header_key_xor_analysis.py - compute key20 XOR license_hash20.
+- analysis/_check_header_key_relation.py - compare post-XOR payload prefix against key/lic relations.
+- analysis/_scan_zstd_out_latest.py - scan latest zstd_out dumps for entropy/magic/ascii runs.
+- analysis/_scan_zstd_out_common_prefix.py - compute common prefix across zstd_out dumps.
+- analysis/_scan_zstd_out_u64_head.py - decode zstd_out headers as u64 LE.
+- analysis/_parse_zstd_out_struct.py - parse zstd_out header fields + record list.
+- analysis/_scan_version_keys_in_lib.py - search for version keys/const/license hash in libjnimultiengine.so.
+- analysis/_scan_postxor_markers_in_lib.py - search for post-XOR header markers in libjnimultiengine.so.
+- analysis/_payload_stat_extended.py - compute sampled payload statistics (entropy/IoC/correlation/chi-square).
+- analysis/_payload_window_stats.py - compute 1MB window stats across payload offsets.
+- analysis/_decrypted_window_stats.py - compute 1MB window stats across decrypted_raw outputs.
+- analysis/_decrypted_stat_extended.py - compute sampled decrypted_raw stats (entropy/IoC/correlation/chi-square).
+- analysis/blr_resolution_decoder_funcs.txt - BLR sites in decoder functions (unresolved).
+- analysis/blr_decoder_windows.txt - BLR context windows for decoder functions.
+- analysis/blr_decoder_windows_detailed.txt - BLR windows with partial AArch64 decode.
+- analysis/blr_vtable_slots.md - inferred vtable slot offsets for BLR sites.
+- analysis/_map_callers_to_dynsym.py - map decoder callsites to dynsym function names.
+- analysis/aes_ctr_probe.md - AES-CTR hypothesis probe results.
+- analysis/postxor_alt_compression_probe.md - alt compression probe (LZ4/XZ/LZMA/Snappy/7z/Brotli heuristics).
+
+## Scripts and tooling
+- analyze_bundle_deep.py - deep bundle inspection and layout extraction.
+- analyze_bundle_loader.ps1 - loader-focused bundle analysis driver.
+- analyze_internal_structure.py - internal structure discovery helpers.
+- analyze_raw_format.py - raw magic/constant scanning utilities.
+- decompress_bundle.py - bundle decompression trials.
+- extract_bundle_zip.py - bundle ZIP extraction helper.
+- decrypt_bundle_xor.py - XOR decryption attempt tooling.
+- extract_crypto_constants.py - constants extraction for crypto analysis.
+- extract_se_bundle.ps1 - .se bundle extraction workflow.
+- trace_bundle_decryption.py - decryption trace scaffolding.
+- analysis/check_exports.py, analysis/list_bundle_exports.py - export/ABI checks on bundle-related libs.
+- analysis/repack.ps1, analysis/repack.py, analysis/repack2.py - bundle repack experiments.
+- analysis/_bundle_offline_scan.py - offline scan for header/payload offsets and zstd/json offsets.
+- analysis/_bundle_pair_unique.py - dedupe size-diff pairs to unique bundle names.
+- analysis/_bundle_header_table.py - parse headers/keys/const and validate offsets for extracted bundles.
+- analysis/_scan_decrypted_payloads.py - scan decrypted payloads for magic bytes, ASCII runs, and u32 table hints.
+- analysis/_scan_decrypted_tables.py - sliding-window monotonic u32 scan for table-like regions.
+- analysis/_check_decrypted_alignment.py - check if decrypted outputs align with on-disk bundles.
+- analysis/_xor_payloads_probe.py - XOR payloads of same-version bundles to test keystream reuse.
+- analysis/_ciphertext_block_stats.py - block-repeat stats for ciphertext payloads.
+- analysis/_ciphertext_stat_tests.py - bit-bias and autocorrelation tests for ciphertext payloads.
+- analysis/_payload_entropy_profile.py - sliding-window entropy profile for payloads.
+- analysis/_keystream_match_probe.py - compare XOR-derived keystreams between payload and decrypted outputs.
+- analysis/_dynsym_scan.py - dynsym scan for compression/crypto keyword hits.
+- analysis/_dynsym_scan_apktool.py - dynsym scan for compression/crypto keywords (SmartEngines_apktool).
+- analysis/_bl_scan_dynsym_apktool.py - PLT/BL scan for ZSTD/libarchive callsites (SmartEngines_apktool).
+- analysis/_scan_jni_create_bl.py - BL target scan around JNI Create entrypoints (Doc/Text).
+- analysis/_map_jni_bl_targets.py - map JNI Create BL targets to sections/symbols (dynsym).
+- analysis/_scan_jni_create_bl_cluster.py - scan JNI Create entrypoints for BLs into archive/ZSTD cluster.
+- analysis/_blr_backtrace_jni_create.py - heuristic BLR backtrace around TextEngine::Create.
+- analysis/_blr_backtrace_jni_create_sources.py - trace BLR base-register sources (heuristic).
+- analysis/_blr_backtrace_jni_create_vtable.py - trace non-self vtable sources for BLR sites (heuristic).
+- analysis/_scan_jni_create_stack_offsets.py - scan LDR/STR immediate for key stack/context offsets near TextEngine::Create.
+- analysis/_scan_jni_create_stack_offsets_wide.py - wider LDR/STR scan for key stack/context offsets near TextEngine::Create.
+- analysis/_scan_jni_create_stack_offsets_pairs.py - scan LDP/STP for key stack/context offsets near TextEngine::Create.
+- analysis/_scan_jni_create_stackframe.py - scan for stackframe setup near TextEngine::Create entry.
+- analysis/_dump_jni_blr_windows.py - dump annotated windows around BLR callsites in TextEngine::Create.
+- analysis/_scan_vtable_candidates.py - scan rodata/data for vtable-like pointer tables with cluster entries.
+- analysis/_scan_bl_to_textengine_create.py - scan .text for BL callers of TextEngine::Create.
+- analysis/_scan_x22_248_refs.py - scan .text for LDR [x22+0x248] references.
+- analysis/_dump_x22_248_windows.py - dump annotated windows around LDR [x22+0x248] sites.
+- analysis/_scan_x22_248_store.py - scan .text for STR [x22+0x248] stores.
+- analysis/_dump_x22_248_store_windows.py - dump annotated windows around STR [x22+0x248] sites.
+- analysis/_scan_magic_patterns_v2.py - raw/decrypted/offline magic scan (zstd/zlib/gzip/zip/lz4/xz/bzip2).
+- analysis/_scan_alt_compression.py - alt compression magic scan (LZ4/XZ/LZMA/Snappy/7z/Brotli heuristics).
+- analysis/_scan_header_fields.py - scan bundle headers for size/offset fields and repeated values.
+- analysis/_scan_toc_candidates.py - scan decrypted payloads for monotonic (offset,size) TOC patterns.
+- analysis/_scan_bundle_footer.py - scan bundle tails for magic bytes, strings, and size fields.
+- analysis/_scan_common_offsets.py - scan post-XOR outputs for byte-level common offset runs.
+- analysis/_scan_postxor_constant_xref.py - scan binaries for the shared post-XOR 16-byte constant.
+- analysis/_scan_payload_header_mirror.py - compare post-XOR header bytes vs on-disk binary header.
+- analysis/_scan_payload_header_encrypted.py - compare encrypted payload header bytes vs on-disk binary header.
+- analysis/_scan_dump_header_markers.py - scan dynamic dumps for raw/post-XOR header constants.
+- analysis/_scan_zip_structures.py - scan for ZIP signatures and EOCD structures in dumps/outputs.
+- analysis/_scan_zstd_out_toc.py - scan zstd_out dumps for monotonic (offset,size) table candidates.
+- analysis/_scan_zstd_out_nonzero_runs.py - scan zstd_out dumps for nonzero byte runs.
+- analysis/_scan_zstd_out_byte_parity.py - even/odd byte zero ratios for zstd_out dumps.
+- analysis/_scan_zstd_out_u16_stats.py - u16 stats for zstd_out dumps.
+- analysis/_scan_zstd_out_dim_guess.py - suggest possible image dimensions for zstd_out dumps.
+- analysis/_scan_zstd_out_repeat4.py - 4-byte repeat scan over zstd_out dumps.
+- analysis/_scan_zstd_out_u32_patterns.py - u32 high-byte pattern scan over zstd_out dumps.
+- analysis/_scan_zstd_out_ptr_header.py - extract 4x u64 pointer headers from zstd_out dumps.
+- analysis/_scan_dump_markers_extended.py - scan dumps for header/ZSTD/ZIP markers (extended).
+- analysis/_dump_entropy_profile.py - entropy profile for dump files.
+- analysis/_dump_u32_stats.py - u32 zero/small ratios for dump files.
+- analysis/pull_and_scan_dumps.ps1 - adb pull of se_dumps + marker/quick scan.
+- analysis/_zstd_dict_magic_scan.py - scan libs for ZSTD frame/dict magic.
+- analysis/_scan_apktool_zstd_dict_args.py - heuristic register/argument scan around ZSTD dict callsites.
+- analysis/_scan_apktool_zstd_dict_args_v3.py - extended heuristic scan (larger window, SP labeling) for ZSTD dict callsites.
+- analysis/_map_apktool_prologues.py - prologue scan to estimate function starts for callsites.
+- analysis/_map_apktool_zstd_dict_callsites.py - attempt to map ZSTD dict callsites to symtab functions (requires .symtab).
+- analysis/_extract_strings_dict_zstd.py - extract ASCII strings containing dict/zstd from apktool binary.
+- analysis/_scan_apktool_zstd_dict_args_v4.py - extended reg-tracking scan (includes X25/X26 sources).
+- analysis/_dump_apktool_callsite_windows_v3.py - decode windows around ZSTD dict callsites (with MOV decode).
+- analysis/_scan_apktool_zstd_x25x26_sources.py - locate X25/X26 assignment sites and nearby instruction windows.
+- analysis/_scan_full_blr_x27.py - scan full build for BLR X27 instructions.
+- analysis/_dump_full_blr_x27_windows.py - decode windows around BLR X27 in full build.
+- analysis/_scan_full_ldr_offsets_small.py - scan full build for LDR offsets 0x210/0x218.
+- analysis/_scan_full_blr_x27_x26.py - trace X26 source for BLR X27 windows in full build.
+- analysis/_scan_full_blr_x27_x19.py - trace X19 source for BLR X27 windows in full build.
+- analysis/_scan_full_blr_x27_prologue.py - locate function prologue for BLR X27 windows in full build.
+- analysis/_scan_full_bl_to_86236c.py - find BL callsites to 0x86236c (full build).
+- analysis/_scan_full_bl_to_86236c_range.py - analyze X19/X0 around BL callsites to 0x86236c (range-filtered).
+- analysis/_rank_full_bl_to_86236c.py - rank BL callsites to 0x86236c by pointer depth.
+- analysis/_dump_full_bl_to_86236c_candidates.py - decode windows around top BL callsites to 0x86236c.
+- analysis/_trace_full_bl_to_86236c_sp58.py - trace SP+0x58 stack slot feeding BL to 0x86236c.
+- analysis/_trace_full_bl_to_86236c_regs.py - snapshot of key regs before BL to 0x86236c.
+- analysis/_dump_full_1285658_prologue.py - decode early instructions near 0x1285658.
+- analysis/_dump_full_1285658_pre_context.py - decode window before 0x1285658.
+- analysis/_scan_full_1285658_x23_writes.py - list writes to X23 in 0x1285658..0x12876d0.
+- analysis/_scan_full_ldr_offsets.py - scan full build .text for LDR offsets 0x6ac8/0x6ad0.
+- analysis/_bundle_header_tail_scan.py - analyze 28-byte tail fields in bundle binary header.
+- tools/frida/frida_bundle_decrypt_hook.js - runtime hooks for bundle init/decrypt + marker checks.
+- Helper scan scripts: _scan_*.py, _dump_*.py, _find_*.py, _list_*.py (root) for one-off probes.
+
+## Outputs and scan artifacts
+- bundle_headers.txt, bundle_header_parsed.txt, bundle_header_postdump*.txt - parsed bundle headers.
+- bundle_crypto_constants.txt - crypto constant offsets in bundle data.
+- bundle_block_repeats.txt, bundle_post64_ints.txt, bundle_size_marker_scan.txt - structure/entropy probes.
+- analysis/header_u32_sequences.csv - monotonic u32 sequence scan in post-XOR headers.
+- analysis/header_size_field_scan.csv - header scan for size fields in post-XOR data.
+- entropy_skippable_scan.txt - entropy-based skip candidates.
+- constants_scan.txt, constants_filtered.txt - constant scans for crypto signatures.
+- zstd_scan_apks.txt, zstd_strings_libjnimultiengine.txt, zstd_callsite_mapping.txt - ZSTD symbol/callsite scans.
+- assets_scan.txt, assets_scan_all.txt, apk_entries_scan.txt, so_scan.txt, _so_files.txt - asset/native inventory scans.
+- decompiled_decrypt_functions.txt, decryption_functions_report.txt - decompiled function summaries.
+- analysis/binary_strings_hits.txt, analysis/symbol_indicators.txt - string/symbol indicators for compression/ZIP.
+- analysis/postxor_magic_scan.md, analysis/postxor_magic_scan_summary.md - post-XOR magic scan (full + summary).
+- analysis/postxor_zlib_header_probe.md - zlib header checksum scan + decompression attempts on post-XOR outputs.
+- analysis/postxor_alt_compression_hits.csv - alt compression magic counts per file.
+- analysis/magic_scan_v2.md - magic scan across raw `.se`, decrypted outputs, offline XOR outputs, and se_dumps.
+- analysis/apktool_plt_callsites_zstd_archive.md - BL callsites for ZSTD/libarchive PLT entries (SmartEngines_apktool).
+- analysis/zstd_dict_magic_scan.md - scan results for ZSTD frame/dict magic in binaries.
+- analysis/apktool_zstd_dict_callsite_arg_scan.md - heuristic X0/X1 immediate/ADRP scan around ZSTD dict callsites.
+- analysis/apktool_zstd_dict_callsite_arg_scan_v3.md - extended X0..X4 expression scan around ZSTD dict callsites.
+- analysis/apktool_zstd_dict_callsite_arg_scan_v4.md - extended register tracking (includes X25/X26 sources) around ZSTD dict callsites.
+- analysis/apktool_zstd_dict_callsite_prologue_map.md - callsites mapped to nearest function prologue.
+- analysis/apktool_zstd_dict_callsite_windows_v3.txt - decoded instruction windows around ZSTD dict callsites.
+- analysis/apktool_zstd_dict_x25x26_sources.txt - X25/X26 assignment sites and nearby instruction windows.
+- analysis/full_ldr_offset_6ac8_6ad0_hits.md - scan results for LDR offsets 0x6ac8/0x6ad0 in full build.
+- analysis/full_blr_x27_hits.md - BLR X27 callsite list in full build.
+- analysis/full_blr_x27_windows.txt - decoded windows around BLR X27 callsites (full build).
+- analysis/full_blr_x27_windows_summary.md - summarized BLR X27 windows with key LDR/MOV lines.
+- analysis/full_blr_x27_ldrs.md - extracted LDR X27 lines near BLR X27 windows.
+- analysis/full_ldr_offset_0210_0218_hits.md - scan results for LDR offsets 0x210/0x218 in full build.
+- analysis/full_blr_x27_x26_sources.md - heuristic X26 source for BLR X27 windows in full build.
+- analysis/full_blr_x27_x19_sources.txt - heuristic X19 source for BLR X27 windows in full build.
+- analysis/full_blr_x27_prologue_scan.md - prologue scan for functions containing BLR X27 windows.
+- analysis/full_bl_to_86236c.md - BL callsites list for target 0x86236c.
+- analysis/full_bl_to_86236c_x19_range.md - X19/X0 expressions around BL callsites (range-filtered).
+- analysis/full_bl_to_86236c_candidates.md - ranked BL callsites by pointer depth (candidate list).
+- analysis/full_bl_to_86236c_candidate_windows.txt - decoded windows around top BL callsites to 0x86236c.
+- analysis/full_bl_to_86236c_sp58_trace.md - SP+0x58 provenance for cluster callsites.
+- analysis/full_bl_to_86236c_reg_snapshot.md - register snapshot before BL at 0x12876d0.
+- analysis/full_1285658_prologue_detail.txt - decoded early instructions near 0x1285658.
+- analysis/full_1285658_pre_context.txt - decoded window before 0x1285658.
+- analysis/full_1285658_x23_writes.md - writes to X23 in 0x1285658..0x12876d0.
+- analysis/apktool_strings_dict_zstd.txt - dictionary/zstd-related ASCII strings from apktool binary.
+- analysis/postxor_ascii_runs.md - post-XOR printable ASCII run scan (min length 120).
+- analysis/postxor_common_prefix.md - common 4/8-byte constants across first 4KB of post-XOR outputs.
+- analysis/postxor_common_prefix.csv - CSV of common aligned constants in post-XOR outputs.
+- analysis/postxor_common_offsets.md - runs of identical bytes across post-XOR outputs (first 1MB).
+- analysis/postxor_common_offsets.csv - per-offset unique counts + byte values (first 1MB).
+- analysis/postxor_constant_xref.md - search results for shared post-XOR 16-byte constant in binaries.
+- analysis/postxor_constant_xref.csv - offsets of post-XOR constant matches (if any).
+- analysis/postxor_constant_derivation.md - shows post-XOR block XORs to the header constant.
+- analysis/payload_header_mirror.md - post-XOR header vs binary header comparison.
+- analysis/payload_header_mirror.csv - post-XOR header vs binary header details.
+- analysis/payload_header_encrypted_match.md - encrypted payload header vs binary header comparison.
+- analysis/payload_header_encrypted_match.csv - encrypted payload header vs binary header details.
+- analysis/dump_header_marker_scan.md - marker scan results for se_dumps outputs.
+- analysis/dump_header_marker_scan.csv - marker scan offsets (if any).
+- analysis/zip_structure_scan.md - ZIP signature/EOCD scan summary.
+- analysis/zip_structure_scan.csv - ZIP signature/EOCD scan results.
+- analysis/zstd_out_toc_candidates.md - TOC candidate scan summary for zstd_out dumps.
+- analysis/zstd_out_toc_candidates.csv - TOC candidate scan results for zstd_out dumps.
+- analysis/zstd_out_nonzero_runs.md - nonzero run summary for zstd_out dumps.
+- analysis/zstd_out_byte_parity.md - even/odd byte zero ratios for zstd_out dumps.
+- analysis/zstd_out_u16_stats.md - u16 stats for zstd_out dumps.
+- analysis/zstd_out_dim_guess.md - dimension guesses for zstd_out dumps.
+- analysis/zstd_out_repeat4_scan.md - 4-byte repeat summary for zstd_out dumps.
+- analysis/zstd_out_u32_patterns.md - u32 pattern summary for zstd_out dumps.
+- analysis/zstd_out_ptr_header.md - pointer header summary for zstd_out dumps.
+- analysis/dump_marker_scan_extended.md - extended marker scan results for zstd_out dumps.
+- analysis/dump_entropy_profile.md - entropy metrics for zstd_out dumps.
+- analysis/dump_u32_stats.md - u32 stats for zstd_out dumps.
+- analysis/postxor_gzip_probe.md - gzip decompression probe on post-XOR offsets.
+- analysis/header_size_offset_scan.md - header size/offset field scan summary (first 128 bytes).
+- analysis/header_size_offset_scan.csv - header size/offset scan results (u32/u64 LE matches).
+- analysis/toc_candidates.md - TOC candidate scan summary for decrypted payloads.
+- analysis/toc_candidates.csv - TOC candidate scan results (empty if no runs found).
+- analysis/bundle_footer_scan.md - tail scan summary for .se and last_attempt outputs.
+- analysis/bundle_footer_scan.csv - tail scan results with offsets/previews.
+- analysis/bundle_footer_gzip_probe.md - gzip decompression attempt at tail magic hits (all failed).
+- analysis/postxor_header_diff.md - byte-level diff of first 256 post-XOR bytes across bundles.
+- analysis/bundle_format_layout.md - current offline format layout summary (header + payload offset).
+- analysis/bundle_pair_size_diff.csv - top 35 input/output size-diff pairs (on-disk vs dumps).
+- analysis/bundle_pair_size_diff_unique.csv - unique bundle size-diff pairs (one per bundle).
+- analysis/bundle_pair_size_diff_summary.md - size-diff summary for unique bundles.
+- analysis/bundle_header_table.csv - per-bundle header/key/const/payload offset table.
+- analysis/bundle_header_table.md - quick per-bundle header/key/const validation summary.
+- analysis/bundle_header_tail_scan.md - 28-byte tail field dump for each bundle header with u32le/u32be views.
+- analysis/decrypted_payload_scan.csv - scan results for decrypted payloads.
+- analysis/decrypted_payload_scan.md - summary of decrypted payload scan.
+- analysis/decrypted_payload_table_scan.csv - monotonic u32 window scan results.
+- analysis/decrypted_payload_table_scan.md - summary of u32 table scan.
+- analysis/decrypted_alignment_check.csv - decrypted output alignment check results.
+- analysis/decrypted_alignment_check.md - alignment check summary.
+- analysis/payload_xor_probe.csv - XOR probe results for same-version payloads.
+- analysis/payload_xor_probe.md - XOR probe summary.
+- analysis/ciphertext_block_stats.csv - block-repeat stats for payloads.
+- analysis/ciphertext_block_stats.md - block-repeat stats summary.
+- analysis/ciphertext_stat_tests.csv - statistical tests (bit bias, autocorrelation) for payloads.
+- analysis/ciphertext_stat_tests.md - statistical tests summary.
+- analysis/payload_entropy_profile.csv - sliding-window entropy profile results.
+- analysis/payload_entropy_profile.md - entropy profile summary.
+- analysis/keystream_match_probe.csv - keystream match probe results.
+- analysis/keystream_match_probe.md - keystream match probe summary.
+- analysis/bundle_format_writeup.md - consolidated task 1 writeup with sample offsets table.
+- analysis/bundle_zstd_json_offsets.csv - zstd/json offset scan for representative bundles.
+- analysis/zstd_out_scan.md - magic/printable scan of zstd_out_*.bin dumps.
+- analysis/zstd_out_strings.md - ASCII string extraction from zstd_out_*.bin.
+- analysis/zstd_out_stats.md - entropy and zero-byte ratios for zstd_out_*.bin.
+- analysis/zstd_out_word_stats.md - 8-byte word stats for zstd_out_*.bin.
+- analysis/zstd_out_dword_stats.md - 4-byte word stats for zstd_out_*.bin.
+- analysis/dynamic_dump_scan.md - scan summary for `se_dumps/latest` dynamic dumps (magic/header/JSON/printable checks).
+- se_dumps/latest - latest dynamic dump outputs (`zstd_out_*.bin`) and scan helper.
+- analysis/crypto_string_hits.md - broad ASCII crypto keyword scan (noisy).
+- analysis/crypto_string_hits_filtered.md - uppercase token scan for crypto identifiers.
+- analysis/crypto_cluster_run.txt - static opcode mix + constants for XOR cluster at 0x1309f00.
+- analysis/xor_cluster_ref_scan.md - ADRP/ADD + pointer scan for references to XOR cluster (none found).
+- analysis/xor_cluster_reloc_refs.md - relocation scan for XOR cluster references (none found).
+- analysis/_scan_relocs_for_xor_cluster.py - scan RELA sections for addends into XOR cluster.
+- analysis/bundle_init_input_diff.md - byte/word stats for 256-byte bundle_init_input_*.bin dumps.
+- analysis/dynsym_keywords.md - dynsym scan with broad keywords (noisy).
+- analysis/dynsym_keywords_narrow.md - dynsym scan with narrow bundle/crypto/container keywords.
+- analysis/dynsym_crypto_compress_scan.md - dynsym scan for compression/crypto keywords (SmartEngines_full).
+- analysis/dynsym_crypto_compress_scan_apktool.md - dynsym scan for compression/crypto keywords (SmartEngines_apktool).
+- analysis/dynsym_bundle_symbols.md - dynsym addresses for CreateFromEmbeddedBundle and ZIP init routines.
+- analysis/dynsym_bundle_offsets.md - file offsets and first bytes for bundle-related dynsym functions.
+- analysis/function_bl_scan.md - BL target scan for bundle entry points.
+- analysis/function_bl_scan_resolved.md - PLT-resolved BL calls for bundle entry points.
+- analysis/function_bl_scan_extra.md - PLT-resolved BL calls for TextEngineImpl::Init/ImplSpawnSession/GetBundleMainFilename.
+- analysis/function_bl_scan_archive_cluster.md - BL/PLT scan for archive/ZSTD-related clusters.
+- analysis/dynsym_extra_bundle_targets.md - dynsym addresses for TextEngineImpl::Init/ImplSpawnSession/GetBundleMainFilename.
+- analysis/callsite_function_map.md - heuristic function starts for archive/ZSTD callsites.
+- analysis/plt_callsites.md - PLT callsites for libarchive/ZSTD functions.
+- analysis/plt_callsites_function_map.md - PLT callsites mapped to function starts.
+- analysis/callgraph_archive_cluster.md - BL-based call graph from archive cluster start nodes.
+- analysis/callgraph_archive_cluster_branch.md - BL+B call graph (noisy).
+- analysis/indirect_calls_archive_cluster.md - BLR sites for archive cluster functions.
+- analysis/function_direct_calls.md - direct BL/B targets for key archive-related functions.
+- analysis/callsite_context_archive_wrapper.md - instruction context around PLT callsites in archive wrapper functions.
+- analysis/ghidra_trace_worksheet.md - step-by-step Ghidra trace guide for bundle -> libarchive path.
+- analysis/function_plt_targets_resolved.md - PLT targets resolved for 0x02557a90 and 0x026eaef0.
+- analysis/open_filenames_arg_scan.md - ADRP/ADD heuristic for archive_read_open_filenames X2 strings.
+- analysis/bundle_wrapper_to_open_memory2.md - scan of 0x02557a90 callees for open_memory2/open_filenames.
+- analysis/callers_archive_open_bl_b.md - BL/B callers of 0x026eaef0.
+- analysis/callers_archive_open_bl_b_map.md - callsite 0x026eb448 mapped to function start 0x026eb3b4.
+- analysis/callers_026eb3b4.md - BL/B callers of 0x026eb3b4 (none found).
+- analysis/refs_026eb3b4.md - 64-bit constant references to 0x026eb3b4 (none found).
+- analysis/open_memory2_arg_trace.md - lightweight register trace at archive_read_open_memory2 callsite.
+- analysis/open_memory2_arg_backtrace.md - naive def-use backtrace for X0..X3 at open_memory2 callsite.
+- analysis/open_memory2_arg_backtrace_detailed.md - symbolic expression + nearby writes for X2/X3 at open_memory2 callsite.
+- analysis/open_memory2_x2_candidates.md - X2 ADRP/ADD candidate strings near open_memory2 callsite.
+- analysis/open_memory2_x2_write_sequence.md - X2 write sequence within 0x100 bytes of callsite.
+- analysis/open_memory2_x2_use_near_call.md - raw X2 usage scan near open_memory2 callsite (heuristic).
+- analysis/open_memory2_callsite_summary.md - callsite register summary from static disassembly.
+- analysis/open_memory2_window_disasm_v3.txt - disasm window around 0x026eaf44 (now known to be __open_2).
+- analysis/open_memory2_caller_window_v2.txt - disasm window around tail-call to 0x026eaef0.
+- analysis/open_memory2_caller_window_wide.txt - wider disasm window around the caller setup.
+- analysis/open_memory2_caller_window_decoded_v3.txt - decoded caller window with flags/size/buffer checks.
+- analysis/plt_symbol_map.txt - PLT address → symbol mapping from .rela.plt.
+- analysis/plt_symbol_map_v2.txt - corrected PLT map (PLT0 size 0x20).
+- analysis/movz_80000_sites.txt - all MOVZ W?, #0x80000 sites in .text.
+- analysis/movz_80000_context.txt - context windows around MOVZ #0x80000 sites.
+- analysis/open_memory2_callsite_0095f658.txt - decoded window around 0x0095f658.
+- analysis/open_memory2_callsite_0095f658_summary.md - summary showing 0x0095f658 is not archive_read_open_memory2.
+- analysis/open_memory2_callsite_02557c60.txt - decoded window around the true open_memory2 callsite.
+- analysis/open_memory2_callsite_02557c60_summary.md - argument mapping for 0x02557c60.
+- analysis/open_memory2_02557a90_window.txt - disasm window around libarchive wrapper (0x02557a90).
+- analysis/open_memory2_x19_field_refs.txt - X19 field offsets referenced in wrapper.
+- analysis/open_memory2_x19_layout.md - inferred buffer descriptor layout for X19.
+- analysis/_trace_full_bl_to_86236c_arg_chain_v3.py - SP-aware trace of stack/register chain for 0x12876d0 BL->0x86236c cluster.
+- analysis/full_bl_to_86236c_arg_chain_v3.md - output of SP-aware stack/reg chain trace (v3).
+- analysis/_scan_prologues_12856xx.py - scan for SP-adjusting prologue patterns around 0x1285658.
+- analysis/full_1285658_prologue_scan.md - prologue scan results (includes STP X29,X30 pre-index hits; nearest before 0x12876d0 is 0x1285650).
+- analysis/_scan_bl_to_1285658.py - scan for BL callsites targeting 0x1285658.
+- analysis/bl_to_1285658.md - BL callsite report (none found).
+- analysis/_trace_full_bl_to_86236c_arg_chain_v4.py - SP-aware trace from corrected prologue (0x1285650) to 0x12876d0.
+- analysis/full_bl_to_86236c_arg_chain_v4.md - output of arg chain trace (v4) for 0x12876d0 cluster.
+- analysis/_trace_full_bl_to_86236c_arg_chain_v5.py - SP0-normalized trace from 0x1285650 to 0x12876d0.
+- analysis/full_bl_to_86236c_arg_chain_v5.md - output of arg chain trace (v5) with SP0 expressions.
+- analysis/_trace_full_12876d0_args_window.py - mid-function linear trace for 0x12876d0 window (likely unreliable without true prologue).
+- analysis/full_12876d0_arg_trace.md - output of mid-window trace (use with caution).
+- analysis/_trace_full_blr_x27_args_window.py - linear arg trace around BLR X27 callsites (0x863990/0x863e24/0x863ffc).
+- analysis/full_blr_x27_arg_trace.md - output of BLR X27 arg trace (register expressions at callsites).
+- analysis/xor_key_next_layer.md - static summary of XOR key usage and inferred next layer (ZSTD/libarchive).
+- analysis/assets_config_mining.md - APK assets/config scan for dicts/keys and suspicious constants.
+- analysis/_scan_bl_to_0074a7e0_0074a810.py - BL scan for callsites to 0x0074a7e0/0x0074a810 with focus ranges.
+- analysis/bl_callers_0074a7e0_0074a810.md - summary of BL callsites to 0x0074a7e0/0x0074a810 (focus on TextEngine::Create and x22+0x248 stores).
+- analysis/ghidra_decomp_targets.md - headless decompiler output for target addresses (currently empty due to missing analysis).
+- analysis/zstd_out_structure_notes.md - hypothesized structure for zstd_out_*.bin dumps.
+- analysis/bundle_offsets_table.csv - magic/JSON offset scan for .se and decrypted/XOR outputs.
+- analysis/symbol_search_initfromownedzip.txt - analyzed project symbol results for InitFromOwnedZipBuffer/GetBundleMainFilename.
+- analysis/symbol_search_initfromfileloader.txt - analyzed project symbol results for InitFromFileLoader.
+- analysis/symbol_search_textengine_init.txt - analyzed project symbol results for TextEngineImpl init functions.
+- analysis/from_embedded_call_targets.txt - call targets for FromEmbeddedBundle.
+- analysis/from_embedded_call_no_flow_windows.txt - BLR windows inside FromEmbeddedBundle.
+- analysis/from_embedded_call_chain_targets.txt - call targets for key callees from FromEmbeddedBundle.
+- analysis/from_embedded_x20_trace.txt - x20 instruction trace for FromEmbeddedBundle.
+- analysis/from_embedded_x20_field_access.txt - [x20+0x10]/[x20+0x18] access trace.
+- analysis/xrefs_fun_0104d20c.txt - xrefs to FromEmbeddedBundle.
+- analysis/xrefs_fun_0104fc84.txt - xrefs to thin FromEmbeddedBundle wrapper.
+- analysis/xrefs_fun_02557bc0.txt - xrefs to loader function containing open_memory2 callsite.
+- analysis/decoder_chain_tables_rebase_scan.txt - rebase scan for tables at 0x0062e050/0x0062e140.
+- analysis/addr_immediate_hits_68170c.txt - scalar-immediate scan for 0x0068170c/0x0062e000 ranges (no hits).
+- analysis/reloc_refs_68170c.txt - relocation scan for vtable base (none).
+- analysis/xrefs_fun_0130958c.txt - xrefs to XOR cluster function (data/indirection).
+- analysis/xrefs_to_xor_tables.txt - xrefs to XOR-related data tables.
+- analysis/xref_table_005536a0_dump.txt - u32 dump around XOR table refs.
+- analysis/xref_table_00658580_dump.txt - u64 dump around XOR indirection refs.
+- analysis/xref_data_0080d680_dump.txt - data dump around XOR table xrefs.
+- analysis/data_at_xrefs_02557bc0.txt - dump of xref locations for loader function (zeros in memory view).
+- analysis/block_info_xrefs_02557bc0.txt - memory block info for xref locations.
+- analysis/u32_offset_0257bc0_hits.txt - scan for u32 offset 0x0257bc0 (none).
+- analysis/key_table_004909cf.bin - key table (0x80 bytes) extracted from file.
+- analysis/key_table_004909cf.txt - key table hex dump.
+- analysis/xrefs_dat_004909cf.txt - xrefs to key table base.
+- analysis/header_const_pattern_hits.txt - header constant scan (no hits).
+
+## Inputs (bundles/binaries)
+- analysis/bundles/bundle_codeengine_full.se
+- analysis/bundles/bundle_international_faces_liveness.se
+- analysis/bundles/bundle_newdocengine_demo_hiring_dsn.se
+- analysis/bundles/bundle_textengine.se
+- analysis/libjnimultiengine.so, analysis/libjnimultiengine_current.so - native engine libraries used in scans.
+- analysis/decrypted_payload_zlib_probe.md - quick zlib/gzip decompression probe on decrypted bundle outputs (no successes).
+- analysis/_scan_decrypted_magics.py - scan decrypted bundle outputs for common file magics.
+- analysis/_test_decompressed_magics_fast.py - quick zlib/gzip decompress attempt on decrypted outputs.
+- analysis/_check_header_key_match.py - compare ASCII hex header token vs binary key.
+- analysis/_dump_header_offsets.py - dump header bytes around offsets 50-90.
+- analysis/_tilde_offsets.py - compute tilde offsets in header.
+- analysis/_ascii_hex_len.py - verify ASCII hex length in header.
+- analysis/_const_offset.py - locate constant offset in bundles.
+- analysis/_scan_zstd_out_magics.py - magic scan for zstd_out dumps in se_dumps/latest.
+- analysis/_test_zstd_out_deflate.py - zlib.decompress probe on zstd_out dumps.
+- analysis/zstd_out_magic_scan.md - zstd_out magic/deflate probe summary.
+- analysis/elf_symbol_hits.txt - ELF .dynsym/.symtab hits for bundle/zip/zstd-related symbols.
+- analysis/decrypted_zip_magic_scan.md - scan for ZIP signatures in decrypted bundle outputs.
+- analysis/_test_key_hashes.py - hash-based key-derivation probe for version keys.
+- analysis/key_derivation_probe.md - results of hash-based key derivation probe.
+- analysis/crypto_cluster_phdr_decompile.txt - PHDR headless decompile output for XOR cluster (invalid without analysis).
+- analysis/crypto_cluster_phdr_notes.md - status note for PHDR crypto cluster decompile.
+- C:/Users/Asus/ghidra_scripts/DecompileCryptoCluster.java - headless script to decompile XOR cluster.
+- analysis/static_key_scan_phdr.md - PyGhidra headless static key scan summary for PHDR project.
+- extracted_keys.txt - key candidate list exported by extract_static_keys_pyghidra.py.
+- ghidra_output_phdr_keys.txt - headless PyGhidra run log for extract_static_keys_pyghidra.py.
+- analysis/bundle_header_table.csv - header fields across extracted .se bundles (version, ascii token, binary key, constant).
+- analysis/crypto_cluster_pyghidra_decompile.txt - pyghidra decompile attempt for XOR cluster range.
+- analysis/pyghidra_decompile_targets.md - pyghidra decompile attempts at high-XOR target addresses.
+- analysis/pyghidra_disasm_bundle_symbols.txt - disassembly windows around bundle-related symbol addresses.
+- decompiled_code/func_01309f00.c - pyghidra decompile of function containing 0x01309f00 (XOR cluster region).
+- decompiled_code/func_013099e0.c - pyghidra decompile of function containing 0x013099e0 (same region).
+- analysis/pyghidra_phdr_scans.md - summary of headless PyGhidra bundle loader + decryption scans.
+- ghidra_output_phdr_bundle_loader.txt - headless log for find_bundle_loader_pyghidra.py.
+- ghidra_output_phdr_decryption_scan.txt - headless log for find_decryption_functions_pyghidra.py.
+- analysis/validate_dump_signatures.py - scan se_dumps for ZSTD/zlib/gzip/zip/JSON markers and ASCII runs.
+- analysis/dump_signature_validation.md - report of signature scan over se_dumps.
+- analysis/run_dynamic_capture.ps1 - helper to start emulator, prep device, and print frida command.
+- analysis/DYNAMIC_CAPTURE_RUNBOOK.md - step-by-step dynamic capture runbook.
+- analysis/run_frida_capture.py - Python-based Frida runner (attach/spawn + optional wait/monkey).
+- analysis/deploy_gadget_script.ps1 - deploy gadget APK + push hook + launch app on device.
+- analysis/_test_header_key_hmac.py - HMAC-SHA1 hypothesis test for the 20-byte binary header key.
+- analysis/header_key_hmac_hypotheses.md - HMAC-SHA1 test results for header key derivation.
+- analysis/_find_adrp_add_to_sha1_iv.py - ADRP+ADD xref scan targeting the SHA1 IV constant address.
+- analysis/sha1_iv_adrp_add_hits.txt - xref hits for ADRP+ADD sequences to SHA1 IV (empty in current build).
+- analysis/sha1_iv_xref_scan.md - summary of the SHA1 IV xref scan.
+- analysis/_scan_sha1_iv_xrefs.py - literal LDR and ADRP+LDR scan for SHA1 IV address.
+- analysis/sha1_iv_xref_hits.txt - output of SHA1 IV xref scan (literal + ADRP+LDR).
+- analysis/sha1_iv_xref_scan_v2.md - summary of SHA1 IV xref scan (literal + ADRP+LDR).
+- analysis/_scan_smali_bundle_refs.py - scan smali for bundle/engine references (sebundle, .se, CreateFromEmbeddedBundle).
+- analysis/smali_bundle_refs.md - smali bundle reference report (file + line hits).
+- analysis/smali_bundle_refs.csv - smali bundle reference report (CSV).
+- analysis/engine_loader_bundle_flow.md - summary of EngineLoader bundle-type behavior and Model bundle wiring.
+- analysis/utils_readassets_flow.md - smali summary of UtilsKt.readAssetsFile and readFromStream4 (no Java-side transforms).
+- analysis/engine_create_entrypoints.md - mapping from Engine wrappers to SWIG JNI entrypoints for Create/CreateFromEmbeddedBundle.
+- analysis/jni_create_entrypoints.md - dynsym table for JNI byte-array Create entrypoints with vaddr + file offsets.
+- analysis/jni_create_entrypoints.csv - CSV export of JNI byte-array Create entrypoints with vaddr + file offsets.
+- analysis/SAMSUNG_ROOT_GUIDE.md - Samsung A32 (SM-A325F) root path overview (Odin + Magisk).
+- analysis/run_gadget_capture.py - helper to attach to Frida Gadget via adb forward.
+- analysis/apk_libjnimultiengine_abis.tsv - ABI scan for libjnimultiengine in APKs (no x86_64 found).
+- analysis/apk_frida_gadget_scan.txt - list of APKs containing frida-gadget and config entries.
+- analysis/_scan_zstd_out_cross_stats.py - cross-file stats for zstd_out dumps (constant bytes/u32s).
+- analysis/zstd_out_cross_stats.md - report: per-file entropy + constant-byte/u32 offsets across dumps.
+- analysis/_scan_zstd_out_offset_entropy.py - per-offset variance/entropy scan across zstd_out dumps.
+- analysis/zstd_out_offset_entropy.md - block-level entropy/zero ratio heatmap for zstd_out dumps.
+- analysis/_batch_decrypt_sebundle_real.py - batch decrypt + magic scan for sebundle assets using a provided key table.
+- analysis/batch_decrypt_results.csv - batch decrypt results (initial key).
+- analysis/batch_decrypt_results.md - batch decrypt summary (initial key).
+- analysis/_probe_decrypted_body_magics.py - decrypt body magic probe with gzip/bz2 attempts.
+- analysis/decrypted_body_magic_probe.md - magic probe results (initial key).
+- analysis/key_table_offset_3737888.bin - extracted 0x80-byte key table (file offset 0x390920) that validates headers.
+- analysis/batch_decrypt_results_key3737888.csv - batch decrypt results using key table from offset 0x390920/0x3909cf.
+- analysis/batch_decrypt_results_key3737888.md - summary of valid header+ZSTD hits using the matched key table.
+- analysis/decrypted_body_magic_probe_key3737888.md - magic probe results using matched key table (ZSTD at offset 0).
+- analysis/_test_key_tables_across_libs.py - try key table at fixed vaddr across all lib copies.
+- analysis/key_table_crosscheck.csv - key table crosscheck results (vaddr-based extraction).
+- analysis/key_table_crosscheck.md - summary of crosscheck (no header matches).
+- analysis/_scan_key_prefix_in_libs.py - scan lib files for key prefix derived from payload XOR SHA1(header).
+- analysis/key_prefix_scan.csv - key prefix matches across lib files.
+- analysis/key_prefix_scan.md - key prefix scan summary.
+- analysis/_scan_key_table_guess.py - scan key-table candidates using mini-header plaintext guesses.
+- analysis/key_table_guess_scan.csv - guess scan results.
+- analysis/key_table_guess_scan.md - guess scan summary.
+- analysis/_find_key_table_by_mini.py - locate key tables by prefix + mini-header substring match.
+- analysis/key_table_mini_matches.csv - key table candidates where mini-header contains se_demo.
+- analysis/key_table_mini_matches.md - summary of mini-header match candidates.
+- analysis/_find_adrp_add_to_key_table.py - scan executable segments for ADRP+ADD references to key table offsets.
+- analysis/key_table_xref_scan.md - ADRP+ADD xref scan results for key table offsets.
+- analysis/key_table_xref_hits.txt - raw ADRP+ADD hit list for key table offsets.
+- analysis/_map_key_table_xref_to_dynsym.py - map key table ADRP+ADD xref PCs to nearest dynsym symbol.
+- analysis/key_table_xref_symbol_map.md - dynsym-nearest symbol map for key table xref PCs.
+- analysis/header_structure_validation.md - header field validation summary (fmtver/dec_len/header size).
+- analysis/_scan_zstd_out_variable_offsets.py - variable byte/u32 offsets across zstd_out dumps.
+- analysis/zstd_out_variable_offsets.md - report on variable offsets and u32 value sets.
+- analysis/_scan_zstd_out_u32_seq_offsets.py - find u32 offsets with contiguous small ranges.
+- analysis/zstd_out_u32_seq_offsets.md - sequential u32 offsets report.
+- analysis/_dump_zstd_out_u32_early_table.py - dump u32 table for early zstd_out region (0x000..0x340).
+- analysis/zstd_out_u32_early_table.md - per-file u32 values in early zstd_out region.
+- analysis/_scan_zstd_out_record_kinds.py - parse early zstd_out records into kind/size/index statistics.
+- analysis/zstd_out_record_kinds.md - record kind/size/index summary for early zstd_out region.
+- analysis/_infer_zstd_out_sections.py - heuristic scan to infer record-table length and potential next section.
+- analysis/zstd_out_section_inference.md - section-length inference report for zstd_out dumps.
+- analysis/_scan_zstd_out_record_runs.py - scan for contiguous 8-byte record runs across zstd_out dumps.
+- analysis/zstd_out_record_runs.md - record-run summary for zstd_out dumps.
+- analysis/_compare_zstd_out_runs.py - compare top record runs by length and nonzero density.
+- analysis/zstd_out_run_compare.md - run comparison report (overlap + kind mix).
+- analysis/key_table_offset_3909cf.bin - extracted 0x80-byte key table from analysis/libjnimultiengine.so at file offset 0x3909cf (vaddr 0x004909cf in this build).
+- analysis/_zstd_frame_scan.py - decrypt and parse ZSTD frame headers and block metadata from sebundle bodies.
+- analysis/zstd_frame_scan.md - ZSTD frame header scan summary for decrypted bundles.
+- analysis/zstd_frame_scan.csv - ZSTD frame header scan table.
+- analysis/_scan_zstd_frame_headers.py - scan decrypted bodies for ZSTD frame headers (sequential frames) and flag stats.
+- analysis/zstd_frame_header_stats.md - summary stats for ZSTD frame headers across decrypted bodies.
+- analysis/zstd_frame_header_stats.csv - per-frame ZSTD header fields from decrypted bodies.
+- analysis/decrypted_bodies/ - raw decrypted payload bodies (ZSTD frames) for each .se asset.
+- analysis/_decompress_zstd_bodies.py - decompress decrypted ZSTD bodies using python zstandard (streaming).
+- analysis/zstd_decompress_results.md - ZSTD decompression results.
+- analysis/decompressed_bodies/ - decompressed TAR streams from ZSTD bodies.
+- analysis/_scan_decompressed_tar_contents.py - scan TAR entries for nested compressed assets and manifest keyword hints.
+- analysis/decompressed_tar_content_scan.md - TAR content/extension summary and nested compression hits.
+- analysis/_inspect_decompressed_bodies.py - detect TAR/ZIP and list entries from decompressed bodies.
+- analysis/decompressed_body_inspection.md - entry listings for decompressed TAR bundles.
+- analysis/_extract_tar_manifests.py - extract top-level manifest JSONs from decompressed TAR bundles.
+- analysis/tar_manifest_extraction.md - manifest extraction summary (per bundle).
+- analysis/manifests/ - extracted manifest JSON files (bundle_*.json, smartid.json, sdr.json).
+- analysis/_summarize_manifest_keys.py - summarize top-level keys from manifest JSONs.
+- analysis/manifest_key_summary.md - manifest key summary (includes bundle_filename in smartid.json/sdr.json).
+- analysis/_extract_manifest_engine_refs.py - scan manifest JSONs for referenced resource paths (:/...).
+- analysis/manifest_engine_refs.md - manifest resource reference listing.
+- analysis/_extract_tar_bundles.py - extract TAR payloads into directories.
+- analysis/tar_extraction_summary.md - TAR extraction summary.
+- analysis/extracted_tar/ - extracted TAR contents for each bundle.
+- analysis/_check_manifest_path_resolution.py - verify :/ paths resolve to extracted TAR files.
+- analysis/manifest_path_resolution.md - summary of manifest reference resolution.
+- analysis/_inventory_engine_configs.py - inventory engine config JSONs in extracted TAR bundles.
+- analysis/engine_config_inventory.md - engine config inventory summary.
+- analysis/_summarize_engine_configs.py - summarize key fields for selected engine configs.
+- analysis/engine_config_summary.md - selected engine config key summaries.
+- analysis/_bundle_size_stats.py - compute size and compression ratio stats across .se, decrypted bodies, and decompressed TARs.\n- analysis/bundle_size_stats.csv - per-bundle size and ratio table.\n- analysis/bundle_size_stats.md - summary table and aggregate size stats.
+- analysis/_tar_entry_stats.py - compute TAR entry stats (counts/sizes/extensions) across decompressed bundles.\n- analysis/tar_entry_stats.csv - per-entry TAR listing with sizes and extensions.\n- analysis/tar_entry_stats.md - TAR entry summary (per-bundle totals, top extensions, largest files).
+- analysis/_inventory_nested_tar_zst.py - inventory nested .tar.zst files by bundle.
+- analysis/nested_tar_zst_inventory.csv - counts/size summary of nested .tar.zst per bundle.
+- analysis/nested_tar_zst_inventory.md - summary report for nested .tar.zst.
+- analysis/_decompress_nested_tar_zst.py - sample decompression of small nested .tar.zst files.
+- analysis/nested_tar_sample.csv - sample decompressed nested tar details.
+- analysis/nested_tar_sample.md - sample nested tar entry listings.
+- analysis/nested_tar/ - decompressed nested tar samples.
+- analysis/_scan_nested_zstd_headers.py - scan nested .tar.zst files for ZSTD frame headers (dict/checksum flags).\n- analysis/nested_zst_header_scan.csv - per-file ZSTD header fields for nested .tar.zst entries.\n- analysis/nested_zst_header_scan.md - summary of nested .tar.zst frame header stats.
+- analysis/_decompress_all_nested_tar_zst.py - batch decompress and extract all nested .tar.zst files.
+- analysis/nested_tar_all.csv - full extraction results for nested .tar.zst files.
+- analysis/nested_tar_all.md - summary of full nested extraction.
+- analysis/nested_tar_all/ - extracted nested model contents.
+- analysis/_build_model_index.py - build model index from extracted nested tar contents.
+- analysis/model_index.csv - model inventory with weights and nn_info presence.
+- analysis/model_index.md - summary of model inventory.
+- analysis/_sample_nn_info.py - sample key/fields from nn_info.json files.
+- analysis/nn_info_sample.md - nn_info key sample output.
+- analysis/_build_resource_graph_recursive.py - build recursive resource graph from manifest JSONs.
+- analysis/resource_graph_recursive.csv - recursive manifest ref graph.
+- analysis/resource_graph_recursive.md - recursive graph summary.
+- analysis/resource_graph_models.csv - tar.zst model refs from recursive graph.
+- analysis/_build_resource_graph_dot.py - build DOT graph from recursive resource references.
+- analysis/resource_graph.dot - DOT graph (edges colored by ref type).
+- analysis/resource_graph_note.md - DOT graph notes.
+- tools/ghidra/README.md - notice that Ghidra tools were archived to archive_root_2026-01-30/tools_backup.
+- tools/frida/README.md - notice that most Frida tools were archived; kept only the main hook + docs.
+- archive_root_2026-01-30/tools_backup/ - archived Ghidra + Frida tools removed from tools/.
+- archive_root_2026-01-30/root_misc/ - root-level scripts/docs moved out to reduce clutter; see README.md in that folder.

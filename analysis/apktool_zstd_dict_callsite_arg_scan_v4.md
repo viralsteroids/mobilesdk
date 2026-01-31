@@ -1,0 +1,13 @@
+Binary: C:\temp\MobileSDK\SmartEngines_apktool\lib\arm64-v8a\libjnimultiengine.so
+
+ZSTD_createDDict_advanced callsites=7
+  - 0x270d910: X0=MEM[SP+0x8] (set @0x270d8f8); X1=SP (set @0x270d8fc); X2=SP (set @0x270d8d4); X19=MEM[SP+0x10] (set @0x270d86c); X20=MEM[SP+0x80] (set @0x270d840); X25=MEM[SP+0x58] (set @0x270d84c); X26=MEM[MEM[MEM[SP+0x10]+0x75e8]+0x6ac8] (set @0x270d87c); X27=SP (set @0x270d880); X28=MEM[SP+0x40] (set @0x270d850); W20=W4 (set @0x270d868); W28=W31 (set @0x270d888)
+  - 0x270da50: X0=SP (set @0x270da38); X1=SP (set @0x270da3c); X2=SP (set @0x270da10); X19=SP (set @0x270d9b4); X20=MEM[SP+0x75e8] (set @0x270d9ac); X25=SP (set @0x270d9c8); X26=SP (set @0x270d9d0); X27=MEM[MEM[SP+0x75e8]+0x6ac8] (set @0x270d9c4); X28=MEM[SP+0x40] (set @0x270d850); W20=W4 (set @0x270d868); W28=W31 (set @0x270d888)
+  - 0x270db90: X0=X0 (set @0x270db78); X1=X0 (set @0x270db7c); X2=X0 (set @0x270db50); X19=SP (set @0x270daf4); X20=MEM[SP+0x75e8] (set @0x270daec); X25=X0 (set @0x270db08); X26=X0 (set @0x270db10); X27=MEM[MEM[SP+0x75e8]+0x6ac8] (set @0x270db04); X28=MEM[SP+0x40] (set @0x270d850); W20=W4 (set @0x270d868); W28=W31 (set @0x270d888)
+  - 0x270dcb4: X0=X2 (set @0x270dca0); X1=X2 (set @0x270dca4); X2=X2 (set @0x270dc7c); X19=SP (set @0x270dc18); X20=MEM[SP+0x75e8] (set @0x270dc10); X25=X2 (set @0x270dc2c); X26=X2 (set @0x270dc34); X27=MEM[MEM[SP+0x75e8]+0x6ac8] (set @0x270db04); X28=MEM[MEM[SP+0x75e8]+0x6ac8] (set @0x270dc28); W20=W4 (set @0x270d868); W28=W3 (set @0x270d888)
+  - 0x270df60: X0=X2 (set @0x270df48); X1=X2 (set @0x270df4c); X2=X2 (set @0x270ddc0); X19=SP (set @0x270ded4); X20=X2 (set @0x270dec8); X25=MEM[SP+0x18] (set @0x270de94); X26=MEM[SP+0x10] (set @0x270de94); X27=MEM[MEM[SP+0x75e8]+0x6ac8] (set @0x270df00); X28=MEM[SP+0x30] (set @0x270dcf0)
+  - 0x2710bac: X0=SP (set @0x2710b74); X1=SP (set @0x2710b4c); X2=MEM[SP+0x38] (set @0x2710a28); X19=MEM[SP+0x28] (set @0x2710b68); X20=MEM[SP+0x20] (set @0x2710b68); X25=MEM[SP+0x68] (set @0x2710760); X26=MEM[SP+0x60] (set @0x2710760); X27=MEM[SP+0x58] (set @0x2710764); X28=MEM[SP+0x50] (set @0x2710764); W20=W3 (set @0x271091c)
+  - 0x2710c04: X0=SP (set @0x2710b74); X1=SP (set @0x2710b4c); X2=MEM[SP+0x38] (set @0x2710a28); X19=MEM[SP+0x30] (set @0x2710bc4); X20=MEM[SP+0x20] (set @0x2710b68); X25=MEM[SP+0x68] (set @0x2710760); X26=MEM[SP+0x60] (set @0x2710760); X27=MEM[SP+0x58] (set @0x2710764); X28=MEM[SP+0x50] (set @0x2710764); W20=W3 (set @0x271091c)
+
+ZSTD_DCtx_refDDict callsites=1
+  - 0x270e658: X0=MEM[SP+0x48] (set @0x270e610); X1=MEM[SP+0x48] (set @0x270e604); X2=MEM[SP+0x30] (set @0x270e2b0); X19=MEM[SP+0x48] (set @0x270e620); X20=MEM[SP+0x40] (set @0x270e620); X25=MEM[SP+0x10] (set @0x270e624)

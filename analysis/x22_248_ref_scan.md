@@ -1,0 +1,29 @@
+# LDR [x22+0x248] reference scan
+
+Library: C:\temp\MobileSDK\SmartEngines_full\lib\arm64-v8a\libjnimultiengine.so
+Scan window: full .text
+
+Hits: 23
+- 0x00b23c70
+- 0x01121318
+- 0x01146c00
+- 0x01148128
+- 0x0114a570
+- 0x0130dffc
+- 0x0132dadc
+- 0x013468b4
+- 0x0134d11c
+- 0x01351df4
+- 0x013540f8
+- 0x0135b324
+- 0x0135e970
+- 0x0137dd30
+- 0x0138ba44
+- 0x0138df30
+- 0x01395160
+- 0x01397e7c
+- 0x013a1990
+- 0x013bfe60
+- 0x013c6b8c
+- 0x013ddaac
+- 0x0187f24c

@@ -1,0 +1,6 @@
+# Payload entropy profile (64KB windows, step 4KB)
+
+- bundle_codeengine_full.se: 0x188000: 7.99645, 0x30b000: 7.99645, 0x189000: 7.99648, 0x14b000: 7.99649, 0x496000: 7.99652
+- bundle_international_faces_liveness.se: 0x31f3000: 7.99217, 0x31f8000: 7.99219, 0x31f7000: 7.99221, 0x31f5000: 7.99225, 0x31f9000: 7.99227
+- bundle_newdocengine_demo_hiring_dsn.se: 0x1f5a000: 7.99610, 0x578000: 7.99614, 0x23a5000: 7.99619, 0x577000: 7.99619, 0x57a000: 7.99619
+- bundle_textengine.se: 0x14a8000: 7.99575, 0x14a7000: 7.99599, 0x14a9000: 7.99611, 0x14a6000: 7.99617, 0x1171000: 7.99618

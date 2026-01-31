@@ -1,0 +1,10 @@
+# Payload head comparison (offline_xor_out)
+
+Files: 4. Common prefix length: 0 bytes.
+
+## First 64 bytes (hex)
+
+- bundle_codeengine_full_last_attempt.bin (size=5850833): 8058efb39877313b296223568824e2421e44e23f6620f57c1ab40e76f0d4f284733fd046fc4b0d716452386a00600d5e247d8f6742789d901a453acac10ae0d0
+- bundle_international_faces_liveness_last_attempt.bin (size=118987012): 8058efb39877313b296223568824e2421e44e23f6620f57c1ab40e76f0d4f284733fd0460413021bc0ea357585f94c3e6842a828882b7d64c8ae4ba548d912ae
+- bundle_newdocengine_demo_hiring_dsn_last_attempt.bin (size=56878241): e424bd9376d32f513cc6236ab3ee8675cab476c26620f57c1ab40e76f0d4f284733fd0465c8502077b340e04fe13ddb8440dc404605f73fd9e5d28365b2cdc80
+- bundle_textengine_last_attempt.bin (size=27200898): 1a39eeaaf5170e1931e4be59b06157a51f07a45e6620f57c1ab40e76f0d4f284733fd046243702bbced427354554b1d1bafa8040a25c8cc36b2ad63a3ea85e9f

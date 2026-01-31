@@ -1,0 +1,5 @@
+# dynsym extra bundle targets
+
+- _ZN2se4text14TextEngineImpl4InitERKNS_4arch8FilePathEb: 0x0126d478
+- _ZNK2se4text14TextEngineImpl16ImplSpawnSessionERKNS0_23TextSessionSettingsImplEPKcPNS0_12TextFeedbackENSt6__ndk16vectorIhNS9_9allocatorIhEEEE: 0x0126b8a4
+- _ZNK2se4text14TextEngineImpl21GetBundleMainFilenameERKNS_4arch8FilePathE: 0x0126cf28

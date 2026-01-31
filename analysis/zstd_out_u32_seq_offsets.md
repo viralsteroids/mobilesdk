@@ -1,0 +1,8 @@
+# ZSTD out u32 sequential offsets
+
+Files: 5; common length: 2735
+
+| offset | values |
+| --- | --- |
+| 0x24 | 0x6, 0x7, 0x8 |
+| 0x204 | 0x0, 0x1, 0x2 |

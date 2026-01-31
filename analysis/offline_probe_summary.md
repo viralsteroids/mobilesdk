@@ -1,0 +1,7 @@
+﻿# Offline probe summary
+
+По данным `_offline_bundle_recon.csv` (4 bundles) размеры: 5850892; 27200957; 56878300; 118987071 байт. Во всех записях совпадают `payload_offset=59` (и `payload_len=size-59`), `tilde_offsets=[9, 15, 58]`, `license_hash` и `payload_20_35_hex=76f6f2fb17591a73192c515d55b72060`. Энтропия почти максимальная (entropy_1m 7.99970-7.99981; total 7.99993-7.99996), `ascii_offsets` пусты; `table_monotonic_prefix` короткий (2-3), а `table_alignment_counts` варьируют. Magic-сканы дают 24 попадания (zlib 13, gzip 11).
+
+В `_offline_layer2_probe.csv` размеры `*_last_attempt.bin` полностью совпадают с `payload_len` соответствующих `.se`, то есть это полезная нагрузка без 59-байтного заголовка. Повторы на 8-64 байта близки к нулю (max 1.23e-5), PKCS7-padding не детектирован, `ascii_offsets` и `decompress_hits` пусты. Magic-hits в layer2: zlib 18 и gzip 14; у меньших bundles (codeengine/textengine) только zlib, у больших (faces_liveness/demo) только gzip; `keyword_hits` всегда одиночный `zip`. Это указывает на устойчиво высокоэнтропийную упаковку/шифрование, при этом тип компрессии коррелирует с размером или семейством bundle.
+
+Дополнительно: попытка распаковки gzip/zlib/raw по всем magic-offsets (и со сдвигом ±16 байт) не дала ни одного валидного потока; также проверка ZIP сигнатур вокруг `zip` offset и у конца файла — без находок. См. `analysis/stream_extract_report.md`, `analysis/stream_extract_sliding_report.md`, `analysis/zip_offset_validation.md`.

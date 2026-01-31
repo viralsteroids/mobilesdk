@@ -1,0 +1,185 @@
+# ZSTD_decompressDCtx callsites (decoded windows)
+
+Callsite @0x984bf4
+  0x984bcc: aa1403e1 ?
+  0x984bd0: aa1f03e2 ?
+  0x984bd4: f942a508 LDR X8, [X8, #0x548]
+  0x984bd8: d63f0100 ?
+  0x984bdc: aa0003f5 ?
+  0x984be0: b4001680 ?
+  0x984be4: b40001f6 ?
+  0x984be8: aa1703e0 ?
+  0x984bec: aa1503e1 ?
+  0x984bf0: aa1603e2 ?
+  0x984bf4: 94778203 BL 0x2765400
+  0x984bf8: b40015d5 ?
+  0x984bfc: f9400268 LDR X8, [X19, #0x0]
+  0x984c00: aa1303e0 ?
+  0x984c04: aa1403e1 ?
+  0x984c08: aa1503e2 ?
+  0x984c0c: f942a908 LDR X8, [X8, #0x550]
+  0x984c10: d63f0100 ?
+  0x984c14: 140000a7 ?
+  0x984c18: aa1f03f5 ?
+  0x984c1c: b5fffe76 ?
+
+Callsite @0x11f834c
+  0x11f8324: d100c3a0 ?
+  0x11f8328: 910163e2 ADD X2, X31, #0x58
+  0x11f832c: 9455b401 BL 0x2765330
+  0x11f8330: f85d03a8 ?
+  0x11f8334: 39400109 ?
+  0x11f8338: f940090a LDR X10, [X8, #0x10]
+  0x11f833c: 7200013f ?
+  0x11f8340: 9a881541 ?
+  0x11f8344: 91014260 ADD X0, X19, #0x50
+  0x11f8348: d100c3a2 ?
+  0x11f834c: 9455b42d BL 0x2765400
+  0x11f8350: 910163e0 ADD X0, X31, #0x58
+  0x11f8354: 9455b3c3 BL 0x2765260
+  0x11f8358: d100c3a0 ?
+  0x11f835c: 9455b3dd BL 0x27652d0
+  0x11f8360: 3941c3e8 ?
+  0x11f8364: 36000068 ?
+  0x11f8368: f94043e0 LDR X0, [X31, #0x80]
+  0x11f836c: 9455ae51 BL 0x2763cb0
+  0x11f8370: f9400769 LDR X9, [X27, #0x8]
+  0x11f8374: b40000a9 ?
+
+Callsite @0x11f9f84
+  0x11f9f5c: a943a6e8 LDP X8, X9, [X23, #0x38]
+  0x11f9f60: eb09011f ?
+  0x11f9f64: 540001e0 ?
+  0x11f9f68: f9404be8 LDR X8, [X31, #0x90]
+  0x11f9f6c: 39400109 ?
+  0x11f9f70: f940090a LDR X10, [X8, #0x10]
+  0x11f9f74: 7200013f ?
+  0x11f9f78: 9a881541 ?
+  0x11f9f7c: 910183e0 ADD X0, X31, #0x60
+  0x11f9f80: 910243e2 ADD X2, X31, #0x90
+  0x11f9f84: 9455ad1f BL 0x2765400
+  0x11f9f88: f9404be8 LDR X8, [X31, #0x90]
+  0x11f9f8c: 39407508 ?
+  0x11f9f90: 7100011f ?
+  0x11f9f94: 1a9f07e8 ?
+  0x11f9f98: 0a160116 ?
+  0x11f9f9c: 2a140114 ?
+  0x11f9fa0: 910243e0 ADD X0, X31, #0x90
+  0x11f9fa4: 9455accb BL 0x27652d0
+  0x11f9fa8: f94006e9 LDR X9, [X23, #0x8]
+  0x11f9fac: b40000a9 ?
+
+Callsite @0x11fa170
+  0x11fa148: f9404789 LDR X9, [X28, #0x88]
+  0x11fa14c: 5280002a MOVZ X10, #0x1, LSL 0
+  0x11fa150: 3902312a ?
+  0x11fa154: 34000114 ?
+  0x11fa158: 39400109 ?
+  0x11fa15c: f940090a LDR X10, [X8, #0x10]
+  0x11fa160: 7200013f ?
+  0x11fa164: 9a881541 ?
+  0x11fa168: 910183e0 ADD X0, X31, #0x60
+  0x11fa16c: 910223e2 ADD X2, X31, #0x88
+  0x11fa170: 9455aca4 BL 0x2765400
+  0x11fa174: 910223e0 ADD X0, X31, #0x88
+  0x11fa178: 9455ac56 BL 0x27652d0
+  0x11fa17c: f9404fe0 LDR X0, [X31, #0x98]
+  0x11fa180: 97fff03c BL 0x11f6270
+  0x11fa184: f9404f81 LDR X1, [X28, #0x98]
+  0x11fa188: b5ffec21 ?
+  0x11fa18c: f9404b81 LDR X1, [X28, #0x90]
+  0x11fa190: b4002241 ?
+  0x11fa194: 39428028 ?
+  0x11fa198: 35002208 ?
+
+Callsite @0x11fa2d8
+  0x11fa2b0: 9455a680 BL 0x2763cb0
+  0x11fa2b4: f9400a88 LDR X8, [X20, #0x10]
+  0x11fa2b8: b4fff8e8 ?
+  0x11fa2bc: f94043e8 LDR X8, [X31, #0x80]
+  0x11fa2c0: 39400109 ?
+  0x11fa2c4: f940090a LDR X10, [X8, #0x10]
+  0x11fa2c8: 7200013f ?
+  0x11fa2cc: 9a881541 ?
+  0x11fa2d0: 910183e0 ADD X0, X31, #0x60
+  0x11fa2d4: 910203e2 ADD X2, X31, #0x80
+  0x11fa2d8: 9455ac4a BL 0x2765400
+  0x11fa2dc: f94043e8 LDR X8, [X31, #0x80]
+  0x11fa2e0: 39407508 ?
+  0x11fa2e4: 7100011f ?
+  0x11fa2e8: 1a9f07e8 ?
+  0x11fa2ec: 0a160116 ?
+  0x11fa2f0: 2a130113 ?
+  0x11fa2f4: 17ffffb8 ?
+  0x11fa2f8: f9402be9 LDR X9, [X31, #0x50]
+  0x11fa2fc: aa0803fa ?
+  0x11fa300: eb09011f ?
+
+Callsite @0x11fae2c
+  0x11fae04: f940090a LDR X10, [X8, #0x10]
+  0x11fae08: 3c868100 ?
+  0x11fae0c: 3c878101 ?
+  0x11fae10: ad410700 ?
+  0x11fae14: 7200013f ?
+  0x11fae18: 9a881541 ?
+  0x11fae1c: 3c888100 ?
+  0x11fae20: 3c898101 ?
+  0x11fae24: 910043e0 ADD X0, X31, #0x10
+  0x11fae28: 910063e2 ADD X2, X31, #0x18
+  0x11fae2c: 9455a975 BL 0x2765400
+  0x11fae30: f9400fe8 LDR X8, [X31, #0x18]
+  0x11fae34: 39407508 ?
+  0x11fae38: 34000088 ?
+  0x11fae3c: f9403e68 LDR X8, [X19, #0x78]
+  0x11fae40: 52800029 MOVZ X9, #0x1, LSL 0
+  0x11fae44: 39055109 ?
+  0x11fae48: f94002c8 LDR X8, [X22, #0x0]
+  0x11fae4c: aa1603e0 ?
+  0x11fae50: f9400508 LDR X8, [X8, #0x8]
+  0x11fae54: d63f0100 ?
+
+Callsite @0x11faff4
+  0x11fafcc: 910083e0 ADD X0, X31, #0x20
+  0x11fafd0: d101c3a2 ?
+  0x11fafd4: 9455a8d7 BL 0x2765330
+  0x11fafd8: f94013e8 LDR X8, [X31, #0x20]
+  0x11fafdc: 39400109 ?
+  0x11fafe0: f940090a LDR X10, [X8, #0x10]
+  0x11fafe4: 7200013f ?
+  0x11fafe8: 9a881541 ?
+  0x11fafec: 910043e0 ADD X0, X31, #0x10
+  0x11faff0: 910083e2 ADD X2, X31, #0x20
+  0x11faff4: 9455a903 BL 0x2765400
+  0x11faff8: f94013e8 LDR X8, [X31, #0x20]
+  0x11faffc: 39407508 ?
+  0x11fb000: 34000088 ?
+  0x11fb004: f9403e68 LDR X8, [X19, #0x78]
+  0x11fb008: 52800029 MOVZ X9, #0x1, LSL 0
+  0x11fb00c: 39055109 ?
+  0x11fb010: d101c3a0 ?
+  0x11fb014: 9455a893 BL 0x2765260
+  0x11fb018: 910083e0 ADD X0, X31, #0x20
+  0x11fb01c: 9455a8ad BL 0x27652d0
+
+Callsite @0x11fb744
+  0x11fb71c: 9455af61 BL 0x27674a0
+  0x11fb720: 38356aff ?
+  0x11fb724: f85f03a8 ?
+  0x11fb728: 394023f6 ?
+  0x11fb72c: f9400ff5 LDR X21, [X31, #0x18]
+  0x11fb730: f9400108 LDR X8, [X8, #0x0]
+  0x11fb734: 720002df ?
+  0x11fb738: 9a950341 ?
+  0x11fb73c: 9100e102 ADD X2, X8, #0x38
+  0x11fb740: aa1403e0 ?
+  0x11fb744: 9455a72f BL 0x2765400
+  0x11fb748: 36000076 ?
+  0x11fb74c: aa1503e0 ?
+  0x11fb750: 9455a158 BL 0x2763cb0
+  0x11fb754: f85f03a8 ?
+  0x11fb758: f9400109 LDR X9, [X8, #0x0]
+  0x11fb75c: f940052b LDR X11, [X9, #0x8]
+  0x11fb760: b40000ab ?
+  0x11fb764: aa0b03ea ?
+  0x11fb768: f940016b LDR X11, [X11, #0x0]
+  0x11fb76c: b5ffffcb ?

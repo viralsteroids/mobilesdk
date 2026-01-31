@@ -1,0 +1,309 @@
+PLT0 size: 0x20 (plt_size=0x47f0, rel_count=1149)
+
+ZSTD_DCtx_refDDict @ 0x27671a0 :: callsites=1
+  - 0x270e658
+
+ZSTD_createDDict_advanced @ 0x2767140 :: callsites=7
+  - 0x270d910
+  - 0x270da50
+  - 0x270db90
+  - 0x270dcb4
+  - 0x270df60
+  - 0x2710bac
+  - 0x2710c04
+
+ZSTD_createDStream @ 0x2767090 :: callsites=1
+  - 0x26f5530
+
+ZSTD_decompressContinue @ 0x2767190 :: callsites=4
+  - 0x270f3d4
+  - 0x270f418
+  - 0x270f478
+  - 0x270f4d4
+
+ZSTD_decompressStream @ 0x27670b0 :: callsites=3
+  - 0x26ebf74
+  - 0x26f55b8
+  - 0x27108a4
+
+ZSTD_freeDCtx @ 0x2767160 :: callsites=6
+  - 0x26ebdf0
+  - 0x26ec04c
+  - 0x26f5528
+  - 0x26f55f4
+  - 0x26f5f40
+  - 0x270cb78
+
+ZSTD_freeDDict @ 0x2767150 :: callsites=1
+  - 0x270f664
+
+ZSTD_getFrameContentSize @ 0x2767180 :: callsites=3
+  - 0x270a658
+  - 0x270aa9c
+  - 0x270b624
+
+ZSTD_getFrameHeader_advanced @ 0x2767170 :: callsites=8
+  - 0x270a3f4
+  - 0x270a854
+  - 0x270abc4
+  - 0x270c54c
+  - 0x270d564
+  - 0x270ea50
+  - 0x270ec8c
+  - 0x270f56c
+
+ZSTD_initDStream @ 0x27670a0 :: callsites=1
+  - 0x26f5538
+
+ZSTD_trace_decompress_begin @ 0x27671b0 :: callsites=6
+  - 0x270ba60
+  - 0x270baec
+  - 0x270c3cc
+  - 0x270d2bc
+  - 0x270d3bc
+  - 0x270f04c
+
+ZSTD_trace_decompress_end @ 0x27671c0 :: callsites=3
+  - 0x270c218
+  - 0x270ce24
+  - 0x270d260
+
+archive_entry_clear @ 0x2766f10 :: callsites=4
+  - 0x26e04c0
+  - 0x26e8058
+  - 0x26e8148
+  - 0x26ee8bc
+
+archive_entry_copy_fflags_text_len @ 0x2766f80 :: callsites=1
+  - 0x26f1c44
+
+archive_entry_copy_gname @ 0x2766f90 :: callsites=1
+  - 0x26f0014
+
+archive_entry_copy_link @ 0x2766fa0 :: callsites=1
+  - 0x26f005c
+
+archive_entry_copy_mac_metadata @ 0x2766f20 :: callsites=1
+  - 0x26f4814
+
+archive_entry_copy_pathname @ 0x2766fc0 :: callsites=1
+  - 0x26eff58
+
+archive_entry_copy_uname @ 0x2766fd0 :: callsites=1
+  - 0x26effb8
+
+archive_entry_hardlink @ 0x2766f30 :: callsites=1
+  - 0x26f05a0
+
+archive_entry_hardlink_w @ 0x2766f40 :: callsites=1
+  - 0x26f0594
+
+archive_entry_pathname @ 0x2766ab0 :: callsites=2
+  - 0x26f7954
+  - 0x26f7a04
+
+archive_entry_pathname_w @ 0x2766f50 :: callsites=3
+  - 0x26f78a0
+  - 0x26f78c4
+  - 0x26f79b0
+
+archive_entry_set_pathname @ 0x2766fb0 :: callsites=1
+  - 0x26f7a50
+
+archive_entry_symlink @ 0x2766f60 :: callsites=1
+  - 0x26f04ec
+
+archive_entry_symlink_w @ 0x2766f70 :: callsites=1
+  - 0x26f04e0
+
+archive_entry_xattr_add_entry @ 0x2766ff0 :: callsites=1
+  - 0x26f1654
+
+archive_read_add_callback_data @ 0x2767020 :: callsites=3
+  - 0x26ead94
+  - 0x26eb634
+  - 0x26eb650
+
+archive_read_data @ 0x2766aa0 :: callsites=1
+  - 0x2557e04
+
+archive_read_open1 @ 0x2767010 :: callsites=1
+  - 0x26eb760
+
+archive_read_open_filenames @ 0x2767040 :: callsites=3
+  - 0x2557bf4
+  - 0x26eacc4
+  - 0x26eb520
+
+archive_read_open_memory2 @ 0x2767080 :: callsites=1
+  - 0x2557c60
+
+archive_read_support_filter_zstd @ 0x2766a90 :: callsites=2
+  - 0x2557bb4
+  - 0x2557c18
+
+archive_read_support_format_zip_seekable @ 0x27670d0 :: callsites=1
+  - 0x2557c2c
+
+archive_read_support_format_zip_streamable @ 0x27670c0 :: callsites=3
+  - 0x2557bbc
+  - 0x2557c20
+  - 0x26f3398
+
+archive_set_error @ 0x2767030 :: callsites=156
+  - 0x2557c10
+  - 0x26e8324
+  - 0x26e85d0
+  - 0x26e8790
+  - 0x26e8b44
+  - 0x26e8d94
+  - 0x26e9068
+  - 0x26e9528
+  - 0x26e96b4
+  - 0x26e99c4
+  - 0x26e9b14
+  - 0x26e9c34
+  - 0x26e9cc8
+  - 0x26e9d30
+  - 0x26e9e20
+  - 0x26ea0b4
+  - 0x26ea1dc
+  - 0x26ea354
+  - 0x26ea51c
+  - 0x26ea8f4
+  - 0x26eac18
+  - 0x26eaed0
+  - 0x26eaf94
+  - 0x26eb050
+  - 0x26eb074
+  - 0x26eb14c
+  - 0x26eb1c8
+  - 0x26eb1fc
+  - 0x26eb2e8
+  - 0x26eb31c
+  - 0x26eb4b0
+  - 0x26eb4e4
+  - 0x26eb778
+  - 0x26eb7b4
+  - 0x26eb958
+  - 0x26eb9d0
+  - 0x26ebb94
+  - 0x26ebe04
+  - 0x26ebfe0
+  - 0x26ec00c
+  - 0x26ec148
+  - 0x26ec21c
+  - 0x26ed30c
+  - 0x26ed62c
+  - 0x26ed8a4
+  - 0x26ed940
+  - 0x26ed970
+  - 0x26edb64
+  - 0x26edc2c
+  - 0x26edd0c
+  - 0x26edda0
+  - 0x26ede14
+  - 0x26edf48
+  - 0x26edfe0
+  - 0x26ee370
+  - 0x26ee4a0
+  - 0x26ee5c8
+  - 0x26ee644
+  - 0x26ee6b8
+  - 0x26ee980
+  - 0x26ee9ac
+  - 0x26ee9d4
+  - 0x26ee9f0
+  - 0x26eea1c
+  - 0x26eeb00
+  - 0x26eecc0
+  - 0x26eed98
+  - 0x26eede0
+  - 0x26eefdc
+  - 0x26ef9a8
+  - 0x26ef9fc
+  - 0x26efb0c
+  - 0x26efb2c
+  - 0x26efda8
+  - 0x26efdc8
+  - 0x26efe28
+  - 0x26eff4c
+  - 0x26f0088
+  - 0x26f00b8
+  - 0x26f0100
+  - 0x26f01f8
+  - 0x26f0418
+  - 0x26f097c
+  - 0x26f0b80
+  - 0x26f0c80
+  - 0x26f0cc4
+  - 0x26f1078
+  - 0x26f141c
+  - 0x26f1678
+  - 0x26f1b44
+  - 0x26f1b68
+  - 0x26f1cd8
+  - 0x26f1d84
+  - 0x26f1edc
+  - 0x26f2174
+  - 0x26f22fc
+  - 0x26f2324
+  - 0x26f25f8
+  - 0x26f26a8
+  - 0x26f26d0
+  - 0x26f2ea0
+  - 0x26f2f14
+  - 0x26f2fa8
+  - 0x26f2fd8
+  - 0x26f3010
+  - 0x26f337c
+  - 0x26f349c
+  - 0x26f3594
+  - 0x26f3858
+  - 0x26f4538
+  - 0x26f4594
+  - 0x26f4640
+  - 0x26f46bc
+  - 0x26f4830
+  - 0x26f486c
+  - 0x26f4884
+  - 0x26f5488
+  - 0x26f5674
+  - 0x26f584c
+  - 0x26f5890
+  - 0x26f58ac
+  - 0x26f58cc
+  - 0x26f5eb4
+  - 0x26f6104
+  - 0x26f61ac
+  - 0x26f61d4
+  - 0x26f6294
+  - 0x26f62b8
+  - 0x26f62dc
+  - 0x26f6368
+  - 0x26f6538
+  - 0x26f65cc
+  - 0x26f661c
+  - 0x26f66bc
+  - 0x26f6710
+  - 0x26f6b10
+  - 0x26f6b2c
+  - 0x26f6bbc
+  - 0x26f6d74
+  - 0x26f73e8
+  - 0x26f7498
+  - 0x26f77bc
+  - 0x26f783c
+  - 0x26f7ab4
+  - 0x26f7cd4
+  - 0x26f7cfc
+  - 0x26f7d24
+  - 0x26f7e5c
+  - 0x26f8308
+  - 0x26f8560
+  - 0x26f861c
+  - 0x26f864c
+  - 0x26f8834
+  - 0x26fbe4c
+  - 0x26fbf48
+  - 0x2701304

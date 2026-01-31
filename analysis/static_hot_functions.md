@@ -1,0 +1,155 @@
+# Static scan: ZSTD/zlib/deflate candidates (libjnimultiengine.so)
+
+- Library: `C:\temp\MobileSDK\analysis\libjnimultiengine.so`
+- Size: 41862120 bytes
+- Matches: 185 rows (symbols: 78, relocations: 15, strings: 92, needed: 0)
+
+## Symbol matches
+- archive_read_support_filter_zstd (.dynsym) va=0x26ebadc size=0x170 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_copyDCtx (.dynsym) va=0x2709ffc size=0x8 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_createDCtx (.dynsym) va=0x2709d6c size=0x9c defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_createDCtx_advanced (.dynsym) va=0x2709c70 size=0xfc defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_createDDict (.dynsym) va=0x2710b7c size=0x58 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_createDDict_advanced (.dynsym) va=0x27108e0 size=0x22c defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_createDDict_byReference (.dynsym) va=0x2710bd4 size=0x58 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_createDStream (.dynsym) va=0x270d598 size=0x9c defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_createDStream_advanced (.dynsym) va=0x270d6e0 size=0xfc defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_DCtx_getParameter (.dynsym) va=0x270e8fc size=0xa4 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_DCtx_loadDictionary (.dynsym) va=0x270da80 size=0x140 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_DCtx_loadDictionary_advanced (.dynsym) va=0x270d7f4 size=0x14c defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_DCtx_loadDictionary_byReference (.dynsym) va=0x270d940 size=0x140 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_DCtx_refDDict (.dynsym) va=0x270e1a8 size=0x490 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_DCtx_refPrefix (.dynsym) va=0x270dd18 size=0x188 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_DCtx_refPrefix_advanced (.dynsym) va=0x270dbc0 size=0x158 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_DCtx_reset (.dynsym) va=0x270dff0 size=0x110 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_DCtx_setFormat (.dynsym) va=0x270e770 size=0x30 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_DCtx_setMaxWindowSize (.dynsym) va=0x270e6a8 size=0x40 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_DCtx_setParameter (.dynsym) va=0x270e7a0 size=0x15c defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_decodingBufferSize_min (.dynsym) va=0x270e9e4 size=0x20 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_decompress (.dynsym) va=0x270ca8c size=0x120 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_decompress_usingDDict (.dynsym) va=0x270ca7c size=0x10 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_decompress_usingDict (.dynsym) va=0x270aca0 size=0x8 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_decompressBegin (.dynsym) va=0x270d288 size=0xe0 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_decompressBegin_usingDDict (.dynsym) va=0x270d368 size=0x198 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_decompressBegin_usingDict (.dynsym) va=0x270c38c size=0x190 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_decompressBlock (.dynsym) va=0x271e114 size=0x74 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_decompressBound (.dynsym) va=0x270aab0 size=0x9c defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_decompressContinue (.dynsym) va=0x270cbe0 size=0x5fc defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_decompressDCtx (.dynsym) va=0x270c984 size=0xf8 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_decompressionMargin (.dynsym) va=0x270ab4c size=0x118 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_decompressStream (.dynsym) va=0x270eac0 size=0xf10 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_decompressStream_simpleArgs (.dynsym) va=0x271085c size=0x84 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_dParam_getBounds (.dynsym) va=0x270e6e8 size=0x88 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_DStreamInSize (.dynsym) va=0x270d7e0 size=0xc defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_DStreamOutSize (.dynsym) va=0x270d7ec size=0x8 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_estimateDCtxSize (.dynsym) va=0x2709bb8 size=0xc defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_estimateDDictSize (.dynsym) va=0x2710d88 size=0x14 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_estimateDStreamSize (.dynsym) va=0x270ea04 size=0x20 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_estimateDStreamSize_fromFrame (.dynsym) va=0x270ea24 size=0x9c defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_findDecompressedSize (.dynsym) va=0x270a5b4 size=0x108 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_findFrameCompressedSize (.dynsym) va=0x270aa3c size=0x58 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_frameHeaderSize (.dynsym) va=0x270a080 size=0x5c defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_freeDCtx (.dynsym) va=0x2709e08 size=0x1f4 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_freeDDict (.dynsym) va=0x2710b0c size=0x70 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_freeDStream (.dynsym) va=0x270d7dc size=0x4 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_getDecompressedSize (.dynsym) va=0x270aa94 size=0x1c defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_getDictID_fromDDict (.dynsym) va=0x2710dc0 size=0x10 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_getDictID_fromDict (.dynsym) va=0x270d500 size=0x2c defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_getDictID_fromFrame (.dynsym) va=0x270d52c size=0x6c defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_getErrorCode (.dynsym) va=0x2709994 size=0xc defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_getErrorName (.dynsym) va=0x2709988 size=0xc defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_getErrorString (.dynsym) va=0x27099a0 size=0x4 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_getFrameContentSize (.dynsym) va=0x270a3c0 size=0x138 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_getFrameHeader (.dynsym) va=0x270a3b8 size=0x8 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_getFrameHeader_advanced (.dynsym) va=0x270a0dc size=0x2dc defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_initDStream (.dynsym) va=0x270e100 size=0xa8 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_initDStream_usingDDict (.dynsym) va=0x270e638 size=0x48 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_initDStream_usingDict (.dynsym) va=0x270dea0 size=0x150 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_initStaticDCtx (.dynsym) va=0x2709bc4 size=0xac defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_initStaticDDict (.dynsym) va=0x2710c2c size=0x15c defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_initStaticDStream (.dynsym) va=0x270d634 size=0xac defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_insertBlock (.dynsym) va=0x270ac64 size=0x3c defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_isError (.dynsym) va=0x270997c size=0xc defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_isFrame (.dynsym) va=0x270a004 size=0x54 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_isSkippableFrame (.dynsym) va=0x270a058 size=0x28 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_nextInputType (.dynsym) va=0x270cbb4 size=0x2c defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_nextSrcSizeToDecompress (.dynsym) va=0x270cbac size=0x8 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_readSkippableFrame (.dynsym) va=0x270a4f8 size=0xbc defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_resetDStream (.dynsym) va=0x270e680 size=0x28 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_sizeof_DCtx (.dynsym) va=0x2709b74 size=0x44 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_sizeof_DDict (.dynsym) va=0x2710d9c size=0x24 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_sizeof_DStream (.dynsym) va=0x270e9a0 size=0x44 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_trace_decompress_begin (.dynsym) va=N/A size=N/A imported symbol; type=STT_NOTYPE; bind=STB_WEAK; shndx=SHN_UNDEF
+- ZSTD_trace_decompress_end (.dynsym) va=N/A size=N/A imported symbol; type=STT_NOTYPE; bind=STB_WEAK; shndx=SHN_UNDEF
+- ZSTD_versionNumber (.dynsym) va=0x2709968 size=0x8 defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+- ZSTD_versionString (.dynsym) va=0x2709970 size=0xc defined symbol; type=STT_FUNC; bind=STB_GLOBAL; shndx=15
+
+## Relocation/GOT entries (call targets)
+- archive_read_support_filter_zstd .rela.plt va=0x27dab50 file_off=0x27d6b50 reloc type=1026 (GOT/PLT hook target)
+- ZSTD_createDDict_advanced .rela.plt va=0x27daea8 file_off=0x27d6ea8 reloc type=1026 (GOT/PLT hook target)
+- ZSTD_createDStream .rela.plt va=0x27dae50 file_off=0x27d6e50 reloc type=1026 (GOT/PLT hook target)
+- ZSTD_DCtx_refDDict .rela.plt va=0x27daed8 file_off=0x27d6ed8 reloc type=1026 (GOT/PLT hook target)
+- ZSTD_decompressContinue .rela.plt va=0x27daed0 file_off=0x27d6ed0 reloc type=1026 (GOT/PLT hook target)
+- ZSTD_decompressStream .rela.plt va=0x27dae60 file_off=0x27d6e60 reloc type=1026 (GOT/PLT hook target)
+- ZSTD_freeDCtx .rela.plt va=0x27daeb8 file_off=0x27d6eb8 reloc type=1026 (GOT/PLT hook target)
+- ZSTD_freeDDict .rela.plt va=0x27daeb0 file_off=0x27d6eb0 reloc type=1026 (GOT/PLT hook target)
+- ZSTD_getFrameContentSize .rela.plt va=0x27daec8 file_off=0x27d6ec8 reloc type=1026 (GOT/PLT hook target)
+- ZSTD_getFrameHeader_advanced .rela.plt va=0x27daec0 file_off=0x27d6ec0 reloc type=1026 (GOT/PLT hook target)
+- ZSTD_initDStream .rela.plt va=0x27dae58 file_off=0x27d6e58 reloc type=1026 (GOT/PLT hook target)
+- ZSTD_trace_decompress_begin .rela.dyn va=0x27d8fb8 file_off=0x27d4fb8 reloc type=1025 (GOT/PLT hook target)
+- ZSTD_trace_decompress_begin .rela.plt va=0x27daee0 file_off=0x27d6ee0 reloc type=1026 (GOT/PLT hook target)
+- ZSTD_trace_decompress_end .rela.dyn va=0x27d8fc0 file_off=0x27d4fc0 reloc type=1025 (GOT/PLT hook target)
+- ZSTD_trace_decompress_end .rela.plt va=0x27daee8 file_off=0x27d6ee8 reloc type=1026 (GOT/PLT hook target)
+
+## String hits (potential wrapper/error paths)
+- off=0x9011c va=0x9011c archive_read_support_filter_zstd
+- off=0x1ee5d7 va=0x1ee5d7 bad parameters to zlib
+- off=0x23a307 va=0x23a307 Can't allocate data for zstd decompression
+- off=0x22d20c va=0x22d20c deflateEnd failed (ignored)
+- off=0x22d679 va=0x22d679 Error during zstd decompression: %s
+- off=0x247145 va=0x247145 inflate_factor_for_jaccard
+- off=0x26be40 va=0x26be40 No memory for Zstd decompression
+- off=0x24cf8a va=0x24cf8a Truncated zstd file body
+- off=0x220cac va=0x220cac Truncated zstd input
+- off=0x2a3bc2 va=0x2a3bc2 unexpected zlib return
+- off=0x20ddf7 va=0x20ddf7 unexpected zlib return code
+- off=0x24c7b0 va=0x24c7b0 unsupported zlib version
+- off=0x1f4905 va=0x1f4905 zlib IO error
+- off=0x2b05f1 va=0x2b05f1 zstd
+- off=0x2a3fb9 va=0x2a3fb9 Zstd decompression failed: %s
+- off=0x923da va=0x923da ZSTD_copyDCtx
+- off=0x923bc va=0x923bc ZSTD_createDCtx
+- off=0x923a3 va=0x923a3 ZSTD_createDCtx_advanced
+- off=0x922e3 va=0x922e3 ZSTD_createDDict
+- off=0x922ba va=0x922ba ZSTD_createDDict_advanced
+- off=0x922f4 va=0x922f4 ZSTD_createDDict_byReference
+- off=0x91efb va=0x91efb ZSTD_createDStream
+- off=0x9264e va=0x9264e ZSTD_createDStream_advanced
+- off=0x927d6 va=0x927d6 ZSTD_DCtx_getParameter
+- off=0x926c4 va=0x926c4 ZSTD_DCtx_loadDictionary
+- off=0x9267d va=0x9267d ZSTD_DCtx_loadDictionary_advanced
+- off=0x9269f va=0x9269f ZSTD_DCtx_loadDictionary_byReference
+- off=0x92739 va=0x92739 ZSTD_DCtx_refDDict
+- off=0x926fa va=0x926fa ZSTD_DCtx_refPrefix
+- off=0x926dd va=0x926dd ZSTD_DCtx_refPrefix_advanced
+- off=0x92729 va=0x92729 ZSTD_DCtx_reset
+- off=0x927ab va=0x927ab ZSTD_DCtx_setFormat
+- off=0x9277a va=0x9277a ZSTD_DCtx_setMaxWindowSize
+- off=0x927bf va=0x927bf ZSTD_DCtx_setParameter
+- off=0x92801 va=0x92801 ZSTD_decodingBufferSize_min
+- off=0x9255a va=0x9255a ZSTD_decompress
+- off=0x9253f va=0x9253f ZSTD_decompress_usingDDict
+- off=0x92511 va=0x92511 ZSTD_decompress_usingDict
+- off=0x925b2 va=0x925b2 ZSTD_decompressBegin
+- off=0x925e6 va=0x925e6 ZSTD_decompressBegin_usingDDict
+- off=0x925c7 va=0x925c7 ZSTD_decompressBegin_usingDict
+- off=0x928b0 va=0x928b0 ZSTD_decompressBlock
+- off=0x924d2 va=0x924d2 ZSTD_decompressBound
+- off=0x9259a va=0x9259a ZSTD_decompressContinue
+- off=0x9252b va=0x9252b ZSTD_decompressDCtx
+- off=0x924e7 va=0x924e7 ZSTD_decompressionMargin
+- off=0x91f4f va=0x91f4f ZSTD_decompressStream
+- off=0x92859 va=0x92859 ZSTD_decompressStream_simpleArgs
+- off=0x92795 va=0x92795 ZSTD_dParam_getBounds
+- off=0x9266a va=0x9266a ZSTD_DStreamInSize
+- ... 42 more in CSV

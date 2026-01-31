@@ -1,0 +1,25 @@
+FUN_02557a90 0x2557a90-0x2558528
+  BLR @0x2557c78 X8
+    LDR1 @0x2557c74: X8 <- [X8, #0x8]
+    LDR2 @0x2557c6c: X8 <- [X20, #0x8]
+  BLR @0x2557cc4 X8
+    LDR1 @0x2557cb8: X8 <- [X8, #0x30]
+    LDR2 @0x2557cb4: X8 <- [X20, #0x818]
+  BLR @0x2557ce0 X8
+    LDR1 @0x2557cdc: X8 <- [X8, #0x30]
+    LDR2 @0x2557cd0: X8 <- [X20, #0x8]
+  BLR @0x2557d24 X8
+    LDR1 @0x2557d20: X8 <- [X8, #0x40]
+    LDR2 @0x2557d0c: X8 <- [X20, #0x8]
+  BLR @0x25584d0 X8
+    LDR1 @0x25584cc: X8 <- [X8, #0x0]
+    LDR2 @0x25584c4: X8 <- [X20, #0x8]
+  BLR @0x25584e0 X8
+    LDR1 @0x25584dc: X8 <- [X8, #0x8]
+    LDR2 @0x25584d4: X8 <- [X20, #0x8]
+
+FUN_026eaef0 0x26eaef0-0x26ecef0
+  BLR @0x26ebf00 X27
+    LDR @0x26ebeec: X27 <- [X21, #0x6ac8]
+  BLR @0x26ebf14 X27
+    LDR @0x26ebeec: X27 <- [X21, #0x6ac8]

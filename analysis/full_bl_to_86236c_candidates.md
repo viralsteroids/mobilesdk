@@ -1,0 +1,6 @@
+Candidates for BL to 0x86236c (ranked by pointer-depth)
+0x1287778 score=3 X19=MEM[MEM[MEM[SP+0x58]+0x28]+0x10] (set @19429040) X0=X20 (set @19428996)
+0x1287760 score=3 X19=MEM[MEM[MEM[SP+0x58]+0x28]+0x10] (set @19429040) X0=X20 (set @19428996)
+0x12876e8 score=3 X19=MEM[MEM[MEM[SP+0x58]+0x28]+0x10] (set @19429040) X0=X20 (set @19428996)
+0x12876d0 score=3 X19=MEM[MEM[MEM[SP+0x58]+0x28]+0x10] (set @19429040) X0=X20 (set @19428996)
+0x1280f24 score=3 X19=MEM[X21+0x40] (set @19402268) X0=MEM[X25+0x8] (set @19402420)

@@ -1,0 +1,18 @@
+# ZSTD out TOC preview (zstd_out_1769666284656.bin)
+
+Start offset: 0x00000033 (align=3)
+
+Pairs (offset,size):
+- 00: table_pos=0x00000033 off=0x00000001 size=0x00000200
+- 01: table_pos=0x0000003b off=0x00000001 size=0x00000400
+- 02: table_pos=0x00000043 off=0x00000001 size=0x00000600
+- 03: table_pos=0x0000004b off=0x00000001 size=0x00000800
+- 04: table_pos=0x00000053 off=0x00000001 size=0x00000a00
+- 05: table_pos=0x0000005b off=0x00000001 size=0x00000c00
+- 06: table_pos=0x00000063 off=0x00000001 size=0x00000e00
+- 07: table_pos=0x0000006b off=0x00000001 size=0x00001000
+- 08: table_pos=0x00000073 off=0x00000001 size=0x00001200
+- 09: table_pos=0x0000007b off=0x00000001 size=0x00001400
+- 10: table_pos=0x00000083 off=0x00000001 size=0x00003000
+- 11: table_pos=0x0000008b off=0x00000104 size=0x00004000
+- 12: table_pos=0x00000093 off=0x00000104 size=0x00004000

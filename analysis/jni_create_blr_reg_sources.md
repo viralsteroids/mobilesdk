@@ -1,0 +1,57 @@
+# JNI Create BLR base-register sources (heuristic)
+
+Library: C:\temp\MobileSDK\SmartEngines_full\lib\arm64-v8a\libjnimultiengine.so
+Scan window: 0x2000 bytes
+Backtrack: 40 instructions
+
+## TextEngine::Create(char*,bool) @ 0x0114662c
+- blr x8 @ 0x01146c48: x8 <= [x8+0x10] @ 0x01146c44
+  - base x8 <= [x8+0x10] @ 0x01146c44
+- blr x8 @ 0x011478e4: x8 <= [x8+0x10] @ 0x011478d4
+  - base x8 <= [x8+0x10] @ 0x011478d4
+- blr x8 @ 0x01147904: x8 <= [x8+0x10] @ 0x011478f4
+  - base x8 <= [x8+0x10] @ 0x011478f4
+- blr x8 @ 0x01147920: x8 <= [x8+0x10] @ 0x01147914
+  - base x8 <= [x8+0x10] @ 0x01147914
+- blr x8 @ 0x01147940: x8 <= [x8+0x10] @ 0x01147930
+  - base x8 <= [x8+0x10] @ 0x01147930
+- blr x8 @ 0x01147d20: x8 <= [x8+0x10] @ 0x01147d1c
+  - base x8 <= [x8+0x10] @ 0x01147d1c
+- blr x8 @ 0x01147d54: x8 <= [x8+0x10] @ 0x01147d50
+  - base x8 <= [x8+0x10] @ 0x01147d50
+- blr x8 @ 0x01147e88: x8 <= [x8+0x10] @ 0x01147e84
+  - base x8 <= [x8+0x10] @ 0x01147e84
+- blr x8 @ 0x01147ec8: x8 <= [x8+0x10] @ 0x01147ec4
+  - base x8 <= [x8+0x10] @ 0x01147ec4
+- blr x8 @ 0x01148190: x8 <= [x8+0x10] @ 0x0114818c
+  - base x8 <= [x8+0x10] @ 0x0114818c
+- blr x8 @ 0x011481f8: x8 <= [x8+0x10] @ 0x011481f4
+  - base x8 <= [x8+0x10] @ 0x011481f4
+- blr x8 @ 0x011482a8: x8 <= [x8+0x10] @ 0x011482a4
+  - base x8 <= [x8+0x10] @ 0x011482a4
+
+## TextEngine::Create(uchar*,int,bool) @ 0x011466b8
+- blr x8 @ 0x01146c48: x8 <= [x8+0x10] @ 0x01146c44
+  - base x8 <= [x8+0x10] @ 0x01146c44
+- blr x8 @ 0x011478e4: x8 <= [x8+0x10] @ 0x011478d4
+  - base x8 <= [x8+0x10] @ 0x011478d4
+- blr x8 @ 0x01147904: x8 <= [x8+0x10] @ 0x011478f4
+  - base x8 <= [x8+0x10] @ 0x011478f4
+- blr x8 @ 0x01147920: x8 <= [x8+0x10] @ 0x01147914
+  - base x8 <= [x8+0x10] @ 0x01147914
+- blr x8 @ 0x01147940: x8 <= [x8+0x10] @ 0x01147930
+  - base x8 <= [x8+0x10] @ 0x01147930
+- blr x8 @ 0x01147d20: x8 <= [x8+0x10] @ 0x01147d1c
+  - base x8 <= [x8+0x10] @ 0x01147d1c
+- blr x8 @ 0x01147d54: x8 <= [x8+0x10] @ 0x01147d50
+  - base x8 <= [x8+0x10] @ 0x01147d50
+- blr x8 @ 0x01147e88: x8 <= [x8+0x10] @ 0x01147e84
+  - base x8 <= [x8+0x10] @ 0x01147e84
+- blr x8 @ 0x01147ec8: x8 <= [x8+0x10] @ 0x01147ec4
+  - base x8 <= [x8+0x10] @ 0x01147ec4
+- blr x8 @ 0x01148190: x8 <= [x8+0x10] @ 0x0114818c
+  - base x8 <= [x8+0x10] @ 0x0114818c
+- blr x8 @ 0x011481f8: x8 <= [x8+0x10] @ 0x011481f4
+  - base x8 <= [x8+0x10] @ 0x011481f4
+- blr x8 @ 0x011482a8: x8 <= [x8+0x10] @ 0x011482a4
+  - base x8 <= [x8+0x10] @ 0x011482a4

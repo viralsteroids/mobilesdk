@@ -1,0 +1,56 @@
+# Key table candidates via mini-header match
+
+- Matches: 432
+
+| bundle | engine_version | lib_path | offset | mini_hex |
+| --- | --- | --- | --- | --- |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | analysis\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | analysis\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\TextScanner_src\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\TextScanner_src\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\TextScanner_src\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\TextScanner_src\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\TextScanner_full_src_blue_only\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\TextScanner_full_src_blue_only\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\TextScanner_full_src_blue_only\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\TextScanner_full_src_blue_only\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\TextScanner\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\TextScanner\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\TextScanner\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\TextScanner\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\RegistrationScanner_src\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\RegistrationScanner_src\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\RegistrationScanner_src\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\RegistrationScanner_src\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\RegistrationScanner_full_src_blue_only\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\RegistrationScanner_full_src_blue_only\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\RegistrationScanner_full_src_blue_only\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\RegistrationScanner_full_src_blue_only\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\RegistrationScanner\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\RegistrationScanner\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\RegistrationScanner\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\RegistrationScanner\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\QRScanner_v2_check\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\QRScanner_v2_check\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\QRScanner_src\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\QRScanner_src\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\QRScanner_src\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\QRScanner_src\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\QRScanner_full_src_blue_only\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\QRScanner_full_src_blue_only\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\QRScanner_full_src_blue_only\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\QRScanner_full_src_blue_only\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\QRScanner\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\QRScanner\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\QRScanner\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\QRScanner\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\PassportScanner_v6_src\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\PassportScanner_v6_src\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\PassportScanner_v6_src\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\PassportScanner_v6_src\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\PassportScanner_src\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\PassportScanner_src\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\PassportScanner_src\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\PassportScanner_src\build\apk\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\check_text_blue\lib\arm64-v8a\libjnimultiengine.so | 3737888 | 317e73655f64656d6f7e |
+| extracted_bundles\assets\bundle_codeengine_full.se | 2.7.2 | TestApps_apk\check_text_blue\lib\arm64-v8a\libjnimultiengine.so | 3738063 | 317e73655f64656d6f7e |

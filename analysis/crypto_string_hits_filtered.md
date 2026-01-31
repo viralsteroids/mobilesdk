@@ -1,0 +1,73 @@
+# Crypto string hits (filtered)
+
+Uppercase token scan for crypto-related identifiers.
+
+## libjnimultiengine.so
+- count: 32
+- AREG = %08x, CREG = %08x, CTREG = %u
+- ARO_CTR_HOR
+- ARO_CTR_VER
+- CTRL_BS
+- CTRL_DL
+- CTRL_LL
+- CTRL_ML
+- CTRL_PL
+- CTRL_PS
+- CTRL_UL
+- CTRL_US
+- ELECTRONIC
+- Incomplete AES field
+- minimg:: FastHoughTransform<real32_t, real32_t, ARO_CTR_HOR, COOP_ADD, HDO_DESKEW>( FHT_image, grad_image)
+- minimg::CloneFHTPrototype( FHT_image, grad_image, TYP_REAL32, ARO_CTR_HOR, AO_PREALLOCATED)
+- minimg::CloneFHTPrototype(fht, hordif, TYP_UINT16, ARO_CTR_HOR)
+- minimg::CloneFHTPrototype(fht, scimg, TYP_REAL32, ARO_CTR_HOR)
+- minimg::FastHoughTransform< real32_t, real32_t, ARO_CTR_HOR, COOP_ADD, HDO_DESKEW>(FHT_image, grad_image)
+- minimg::FastHoughTransform< real32_t, real32_t, ARO_CTR_HOR, COOP_ADD, HDO_DESKEW>(fht, scimg)
+- minimg::FastHoughTransform< real32_t, real32_t, ARO_CTR_HOR, COOP_ADD, HDO_DESKEW>(op_img, ip_img)
+- minimg::FastHoughTransform< real32_t, real32_t, ARO_CTR_HOR, COOP_ADD, HDO_RAW>(op_img, ip_img)
+- minimg::FastHoughTransform< real32_t, real32_t, ARO_CTR_VER, COOP_ADD, HDO_DESKEW>(op_img, ip_img)
+- minimg::FastHoughTransform< real32_t, real32_t, ARO_CTR_VER, COOP_ADD, HDO_RAW>(op_img, ip_img)
+- minimg::FastHoughTransform< uint16_t, uint8_t, ARO_CTR_HOR, COOP_ADD, HDO_DESKEW>(fht, hordif)
+- minimg::FastHoughTransform< uint16_t, uint8_t, ARO_CTR_VER, COOP_ADD, HDO_DESKEW>(fht_line_mask, img_to_find_lines)
+- minimg::FastHoughTransform< uint16_t, uint8_t, ARO_CTR_VER, COOP_ADD, HDO_DESKEW>(fht_val_mask, scaled_val_img)
+- minimg::FastHoughTransform< uint32_t, uint32_t, ARO_CTR_HOR, COOP_ADD, HDO_DESKEW>(ht_img, in_img)
+- minimg::FastHoughTransform< uint32_t, uint32_t, ARO_CTR_HOR, COOP_ADD, HDO_RAW>(ht_img, in_img)
+- minimg::FastHoughTransform< uint32_t, uint32_t, ARO_CTR_VER, COOP_ADD, HDO_DESKEW>(ht_img, in_img)
+- minimg::FastHoughTransform< uint32_t, uint32_t, ARO_CTR_VER, COOP_ADD, HDO_RAW>(ht_img, in_img)
+- minimg::HoughPoint2Line<ARO_CTR_HOR, HDO_DESKEW>( line_segment, hough_point, gray_image, true)
+- minimg_raw::CloneFHTPrototypeRaw( fht_line_mask, img_to_find_lines, TYP_UINT16, ARO_CTR_VER, AO_PREALLOCATED)
+
+## libjnimultiengine_current.so
+- count: 32
+- AREG = %08x, CREG = %08x, CTREG = %u
+- ARO_CTR_HOR
+- ARO_CTR_VER
+- CTRL_BS
+- CTRL_DL
+- CTRL_LL
+- CTRL_ML
+- CTRL_PL
+- CTRL_PS
+- CTRL_UL
+- CTRL_US
+- ELECTRONIC
+- Incomplete AES field
+- minimg:: FastHoughTransform<real32_t, real32_t, ARO_CTR_HOR, COOP_ADD, HDO_DESKEW>( FHT_image, grad_image)
+- minimg::CloneFHTPrototype( FHT_image, grad_image, TYP_REAL32, ARO_CTR_HOR, AO_PREALLOCATED)
+- minimg::CloneFHTPrototype(fht, hordif, TYP_UINT16, ARO_CTR_HOR)
+- minimg::CloneFHTPrototype(fht, scimg, TYP_REAL32, ARO_CTR_HOR)
+- minimg::FastHoughTransform< real32_t, real32_t, ARO_CTR_HOR, COOP_ADD, HDO_DESKEW>(FHT_image, grad_image)
+- minimg::FastHoughTransform< real32_t, real32_t, ARO_CTR_HOR, COOP_ADD, HDO_DESKEW>(fht, scimg)
+- minimg::FastHoughTransform< real32_t, real32_t, ARO_CTR_HOR, COOP_ADD, HDO_DESKEW>(op_img, ip_img)
+- minimg::FastHoughTransform< real32_t, real32_t, ARO_CTR_HOR, COOP_ADD, HDO_RAW>(op_img, ip_img)
+- minimg::FastHoughTransform< real32_t, real32_t, ARO_CTR_VER, COOP_ADD, HDO_DESKEW>(op_img, ip_img)
+- minimg::FastHoughTransform< real32_t, real32_t, ARO_CTR_VER, COOP_ADD, HDO_RAW>(op_img, ip_img)
+- minimg::FastHoughTransform< uint16_t, uint8_t, ARO_CTR_HOR, COOP_ADD, HDO_DESKEW>(fht, hordif)
+- minimg::FastHoughTransform< uint16_t, uint8_t, ARO_CTR_VER, COOP_ADD, HDO_DESKEW>(fht_line_mask, img_to_find_lines)
+- minimg::FastHoughTransform< uint16_t, uint8_t, ARO_CTR_VER, COOP_ADD, HDO_DESKEW>(fht_val_mask, scaled_val_img)
+- minimg::FastHoughTransform< uint32_t, uint32_t, ARO_CTR_HOR, COOP_ADD, HDO_DESKEW>(ht_img, in_img)
+- minimg::FastHoughTransform< uint32_t, uint32_t, ARO_CTR_HOR, COOP_ADD, HDO_RAW>(ht_img, in_img)
+- minimg::FastHoughTransform< uint32_t, uint32_t, ARO_CTR_VER, COOP_ADD, HDO_DESKEW>(ht_img, in_img)
+- minimg::FastHoughTransform< uint32_t, uint32_t, ARO_CTR_VER, COOP_ADD, HDO_RAW>(ht_img, in_img)
+- minimg::HoughPoint2Line<ARO_CTR_HOR, HDO_DESKEW>( line_segment, hough_point, gray_image, true)
+- minimg_raw::CloneFHTPrototypeRaw( fht_line_mask, img_to_find_lines, TYP_UINT16, ARO_CTR_VER, AO_PREALLOCATED)

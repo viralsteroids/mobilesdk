@@ -1,0 +1,63 @@
+# zstd_out record runs (8-byte table scan)
+
+Predicate: kind<=0x10, size<=0x4000, idx<=0x4000.
+
+## zstd_out_1769666284656.bin
+
+Total runs: 13
+
+- Run 1: off 0x4838..0x6000 records=761 nonzero=1 (0.00)
+  kinds: 0x00:760, 0x02:1
+- Run 2: off 0x0020..0x1090 records=526 nonzero=525 (1.00)
+  kinds: 0x01:183, 0x00:98, 0x06:82, 0x05:77, 0x03:33
+- Run 3: off 0x1820..0x2838 records=515 nonzero=515 (1.00)
+  kinds: 0x03:225, 0x01:138, 0x02:45, 0x04:41, 0x08:19
+- Run 4: off 0x1260..0x12c0 records=12 nonzero=12 (1.00)
+  kinds: 0x04:6, 0x06:3, 0x05:3
+- Run 5: off 0x1548..0x15a8 records=12 nonzero=12 (1.00)
+  kinds: 0x04:9, 0x05:2, 0x06:1
+
+## zstd_out_1769666284704.bin
+
+Total runs: 12
+
+- Run 1: off 0x0020..0x1090 records=526 nonzero=524 (1.00)
+  kinds: 0x00:196, 0x01:130, 0x05:68, 0x06:51, 0x03:33
+- Run 2: off 0x1820..0x2838 records=515 nonzero=515 (1.00)
+  kinds: 0x03:228, 0x01:117, 0x02:68, 0x07:26, 0x04:22
+- Run 3: off 0x1260..0x12c0 records=12 nonzero=12 (1.00)
+  kinds: 0x04:6, 0x06:3, 0x05:3
+- Run 4: off 0x1548..0x15a8 records=12 nonzero=12 (1.00)
+  kinds: 0x04:9, 0x05:2, 0x06:1
+- Run 5: off 0x1778..0x17d8 records=12 nonzero=12 (1.00)
+  kinds: 0x04:7, 0x05:2, 0x03:2, 0x06:1
+
+## zstd_out_1769666284714.bin
+
+Total runs: 1
+
+- Run 1: off 0x0020..0x0c90 records=398 nonzero=396 (0.99)
+  kinds: 0x00:137, 0x01:121, 0x05:50, 0x06:38, 0x03:23
+
+## zstd_out_1769666284717.bin
+
+Total runs: 1
+
+- Run 1: off 0x0020..0x0aa8 records=337 nonzero=336 (1.00)
+  kinds: 0x01:113, 0x00:110, 0x05:42, 0x06:32, 0x03:16
+
+## zstd_out_1769666284722.bin
+
+Total runs: 8
+
+- Run 1: off 0x0020..0x1058 records=519 nonzero=517 (1.00)
+  kinds: 0x00:207, 0x01:121, 0x05:63, 0x06:53, 0x03:35
+- Run 2: off 0x1260..0x12c0 records=12 nonzero=12 (1.00)
+  kinds: 0x04:6, 0x06:3, 0x05:3
+- Run 3: off 0x1320..0x1378 records=11 nonzero=11 (1.00)
+  kinds: 0x04:8, 0x06:2, 0x05:1
+- Run 4: off 0x13d8..0x1430 records=11 nonzero=11 (1.00)
+  kinds: 0x04:8, 0x05:2, 0x06:1
+- Run 5: off 0x1490..0x14e8 records=11 nonzero=11 (1.00)
+  kinds: 0x04:7, 0x06:3, 0x05:1
+

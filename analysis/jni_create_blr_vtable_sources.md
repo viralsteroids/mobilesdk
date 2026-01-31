@@ -1,0 +1,105 @@
+# JNI Create BLR vtable source tracing (heuristic)
+
+Library: C:\temp\MobileSDK\SmartEngines_full\lib\arm64-v8a\libjnimultiengine.so
+Scan window: 0x2000 bytes
+Backtrack: 60 instructions
+
+## TextEngine::Create(char*,bool) @ 0x0114662c
+- blr x8 @ 0x01146c48
+  - last write: ldr x8, [x8+0x10] @ 0x01146c44
+  - prev non-self: ldr x8, [x21+0x0] @ 0x01146c3c
+    - base x21 <= [x22+0x248] @ 0x01146c00
+- blr x8 @ 0x011478e4
+  - last write: ldr x8, [x8+0x10] @ 0x011478d4
+  - prev non-self: ldr x8, [sp+0x580] @ 0x011478c4
+    - base xzr source not found
+- blr x8 @ 0x01147904
+  - last write: ldr x8, [x8+0x10] @ 0x011478f4
+  - prev non-self: ldr x8, [sp+0x580] @ 0x011478f0
+    - base xzr source not found
+- blr x8 @ 0x01147920
+  - last write: ldr x8, [x8+0x10] @ 0x01147914
+  - prev non-self: ldr x8, [sp+0x580] @ 0x01147910
+    - base xzr source not found
+- blr x8 @ 0x01147940
+  - last write: ldr x8, [x8+0x10] @ 0x01147930
+  - prev non-self: ldr x8, [sp+0x580] @ 0x0114792c
+    - base xzr source not found
+- blr x8 @ 0x01147d20
+  - last write: ldr x8, [x8+0x10] @ 0x01147d1c
+  - prev non-self: ldr x8, [x19+0x0] @ 0x01147d14
+    - base x19 source not found
+- blr x8 @ 0x01147d54
+  - last write: ldr x8, [x8+0x10] @ 0x01147d50
+  - prev non-self: ldr x8, [x19+0x0] @ 0x01147d48
+    - base x19 <= [sp+0x520] @ 0x01147d30
+- blr x8 @ 0x01147e88
+  - last write: ldr x8, [x8+0x10] @ 0x01147e84
+  - prev non-self: ldr x8, [x19+0x0] @ 0x01147e7c
+    - base x19 <= [sp+0x9d0] @ 0x01147e0c
+- blr x8 @ 0x01147ec8
+  - last write: ldr x8, [x8+0x10] @ 0x01147ec4
+  - prev non-self: ldr x8, [x19+0x0] @ 0x01147ebc
+    - base x19 <= [sp+0x520] @ 0x01147e98
+- blr x8 @ 0x01148190
+  - last write: ldr x8, [x8+0x10] @ 0x0114818c
+  - prev non-self: ldr x8, [x19+0x0] @ 0x01148184
+    - base x19 <= [x22+0x248] @ 0x01148128
+- blr x8 @ 0x011481f8
+  - last write: ldr x8, [x8+0x10] @ 0x011481f4
+  - prev non-self: ldr x8, [x19+0x0] @ 0x011481ec
+    - base x19 <= [sp+0x9d0] @ 0x011481b0
+- blr x8 @ 0x011482a8
+  - last write: ldr x8, [x8+0x10] @ 0x011482a4
+  - prev non-self: ldr x8, [x19+0x0] @ 0x0114829c
+    - base x19 <= [sp+0x158] @ 0x01148284
+
+## TextEngine::Create(uchar*,int,bool) @ 0x011466b8
+- blr x8 @ 0x01146c48
+  - last write: ldr x8, [x8+0x10] @ 0x01146c44
+  - prev non-self: ldr x8, [x21+0x0] @ 0x01146c3c
+    - base x21 <= [x22+0x248] @ 0x01146c00
+- blr x8 @ 0x011478e4
+  - last write: ldr x8, [x8+0x10] @ 0x011478d4
+  - prev non-self: ldr x8, [sp+0x580] @ 0x011478c4
+    - base xzr source not found
+- blr x8 @ 0x01147904
+  - last write: ldr x8, [x8+0x10] @ 0x011478f4
+  - prev non-self: ldr x8, [sp+0x580] @ 0x011478f0
+    - base xzr source not found
+- blr x8 @ 0x01147920
+  - last write: ldr x8, [x8+0x10] @ 0x01147914
+  - prev non-self: ldr x8, [sp+0x580] @ 0x01147910
+    - base xzr source not found
+- blr x8 @ 0x01147940
+  - last write: ldr x8, [x8+0x10] @ 0x01147930
+  - prev non-self: ldr x8, [sp+0x580] @ 0x0114792c
+    - base xzr source not found
+- blr x8 @ 0x01147d20
+  - last write: ldr x8, [x8+0x10] @ 0x01147d1c
+  - prev non-self: ldr x8, [x19+0x0] @ 0x01147d14
+    - base x19 source not found
+- blr x8 @ 0x01147d54
+  - last write: ldr x8, [x8+0x10] @ 0x01147d50
+  - prev non-self: ldr x8, [x19+0x0] @ 0x01147d48
+    - base x19 <= [sp+0x520] @ 0x01147d30
+- blr x8 @ 0x01147e88
+  - last write: ldr x8, [x8+0x10] @ 0x01147e84
+  - prev non-self: ldr x8, [x19+0x0] @ 0x01147e7c
+    - base x19 <= [sp+0x9d0] @ 0x01147e0c
+- blr x8 @ 0x01147ec8
+  - last write: ldr x8, [x8+0x10] @ 0x01147ec4
+  - prev non-self: ldr x8, [x19+0x0] @ 0x01147ebc
+    - base x19 <= [sp+0x520] @ 0x01147e98
+- blr x8 @ 0x01148190
+  - last write: ldr x8, [x8+0x10] @ 0x0114818c
+  - prev non-self: ldr x8, [x19+0x0] @ 0x01148184
+    - base x19 <= [x22+0x248] @ 0x01148128
+- blr x8 @ 0x011481f8
+  - last write: ldr x8, [x8+0x10] @ 0x011481f4
+  - prev non-self: ldr x8, [x19+0x0] @ 0x011481ec
+    - base x19 <= [sp+0x9d0] @ 0x011481b0
+- blr x8 @ 0x011482a8
+  - last write: ldr x8, [x8+0x10] @ 0x011482a4
+  - prev non-self: ldr x8, [x19+0x0] @ 0x0114829c
+    - base x19 <= [sp+0x158] @ 0x01148284

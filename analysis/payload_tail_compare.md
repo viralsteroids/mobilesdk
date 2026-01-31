@@ -1,0 +1,10 @@
+# Payload tail comparison (offline_xor_out)
+
+Files: 4. Common suffix length: 0 bytes.
+
+## Last 64 bytes (hex)
+
+- bundle_codeengine_full_last_attempt.bin (size=5850833): a3a1ed0eea29708509ed3ded4833577b6820874fbb54f16ed19cbad47673f4815e36c0e2b1f572732277859936a2f35ffba9e01f389e39739ec903471df26b2d
+- bundle_international_faces_liveness_last_attempt.bin (size=118987012): 303cdaadc9598650eb6631eaaa7df027ab29245eb8e3c32af70ffd182859d3087dc0d40aa8717d651b0038c9fdfd09cbcb71a2c6eb5621aec779600c96f77224
+- bundle_newdocengine_demo_hiring_dsn_last_attempt.bin (size=56878241): 1d129ad236d452c1369da0412ad85e13a595e39a37e02d131b3639b77085047c0c9f9b486fb2e2478411da647facc09c5ee069fa6cc6ba1c51bfda424bc7713c
+- bundle_textengine_last_attempt.bin (size=27200898): 832c3be0d36603fdcb6d99d028c0894666a1ed20b36eef587ee25425abfda4cccaa17ded2162c6ace855ff6e1f493ae73fe8d8720f4d892659f449896b0ae55b
