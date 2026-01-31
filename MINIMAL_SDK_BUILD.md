@@ -1,211 +1,223 @@
 # Сборка минимального SDK на базе libjnimultiengine.so
 
-## Целевые функции
+## Целевые функции (расширенный набор)
 
-| Функция | Исходный бандл | Размер моделей |
-|---------|---------------|----------------|
-| Паспорт РФ (стр. 2-3) | international_faces_liveness | ~2 MB |
-| Прописка (стр. 5-12) | international_faces_liveness | ~1 MB |
-| Штрих-коды | codeengine_full | ~1 MB |
-| Банковские карты | codeengine_full | ~1 MB |
-| OCR телефонов | textengine + codeengine | ~17 MB |
+| Функция | Страны/Типы | Размер |
+|---------|-------------|--------|
+| **Паспорта СНГ** | RUS, BLR, KAZ, UKR, UZB, ARM, AZE, GEO, KGZ, MDA, TJK | ~18 MB |
+| **Прописка** | RUS, BLR | ~2 MB |
+| **Face Liveness** | Проверка живости лица | ~6 MB |
+| **Forensics** | Проверка подлинности документов | ~0.2 MB |
+| **Handwritten OCR** | Рукописный текст (кириллица) | ~8 MB |
+| **Штрих-коды** | QR, PDF417, DataMatrix, EAN | ~1 MB |
+| **Банковские карты** | Visa, MC, Mir, etc. | ~1 MB |
+| **OCR телефонов** | Извлечение номеров | ~9 MB |
 
-**Итого моделей**: ~22 MB (вместо 200+ MB)
+**Итого моделей**: ~45 MB (вместо 200+ MB)
 
 ---
 
-## 1. Структура минимального SDK
+## 1. Страны СНГ - поддерживаемые паспорта
+
+| Код | Страна | Типы паспортов | Размер |
+|-----|--------|----------------|--------|
+| `rus` | Россия | national, international, biometric, previous | 4.5 MB |
+| `blr` | Беларусь | type1, type2, type3, registration | 1.6 MB |
+| `kaz` | Казахстан | type1, type2, type3, type4 | 1.6 MB |
+| `ukr` | Украина | national, type1, type2 | 2.1 MB |
+| `uzb` | Узбекистан | type1, type2 | 1.2 MB |
+| `arm` | Армения | type1, type2 | 1.3 MB |
+| `aze` | Азербайджан | type1, type2 | 1.1 MB |
+| `geo` | Грузия | type1-type6 | 3.7 MB |
+| `kgz` | Кыргызстан | type1, type2 | 1.4 MB |
+| `mda` | Молдова | type1-type4 | 2.6 MB |
+| `tjk` | Таджикистан | type1-type4 | 0.9 MB |
+
+---
+
+## 2. Структура минимального SDK
 
 ```
 MinimalDocumentSDK/
 ├── android/
 │   ├── sdk/
-│   │   ├── build.gradle.kts
 │   │   └── src/main/
 │   │       ├── kotlin/com/docscan/sdk/
-│   │       │   ├── DocumentScanner.kt          # Главный API
-│   │       │   ├── PassportScanner.kt          # Паспорт + прописка
-│   │       │   ├── BarcodeScanner.kt           # Штрих-коды
-│   │       │   ├── CardScanner.kt              # Банковские карты
-│   │       │   ├── PhoneOcrScanner.kt          # OCR телефонов
-│   │       │   ├── models/                     # Data classes
-│   │       │   └── internal/                   # Обёртки над SmartEngines
-│   │       │       ├── EngineManager.kt
-│   │       │       └── BundleLoader.kt
+│   │       │   ├── DocumentScanner.kt
+│   │       │   ├── PassportScanner.kt       # СНГ паспорта
+│   │       │   ├── RegistrationScanner.kt   # Прописка
+│   │       │   ├── LivenessScanner.kt       # Face liveness
+│   │       │   ├── ForensicsScanner.kt      # Проверка подлинности
+│   │       │   ├── BarcodeScanner.kt
+│   │       │   ├── CardScanner.kt
+│   │       │   ├── PhoneOcrScanner.kt
+│   │       │   └── models/
 │   │       ├── jniLibs/
-│   │       │   ├── arm64-v8a/
-│   │       │   │   └── libjnimultiengine.so    # 42 MB (оригинал)
-│   │       │   └── armeabi-v7a/
-│   │       │       └── libjnimultiengine.so    # ~35 MB
-│   │       └── assets/
-│   │           └── bundles/
-│   │               ├── passport.se             # ~3 MB (кастомный)
-│   │               ├── barcode_card.se         # ~2 MB (кастомный)
-│   │               └── phone_ocr.se            # ~18 MB (кастомный)
+│   │       │   └── arm64-v8a/libjnimultiengine.so  # 42 MB
+│   │       └── assets/bundles/
+│   │           ├── passport_cis.se          # ~20 MB
+│   │           ├── barcode_card.se          # ~2 MB
+│   │           └── phone_ocr.se             # ~10 MB
 │   └── sample/
-│
 └── ios/
-    └── (аналогичная структура)
 ```
 
 ---
 
-## 2. Файлы для извлечения из бандлов
+## 3. Файлы для извлечения
 
-### 2.1 Паспорт РФ (страницы 2-3)
+### 3.1 Паспорта СНГ + Liveness + Forensics + Handwritten
 
 **Из `bundle_international_faces_liveness/`:**
 
 ```
-ОБЯЗАТЕЛЬНЫЕ:
-├── docs/rus.passport.national/
-│   ├── rus.passport.national_anywhere.json
-│   ├── templates/
-│   │   ├── rus.passport.national.page2.common.json
-│   │   └── rus.passport.national.page3.common.json
-│   ├── objed_classifiers/*.pb
-│   ├── field_processors/
-│   ├── postprocessors/
-│   └── tplfinder_config_common.json
-│
+ПАСПОРТА СНГ:
+├── docs/rus.passport.national/              # 909 KB
+├── docs/rus.passport.international/         # 453 KB
+├── docs/rus.passport.national.additional_pages/  # 773 KB
+├── docs/rus.passport.previous/              # 109 KB
+├── docs/rus.passport.registration/          # 989 KB
+├── docs/rus.passport.stamps/                # 1.3 MB
+├── docs/blr/                                # 1.6 MB (включая blr.passport.registration)
+├── docs/blr.passport.registration/          # Прописка Беларусь
+├── docs/kaz/                                # 1.6 MB
+├── docs/ukr/                                # 2.1 MB
+├── docs/uzb/                                # 1.2 MB
+├── docs/arm/                                # 1.3 MB
+├── docs/aze/                                # 1.1 MB
+├── docs/geo/                                # 3.7 MB
+├── docs/kgz/                                # 1.4 MB
+├── docs/mda/                                # 2.6 MB
+└── docs/tjk/                                # 879 KB
+
+FACE LIVENESS:
+├── docs/face/                               # 44 KB
+│   ├── face_liveness.json
+│   ├── face_liveness_config.json
+│   ├── face_liveness_zone_processor.json
+│   ├── liveness.json
+│   └── tpl__face_liveness.json
+├── recstr/netdata/final/natural/face/       # 5.6 MB
+│   ├── face_detector_yolo.tar.zst
+│   ├── face_detector_yolo_new_aug2024.tar.zst
+│   ├── face_embedder_tiny.tar.zst
+│   ├── face_kp_detector_new.tar.zst
+│   └── face_pnt_same_scale.tar.zst
+└── smartid_root_files/face_liveness.json
+
+FORENSICS (проверка подлинности):
+├── forensics/                               # 171 KB
+│   ├── basic_forensics.json
+│   ├── check_attributes.json
+│   ├── holo_form_estimation/
+│   └── hologram_map_builder/
+├── hologram_retriever/
+├── flare_retriever/
+└── docs/*/uv_*_passport*_analyzer/          # UV анализаторы по странам
+
+HANDWRITTEN OCR:
+├── recstr/netdata/final/synthetic/rus/
+│   ├── rus_111_hw_fcr.tar.zst               # Рукописный русский
+│   └── rus_111_fio_hw_comb_fcr.tar.zst      # ФИО рукописный
+├── recstr/netdata/final/synthetic/digits/
+│   └── dig_001_hw_numbers.tar.zst           # Рукописные цифры
+├── recstr/netdata/final/synthetic/text_detector/
+│   └── bin_vertsgm_hw.tar.zst               # Вертикальная сегментация
+├── recstr/special_nn/
+│   └── rus_psp_reg_hw_classifier.tar.zst    # Классификатор рукописного
+└── ffe/YOLO_roi/
+    └── regi_hw_fields_nn.tar.zst            # Детектор рукописных полей
+
+ДЕТЕКТОРЫ (общие):
 ├── ffe/YOLO_roi/
-│   ├── yolo_rus_psp_pages_roi.tar.zst      # 480 KB - детектор страниц
-│   ├── yolo_rus_psp_pages23.tar.zst        # 360 KB - страницы 2-3
-│   └── yolo_mrz_anywhere.tar.zst           # 392 KB - MRZ детектор
-│
+│   ├── yolo_rus_psp_pages_roi.tar.zst       # 480 KB - детектор страниц
+│   ├── yolo_rus_psp_pages23.tar.zst         # 360 KB
+│   ├── yolo_rus_psp_stamps.tar.zst          # 288 KB - штампы прописки
+│   ├── yolo_mrz_anywhere.tar.zst            # 392 KB - MRZ
+│   ├── yolo_mrz_zone.tar.zst                # 132 KB
+│   ├── yolo_id_roi.tar.zst                  # 436 KB - ID документы
+│   ├── mrz_templates_classifier.tar.zst    # 112 KB
+│   └── stamp_classifier.tar.zst            # 92 KB
+
+OCR МОДЕЛИ:
 ├── recstr/netdata/final/synthetic/
-│   ├── rus/                                 # Кириллица OCR
-│   └── eng/eng_101_mrz_fcr.tar.zst         # MRZ OCR
+│   ├── rus/                                 # Русский печатный + рукописный
+│   ├── eng/eng_101_mrz_*.tar.zst           # MRZ OCR
+│   ├── mlang/cyrillic_111_all_fcr.tar.zst  # Кириллица общий
+│   └── digits/                              # Цифры
 │
-└── smartid_root_files/rus.json             # Корневой конфиг России
-
-УДАЛИТЬ:
-├── docs/ (все страны кроме rus.passport.*)
-├── ffe/YOLO_roi/ (все кроме rus_psp_*, mrz_*)
-├── liveness_config/                         # Liveness не нужен
-├── face_config/                             # Сравнение лиц не нужно
-└── forensics/                               # Проверка подлинности (опционально)
+├── alphabet/                                # Алфавиты языков
+└── vocs/                                    # Словари
 ```
 
-### 2.2 Прописка (страницы 5-12)
-
-**Из `bundle_international_faces_liveness/`:**
-
-```
-ОБЯЗАТЕЛЬНЫЕ:
-├── docs/rus.passport.registration/
-│   ├── templates/
-│   │   ├── rus.registration.handwritten.type1_*.json
-│   │   ├── rus.registration.handwritten.type2_*.json
-│   │   ├── rus.registration.printed.type1_*.json
-│   │   └── rus.registration.printed.type2_*.json
-│   ├── field_processors/
-│   ├── postprocessors/
-│   └── tplfinder_config.json
-│
-├── ffe/YOLO_roi/
-│   ├── yolo_rus_psp_stamps.tar.zst         # 288 KB - детектор штампов
-│   └── stamp_classifier.tar.zst            # 92 KB - классификатор
-│
-└── recstr/special_nn/
-    └── rus_psp_reg_hw_classifier.tar.zst   # 444 KB - рукописный/печатный
-```
-
-### 2.3 Штрих-коды
+### 3.2 Штрих-коды + Банковские карты
 
 **Из `bundle_codeengine_full/`:**
 
 ```
-ОБЯЗАТЕЛЬНЫЕ:
+ШТРИХ-КОДЫ:
 ├── docs/barcode/
 │   ├── barcode_engine.json
 │   ├── barcode_detector_micropdf417.json
-│   ├── pdf417_quad_locator.json
 │   └── segment_detection_*.json
-│
 ├── ffe/YOLO_roi/
 │   ├── yolo_barcode_anywhere_v03.tar.zst   # 484 KB
 │   └── yolo_barcode_kp_classifier_v01.tar.zst # 84 KB
-│
 └── postprocessor/
     ├── gs1_interpreter.json
     ├── url_interpreter.json
     ├── vcard_interpreter.json
     ├── tel_interpreter.json
+    ├── wifi_interpreter.json
     └── payment_interpreter.json
 
-УДАЛИТЬ:
-├── docs/vin/                                # VIN номера
-├── docs/license_plate/                      # Номерные знаки
-├── docs/shipping_container/                 # Контейнеры
-├── docs/iban_lines/                         # IBAN (оставить если нужно)
-├── docs/inn_lines/                          # ИНН
-└── docs/kpp_lines/                          # КПП
-```
-
-### 2.4 Банковские карты
-
-**Из `bundle_codeengine_full/`:**
-
-```
-ОБЯЗАТЕЛЬНЫЕ:
+БАНКОВСКИЕ КАРТЫ:
 ├── docs/card/
 │   ├── card_engine.json
 │   ├── card_finder.json
 │   ├── card_orient.tar.zst                 # 440 KB
 │   └── dictionaries/
-│
 ├── ffe/YOLO_roi/
 │   └── yolo_cards_2.tar.zst                # 188 KB
-│
 ├── recstr/special_nn/
 │   ├── card_type.tar.zst                   # 24 KB
 │   ├── card_embossed_symdig_fcr.tar.zst    # 100 KB
 │   ├── card_indent_symdig_fcr.tar.zst      # 68 KB
 │   ├── card_freeform.tar.zst               # 96 KB
 │   └── card_text_detector.tar.zst          # 12 KB
-│
-└── postprocessor/
-    ├── card_number_postprocessor_embossed.json
-    ├── card_number_postprocessor_indent.json
-    ├── card_name_extractor.json
-    └── card_expiry_date_extractor.json
+└── postprocessor/card_*.json
 ```
 
-### 2.5 OCR телефонов
+### 3.3 OCR телефонов
 
 **Из `bundle_textengine/`:**
 
 ```
-ОБЯЗАТЕЛЬНЫЕ:
 ├── textengine_docs/
 │   ├── textengine_languages_base.json
 │   ├── character_translation.json
 │   └── languages_translation.json
-│
 ├── recstr/netdata/final/synthetic/
-│   ├── rus/rus_printed_111.tar.zst         # 8.5 MB ⚠️ большой
+│   ├── rus/rus_printed_111.tar.zst         # 8.5 MB
 │   ├── text_detector/txtdet_common.tar.zst
 │   └── digits/dig_printed.tar.zst
-│
-├── deskewer/                                # Выравнивание
-└── mixangler/                               # Коррекция угла
+├── deskewer/
+└── bundle_textengine.json
 
 **Из `bundle_codeengine_full/`:**
-├── docs/phone.lines/
-│   └── postprocessors/
-│       ├── phone_line_alph_rus.json
-│       ├── phone_number_final_selector.json
-│       └── punctuation_filter.json
+└── docs/phone.lines/postprocessors/
+    ├── phone_line_alph_rus.json
+    ├── phone_number_final_selector.json
+    └── punctuation_filter.json
 ```
 
 ---
 
-## 3. Скрипт сборки минимальных бандлов
+## 4. Скрипт сборки бандлов
 
 ```python
 #!/usr/bin/env python3
-"""Build minimal bundles for Document Scanner SDK"""
+"""Build minimal bundles for Document Scanner SDK - Extended"""
 
 import os
 import shutil
@@ -213,121 +225,163 @@ import tarfile
 import hashlib
 import zstandard as zstd
 from pathlib import Path
+from glob import glob
 
 # Пути
-EXTRACTED_DIR = Path("C:/temp/MobileSDK/extracted_bundles")
+EXTRACTED_DIR = Path("C:/temp/MobileSDK/analysis/extracted_tar")
 OUTPUT_DIR = Path("C:/temp/MobileSDK/minimal_sdk/bundles")
 KEY_FILE = Path("C:/temp/MobileSDK/analysis/key_table_offset_3737888.bin")
 
-# Файлы для каждого модуля
-PASSPORT_FILES = [
-    "bundle_international_faces_liveness/docs/rus.passport.national/**/*",
-    "bundle_international_faces_liveness/ffe/YOLO_roi/yolo_rus_psp_pages_roi.tar.zst",
-    "bundle_international_faces_liveness/ffe/YOLO_roi/yolo_rus_psp_pages23.tar.zst",
-    "bundle_international_faces_liveness/ffe/YOLO_roi/yolo_mrz_anywhere.tar.zst",
-    "bundle_international_faces_liveness/ffe/YOLO_roi/yolo_mrz_zone.tar.zst",
+# СНГ страны
+CIS_COUNTRIES = ['rus', 'blr', 'kaz', 'ukr', 'uzb', 'arm', 'aze', 'geo', 'kgz', 'mda', 'tjk']
+
+# Файлы для passport_cis.se
+PASSPORT_CIS_PATTERNS = [
+    # Российские паспорта (все типы)
+    "bundle_international_faces_liveness/docs/rus.passport.*/**/*",
+    "bundle_international_faces_liveness/docs/rus.passport.registration/**/*",
+
+    # Паспорта СНГ
+    *[f"bundle_international_faces_liveness/docs/{c}/**/*" for c in CIS_COUNTRIES],
+
+    # Прописка Беларусь
+    "bundle_international_faces_liveness/docs/blr.passport.registration/**/*",
+
+    # Face Liveness
+    "bundle_international_faces_liveness/docs/face/**/*",
+    "bundle_international_faces_liveness/recstr/netdata/final/natural/face/**/*",
+    "bundle_international_faces_liveness/smartid_root_files/face_liveness.json",
+    "bundle_international_faces_liveness/smartid_root_files/documents/face_liveness_documents.json",
+
+    # Forensics
+    "bundle_international_faces_liveness/forensics/**/*",
+    "bundle_international_faces_liveness/hologram_retriever/**/*",
+    "bundle_international_faces_liveness/flare_retriever/**/*",
+
+    # Handwritten OCR
+    "bundle_international_faces_liveness/recstr/netdata/final/synthetic/rus/rus_111_hw_fcr.tar.zst",
+    "bundle_international_faces_liveness/recstr/netdata/final/synthetic/rus/rus_111_fio_hw_comb_fcr.tar.zst",
+    "bundle_international_faces_liveness/recstr/netdata/final/synthetic/digits/dig_001_hw_numbers.tar.zst",
+    "bundle_international_faces_liveness/recstr/netdata/final/synthetic/text_detector/bin_vertsgm_hw.tar.zst",
+    "bundle_international_faces_liveness/recstr/special_nn/rus_psp_reg_hw_classifier.tar.zst",
+    "bundle_international_faces_liveness/ffe/YOLO_roi/regi_hw_fields_nn.tar.zst",
+
+    # Детекторы
+    "bundle_international_faces_liveness/ffe/YOLO_roi/yolo_rus_psp_*.tar.zst",
+    "bundle_international_faces_liveness/ffe/YOLO_roi/yolo_mrz_*.tar.zst",
+    "bundle_international_faces_liveness/ffe/YOLO_roi/yolo_id_roi.tar.zst",
+    "bundle_international_faces_liveness/ffe/YOLO_roi/mrz_templates_classifier.tar.zst",
+    "bundle_international_faces_liveness/ffe/YOLO_roi/stamp_classifier.tar.zst",
+
+    # Печатный OCR (кириллица)
     "bundle_international_faces_liveness/recstr/netdata/final/synthetic/rus/**/*",
     "bundle_international_faces_liveness/recstr/netdata/final/synthetic/eng/eng_101_mrz_*.tar.zst",
-    "bundle_international_faces_liveness/smartid_root_files/rus.json",
+    "bundle_international_faces_liveness/recstr/netdata/final/synthetic/mlang/cyrillic_*.tar.zst",
+    "bundle_international_faces_liveness/recstr/netdata/final/synthetic/digits/**/*",
+
+    # Общие конфиги
+    "bundle_international_faces_liveness/alphabet/**/*",
     "bundle_international_faces_liveness/smartid.json",
+    "bundle_international_faces_liveness/bundle_international_faces_liveness.json",
+    "bundle_international_faces_liveness/smartid_root_files/rus.json",
+    *[f"bundle_international_faces_liveness/smartid_root_files/{c}.json" for c in CIS_COUNTRIES],
+    "bundle_international_faces_liveness/smartid_root_files/anycis.json",
+
+    # Общие компоненты
+    "bundle_international_faces_liveness/deskewer/**/*",
+    "bundle_international_faces_liveness/docengine/**/*",
+    "bundle_international_faces_liveness/content_detector/**/*",
+    "bundle_international_faces_liveness/correct_color_detector/**/*",
+    "bundle_international_faces_liveness/field_processors/**/*",
+    "bundle_international_faces_liveness/integrator/**/*",
+    "bundle_international_faces_liveness/postprocessor/**/*",
+    "bundle_international_faces_liveness/vocs/**/*",
 ]
 
-REGISTRATION_FILES = [
-    "bundle_international_faces_liveness/docs/rus.passport.registration/**/*",
-    "bundle_international_faces_liveness/ffe/YOLO_roi/yolo_rus_psp_stamps.tar.zst",
-    "bundle_international_faces_liveness/ffe/YOLO_roi/stamp_classifier.tar.zst",
-    "bundle_international_faces_liveness/recstr/special_nn/rus_psp_reg_hw_classifier.tar.zst",
-]
-
-BARCODE_FILES = [
+BARCODE_CARD_PATTERNS = [
+    # Штрих-коды
     "bundle_codeengine_full/docs/barcode/**/*",
-    "bundle_codeengine_full/ffe/YOLO_roi/yolo_barcode_anywhere_v03.tar.zst",
-    "bundle_codeengine_full/ffe/YOLO_roi/yolo_barcode_kp_classifier_v01.tar.zst",
-    "bundle_codeengine_full/postprocessor/gs1_interpreter.json",
-    "bundle_codeengine_full/postprocessor/url_interpreter.json",
-    "bundle_codeengine_full/postprocessor/vcard_interpreter.json",
-    "bundle_codeengine_full/postprocessor/tel_interpreter.json",
-    "bundle_codeengine_full/codeengine.json",
-]
+    "bundle_codeengine_full/ffe/YOLO_roi/yolo_barcode_*.tar.zst",
+    "bundle_codeengine_full/postprocessor/*_interpreter.json",
 
-CARD_FILES = [
+    # Карты
     "bundle_codeengine_full/docs/card/**/*",
-    "bundle_codeengine_full/ffe/YOLO_roi/yolo_cards_2.tar.zst",
+    "bundle_codeengine_full/ffe/YOLO_roi/yolo_cards_*.tar.zst",
     "bundle_codeengine_full/recstr/special_nn/card_*.tar.zst",
     "bundle_codeengine_full/postprocessor/card_*.json",
+
+    # Общие
+    "bundle_codeengine_full/codeengine.json",
+    "bundle_codeengine_full/bundle_codeengine_full.json",
 ]
 
-PHONE_OCR_FILES = [
+PHONE_OCR_PATTERNS = [
+    # TextEngine
     "bundle_textengine/textengine_docs/**/*",
     "bundle_textengine/recstr/netdata/final/synthetic/rus/rus_printed_111.tar.zst",
     "bundle_textengine/recstr/netdata/final/synthetic/text_detector/txtdet_common.tar.zst",
     "bundle_textengine/recstr/netdata/final/synthetic/digits/dig_printed.tar.zst",
     "bundle_textengine/deskewer/**/*",
     "bundle_textengine/bundle_textengine.json",
+
+    # Телефоны из codeengine
     "bundle_codeengine_full/docs/phone.lines/**/*",
 ]
 
 def collect_files(patterns: list, base_dir: Path) -> list:
     """Collect files matching glob patterns"""
-    files = []
+    files = set()
     for pattern in patterns:
-        if "**" in pattern:
-            # Recursive glob
-            parts = pattern.split("**")
-            base = base_dir / parts[0].rstrip("/")
-            if base.exists():
-                for f in base.rglob("*"):
-                    if f.is_file():
-                        files.append(f)
-        else:
-            path = base_dir / pattern
-            if path.exists():
-                if path.is_file():
-                    files.append(path)
-                else:
-                    for f in path.rglob("*"):
-                        if f.is_file():
-                            files.append(f)
-    return files
+        full_pattern = str(base_dir / pattern)
+        for path in glob(full_pattern, recursive=True):
+            p = Path(path)
+            if p.is_file():
+                files.add(p)
+    return sorted(files)
 
-def create_tar_zstd(files: list, base_dir: Path, output_path: Path, bundle_name: str):
+def create_tar_zstd(files: list, base_dir: Path, bundle_name: str) -> bytes:
     """Create TAR.ZSTD archive"""
     import io
 
-    # Create TAR in memory
     tar_buffer = io.BytesIO()
     with tarfile.open(fileobj=tar_buffer, mode='w') as tar:
         for f in files:
-            rel_path = f.relative_to(base_dir)
-            # Rebase to bundle_name/
-            arcname = f"{bundle_name}/{rel_path}"
-            tar.add(f, arcname=arcname)
+            try:
+                # Определяем какой бандл-источник
+                rel_to_base = f.relative_to(base_dir)
+                parts = rel_to_base.parts
+                source_bundle = parts[0]  # bundle_international_faces_liveness, etc.
+                inner_path = Path(*parts[1:])  # путь внутри бандла
+
+                # Сохраняем с правильной структурой
+                arcname = f"{bundle_name}/{inner_path}"
+                tar.add(str(f), arcname=arcname)
+            except Exception as e:
+                print(f"  Warning: {e}")
 
     tar_data = tar_buffer.getvalue()
 
-    # Compress with ZSTD
+    # ZSTD compression (level 19 for max compression)
     cctx = zstd.ZstdCompressor(level=19)
-    compressed = cctx.compress(tar_data)
+    return cctx.compress(tar_data)
 
-    return compressed
-
-def create_sebundle(compressed_body: bytes, version: str, license_hash: str, output_path: Path, key: bytes):
+def create_sebundle(compressed_body: bytes, version: str, output_path: Path, key: bytes):
     """Create .se bundle with XOR encryption"""
 
-    # Build header
-    dec_len = 10  # Length of mini section "1~se_demo~"
+    license_hash = "2688f026b0f34dea31b377bfe5fd1f6ecf2b9848"
+    dec_len = 10
     header = f"sebundle1~{version}~{license_hash}{dec_len}~".encode('ascii')
 
-    # Calculate SHA1 of header
+    # SHA1 of header
     header_sha1 = hashlib.sha1(header).digest()
 
     # Mini section
     mini = b"1~se_demo~"
 
-    # Build payload
+    # Build encrypted payload
     payload = bytearray()
 
-    # 1. XOR encrypt SHA1 checksum (20 bytes)
+    # 1. XOR encrypt SHA1 checksum
     for i, b in enumerate(header_sha1):
         payload.append(b ^ key[i])
 
@@ -341,251 +395,122 @@ def create_sebundle(compressed_body: bytes, version: str, license_hash: str, out
         key_idx = (body_start + i) & 0x7F
         payload.append(b ^ key[key_idx])
 
-    # Write final bundle
+    # Write bundle
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, 'wb') as f:
         f.write(header)
         f.write(bytes(payload))
 
-    print(f"Created: {output_path} ({output_path.stat().st_size / 1024 / 1024:.2f} MB)")
+    size_mb = output_path.stat().st_size / 1024 / 1024
+    print(f"Created: {output_path.name} ({size_mb:.2f} MB)")
 
-def build_minimal_bundles():
+def build_bundles():
     """Build all minimal bundles"""
 
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-    # Load XOR key
     key = KEY_FILE.read_bytes()
 
-    # Bundle configurations
     bundles = [
         {
-            'name': 'passport_rus',
-            'patterns': PASSPORT_FILES + REGISTRATION_FILES,
+            'name': 'passport_cis',
+            'patterns': PASSPORT_CIS_PATTERNS,
             'version': '2.7.2',
-            'output': 'passport_rus.se'
+            'output': 'passport_cis.se'
         },
         {
             'name': 'barcode_card',
-            'patterns': BARCODE_FILES + CARD_FILES,
+            'patterns': BARCODE_CARD_PATTERNS,
             'version': '2.7.2',
             'output': 'barcode_card.se'
         },
         {
             'name': 'phone_ocr',
-            'patterns': PHONE_OCR_FILES,
+            'patterns': PHONE_OCR_PATTERNS,
             'version': '2.6.4',
             'output': 'phone_ocr.se'
         }
     ]
 
-    license_hash = "2688f026b0f34dea31b377bfe5fd1f6ecf2b9848"
-
     for bundle in bundles:
-        print(f"\nBuilding {bundle['name']}...")
+        print(f"\n{'='*60}")
+        print(f"Building {bundle['name']}...")
+        print('='*60)
 
-        # Collect files
         files = collect_files(bundle['patterns'], EXTRACTED_DIR)
-        print(f"  Collected {len(files)} files")
+        print(f"Collected {len(files)} files")
 
         if not files:
-            print(f"  WARNING: No files found!")
+            print("WARNING: No files found!")
             continue
 
-        # Calculate total size
         total_size = sum(f.stat().st_size for f in files)
-        print(f"  Total uncompressed: {total_size / 1024 / 1024:.2f} MB")
+        print(f"Total uncompressed: {total_size / 1024 / 1024:.2f} MB")
 
-        # Create compressed archive
-        compressed = create_tar_zstd(files, EXTRACTED_DIR, None, bundle['name'])
-        print(f"  Compressed: {len(compressed) / 1024 / 1024:.2f} MB")
+        compressed = create_tar_zstd(files, EXTRACTED_DIR, bundle['name'])
+        print(f"Compressed: {len(compressed) / 1024 / 1024:.2f} MB")
 
-        # Create .se bundle
         output_path = OUTPUT_DIR / bundle['output']
-        create_sebundle(compressed, bundle['version'], license_hash, output_path, key)
+        create_sebundle(compressed, bundle['version'], output_path, key)
+
+    print(f"\n{'='*60}")
+    print("All bundles created!")
+    print('='*60)
+
+    # Summary
+    total = sum(f.stat().st_size for f in OUTPUT_DIR.glob('*.se'))
+    print(f"Total bundle size: {total / 1024 / 1024:.2f} MB")
 
 if __name__ == '__main__':
-    build_minimal_bundles()
+    build_bundles()
 ```
 
 ---
 
-## 4. Java/Kotlin обёртка
+## 5. Kotlin API
 
-### 4.1 Главный API
-
-```kotlin
-// DocumentScanner.kt
-package com.docscan.sdk
-
-import android.content.Context
-import kotlinx.coroutines.flow.StateFlow
-
-class DocumentScanner private constructor(
-    private val context: Context,
-    private val config: Config
-) {
-    private val engineManager = EngineManager(context)
-
-    val loadingState: StateFlow<LoadingState> = engineManager.loadingState
-
-    suspend fun initialize() {
-        engineManager.loadBundles(config.enabledModules)
-    }
-
-    fun passport(): PassportScanner = PassportScanner(engineManager)
-    fun barcode(): BarcodeScanner = BarcodeScanner(engineManager)
-    fun card(): CardScanner = CardScanner(engineManager)
-    fun phoneOcr(): PhoneOcrScanner = PhoneOcrScanner(engineManager)
-
-    fun release() {
-        engineManager.release()
-    }
-
-    data class Config(
-        val enabledModules: Set<Module> = Module.values().toSet()
-    )
-
-    enum class Module {
-        PASSPORT,      // Паспорт + прописка
-        BARCODE,       // Штрих-коды
-        CARD,          // Банковские карты
-        PHONE_OCR      // OCR телефонов
-    }
-
-    sealed class LoadingState {
-        object Idle : LoadingState()
-        data class Loading(val module: Module, val progress: Float) : LoadingState()
-        object Ready : LoadingState()
-        data class Error(val exception: Throwable) : LoadingState()
-    }
-
-    class Builder(private val context: Context) {
-        private var enabledModules = mutableSetOf<Module>()
-
-        fun enablePassport() = apply { enabledModules.add(Module.PASSPORT) }
-        fun enableBarcode() = apply { enabledModules.add(Module.BARCODE) }
-        fun enableCard() = apply { enabledModules.add(Module.CARD) }
-        fun enablePhoneOcr() = apply { enabledModules.add(Module.PHONE_OCR) }
-        fun enableAll() = apply { enabledModules.addAll(Module.values()) }
-
-        fun build(): DocumentScanner {
-            return DocumentScanner(context, Config(enabledModules))
-        }
-    }
-}
-```
-
-### 4.2 Менеджер движков
-
-```kotlin
-// internal/EngineManager.kt
-package com.docscan.sdk.internal
-
-import android.content.Context
-import com.smartengines.code.CodeEngine
-import com.smartengines.doc.DocEngine
-import com.smartengines.p006id.IdEngine
-import com.smartengines.text.TextEngine
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-
-internal class EngineManager(private val context: Context) {
-
-    private val _loadingState = MutableStateFlow<DocumentScanner.LoadingState>(
-        DocumentScanner.LoadingState.Idle
-    )
-    val loadingState: StateFlow<DocumentScanner.LoadingState> = _loadingState
-
-    // Движки (lazy initialization)
-    var idEngine: IdEngine? = null
-        private set
-    var codeEngine: CodeEngine? = null
-        private set
-    var textEngine: TextEngine? = null
-        private set
-
-    init {
-        System.loadLibrary("jnimultiengine")
-    }
-
-    suspend fun loadBundles(modules: Set<DocumentScanner.Module>) {
-        try {
-            for (module in modules) {
-                _loadingState.value = DocumentScanner.LoadingState.Loading(module, 0f)
-
-                when (module) {
-                    DocumentScanner.Module.PASSPORT -> loadPassportBundle()
-                    DocumentScanner.Module.BARCODE,
-                    DocumentScanner.Module.CARD -> loadBarcodeCardBundle()
-                    DocumentScanner.Module.PHONE_OCR -> loadPhoneOcrBundle()
-                }
-            }
-            _loadingState.value = DocumentScanner.LoadingState.Ready
-
-        } catch (e: Exception) {
-            _loadingState.value = DocumentScanner.LoadingState.Error(e)
-            throw e
-        }
-    }
-
-    private suspend fun loadPassportBundle() {
-        if (idEngine != null) return
-
-        val bundleData = context.assets.open("bundles/passport_rus.se").readBytes()
-        idEngine = IdEngine.Create(bundleData, false, 1, false)
-    }
-
-    private suspend fun loadBarcodeCardBundle() {
-        if (codeEngine != null) return
-
-        val bundleData = context.assets.open("bundles/barcode_card.se").readBytes()
-        codeEngine = CodeEngine.Create(bundleData, false)
-    }
-
-    private suspend fun loadPhoneOcrBundle() {
-        if (textEngine != null) return
-
-        val bundleData = context.assets.open("bundles/phone_ocr.se").readBytes()
-        textEngine = TextEngine.Create(bundleData, false)
-    }
-
-    fun release() {
-        idEngine?.delete()
-        codeEngine?.delete()
-        textEngine?.delete()
-        idEngine = null
-        codeEngine = null
-        textEngine = null
-    }
-}
-```
-
-### 4.3 Сканер паспорта
+### 5.1 Сканер паспортов СНГ
 
 ```kotlin
 // PassportScanner.kt
-package com.docscan.sdk
-
-import android.graphics.Bitmap
-import com.docscan.sdk.internal.EngineManager
-import com.docscan.sdk.models.PassportResult
-import com.docscan.sdk.models.RegistrationResult
-import com.smartengines.common.Image
-import com.smartengines.p006id.IdSessionSettings
-
 class PassportScanner internal constructor(
     private val engineManager: EngineManager
 ) {
-    private val engine get() = engineManager.idEngine
-        ?: throw IllegalStateException("Passport module not loaded")
+    /**
+     * Поддерживаемые страны СНГ
+     */
+    enum class Country(val code: String, val displayName: String) {
+        RUSSIA("rus", "Россия"),
+        BELARUS("blr", "Беларусь"),
+        KAZAKHSTAN("kaz", "Казахстан"),
+        UKRAINE("ukr", "Украина"),
+        UZBEKISTAN("uzb", "Узбекистан"),
+        ARMENIA("arm", "Армения"),
+        AZERBAIJAN("aze", "Азербайджан"),
+        GEORGIA("geo", "Грузия"),
+        KYRGYZSTAN("kgz", "Кыргызстан"),
+        MOLDOVA("mda", "Молдова"),
+        TAJIKISTAN("tjk", "Таджикистан");
+
+        companion object {
+            val CIS = values().toList()
+        }
+    }
 
     /**
-     * Сканирование паспорта РФ (страницы 2-3)
+     * Сканирование паспорта с автоопределением страны
      */
-    fun scanMainPages(bitmap: Bitmap): Result<PassportResult> = runCatching {
+    fun scan(
+        bitmap: Bitmap,
+        countries: List<Country> = Country.CIS
+    ): Result<PassportResult> = runCatching {
+        val engine = engineManager.idEngine
+            ?: throw IllegalStateException("Passport module not loaded")
+
         val settings = engine.CreateSessionSettings().apply {
-            SetCurrentMode("rus")
-            AddEnabledDocumentTypes("rus.passport.national")
+            // Включаем все указанные страны
+            for (country in countries) {
+                SetCurrentMode(country.code)
+                AddEnabledDocumentTypes("${country.code}.passport.*")
+            }
         }
 
         val session = engine.SpawnSession(settings, "passport_scan", null)
@@ -594,137 +519,219 @@ class PassportScanner internal constructor(
         session.ProcessImage(image)
         val result = session.GetCurrentResult()
 
-        // Извлечение полей
-        val document = result.GetDocument(0)
-        PassportResult(
-            surname = document.GetTextField("surname")?.GetValue()?.GetFirstString() ?: "",
-            name = document.GetTextField("name")?.GetValue()?.GetFirstString() ?: "",
-            patronymic = document.GetTextField("patronymic")?.GetValue()?.GetFirstString(),
-            birthDate = document.GetTextField("birth_date")?.GetValue()?.GetFirstString() ?: "",
-            birthPlace = document.GetTextField("birthplace")?.GetValue()?.GetFirstString() ?: "",
-            gender = document.GetTextField("sex")?.GetValue()?.GetFirstString() ?: "",
-            series = document.GetTextField("series")?.GetValue()?.GetFirstString() ?: "",
-            number = document.GetTextField("number")?.GetValue()?.GetFirstString() ?: "",
-            issueDate = document.GetTextField("issue_date")?.GetValue()?.GetFirstString() ?: "",
-            issuedBy = document.GetTextField("authority")?.GetValue()?.GetFirstString() ?: "",
-            departmentCode = document.GetTextField("authority_code")?.GetValue()?.GetFirstString() ?: "",
-            confidence = document.GetConfidence().toFloat()
-        ).also {
+        parsePassportResult(result).also {
             session.delete()
         }
     }
 
     /**
-     * Сканирование прописки (страницы 5-12)
+     * Сканирование только российского паспорта
+     */
+    fun scanRussian(bitmap: Bitmap): Result<RussianPassportResult> = runCatching {
+        val result = scan(bitmap, listOf(Country.RUSSIA)).getOrThrow()
+        RussianPassportResult.fromPassport(result)
+    }
+
+    /**
+     * Сканирование прописки (Россия, Беларусь)
      */
     fun scanRegistration(bitmap: Bitmap): Result<RegistrationResult> = runCatching {
+        val engine = engineManager.idEngine
+            ?: throw IllegalStateException("Passport module not loaded")
+
         val settings = engine.CreateSessionSettings().apply {
             SetCurrentMode("rus")
             AddEnabledDocumentTypes("rus.passport.registration")
+            AddEnabledDocumentTypes("blr.passport.registration")
         }
 
         val session = engine.SpawnSession(settings, "registration_scan", null)
-        val image = Image.CreateFromBitmap(bitmap)
+        session.ProcessImage(Image.CreateFromBitmap(bitmap))
 
-        session.ProcessImage(image)
-        val result = session.GetCurrentResult()
+        parseRegistrationResult(session.GetCurrentResult()).also {
+            session.delete()
+        }
+    }
 
-        val document = result.GetDocument(0)
-        RegistrationResult(
-            address = document.GetTextField("address")?.GetValue()?.GetFirstString() ?: "",
-            registrationDate = document.GetTextField("registration_date")?.GetValue()?.GetFirstString(),
-            isHandwritten = document.GetTextField("type")?.GetValue()?.GetFirstString() == "handwritten",
-            confidence = document.GetConfidence().toFloat()
+    private fun parsePassportResult(result: IdResult): PassportResult {
+        // ... извлечение полей
+    }
+}
+```
+
+### 5.2 Face Liveness
+
+```kotlin
+// LivenessScanner.kt
+class LivenessScanner internal constructor(
+    private val engineManager: EngineManager
+) {
+    /**
+     * Проверка живости лица (anti-spoofing)
+     */
+    fun checkLiveness(bitmap: Bitmap): Result<LivenessResult> = runCatching {
+        val engine = engineManager.idEngine
+            ?: throw IllegalStateException("Liveness module not loaded")
+
+        val result = engine.ProcessOneShotLiveness(Image.CreateFromBitmap(bitmap))
+
+        LivenessResult(
+            isAlive = result.GetIsAlive(),
+            confidence = result.GetConfidence().toFloat(),
+            faceDetected = result.GetFaceDetected(),
+            faceRect = result.GetFaceRect()?.let {
+                RectF(it.GetX(), it.GetY(),
+                      it.GetX() + it.GetWidth(),
+                      it.GetY() + it.GetHeight())
+            }
+        )
+    }
+
+    /**
+     * Сравнение лиц (из паспорта и селфи)
+     */
+    fun compareFaces(
+        passportPhoto: Bitmap,
+        selfie: Bitmap
+    ): Result<FaceComparisonResult> = runCatching {
+        val engine = engineManager.idEngine
+            ?: throw IllegalStateException("Liveness module not loaded")
+
+        val settings = engine.CreateFaceSessionSettings()
+        val session = engine.SpawnFaceSession(settings, "face_compare", null)
+
+        session.ProcessImage(Image.CreateFromBitmap(passportPhoto))
+        session.ProcessImage(Image.CreateFromBitmap(selfie))
+
+        val result = session.GetFaceComparisonResult()
+
+        FaceComparisonResult(
+            isSamePerson = result.GetIsSamePerson(),
+            similarity = result.GetSimilarity().toFloat(),
+            confidence = result.GetConfidence().toFloat()
         ).also {
             session.delete()
         }
     }
 }
+
+data class LivenessResult(
+    val isAlive: Boolean,
+    val confidence: Float,
+    val faceDetected: Boolean,
+    val faceRect: RectF?
+)
+
+data class FaceComparisonResult(
+    val isSamePerson: Boolean,
+    val similarity: Float,
+    val confidence: Float
+)
+```
+
+### 5.3 Forensics (проверка подлинности)
+
+```kotlin
+// ForensicsScanner.kt
+class ForensicsScanner internal constructor(
+    private val engineManager: EngineManager
+) {
+    /**
+     * Проверка подлинности документа
+     */
+    fun checkAuthenticity(bitmap: Bitmap): Result<ForensicsResult> = runCatching {
+        val engine = engineManager.idEngine
+            ?: throw IllegalStateException("Forensics module not loaded")
+
+        val settings = engine.CreateSessionSettings().apply {
+            EnableForensics()
+        }
+
+        val session = engine.SpawnSession(settings, "forensics_check", null)
+        session.ProcessImage(Image.CreateFromBitmap(bitmap))
+
+        val result = session.GetCurrentResult()
+        val forensics = result.GetForensicsResult()
+
+        ForensicsResult(
+            isAuthentic = forensics?.GetIsAuthentic() ?: false,
+            checks = parseForensicsChecks(forensics),
+            hologramDetected = forensics?.GetHologramDetected() ?: false,
+            uvFeaturesValid = forensics?.GetUvFeaturesValid(),
+            overallScore = forensics?.GetOverallScore()?.toFloat() ?: 0f
+        ).also {
+            session.delete()
+        }
+    }
+
+    private fun parseForensicsChecks(forensics: IdForensicsResult?): List<ForensicsCheck> {
+        if (forensics == null) return emptyList()
+
+        return listOf(
+            ForensicsCheck("photo_substitution", forensics.GetPhotoSubstitutionCheck()),
+            ForensicsCheck("text_alteration", forensics.GetTextAlterationCheck()),
+            ForensicsCheck("document_structure", forensics.GetDocumentStructureCheck()),
+            ForensicsCheck("security_features", forensics.GetSecurityFeaturesCheck())
+        )
+    }
+}
+
+data class ForensicsResult(
+    val isAuthentic: Boolean,
+    val checks: List<ForensicsCheck>,
+    val hologramDetected: Boolean,
+    val uvFeaturesValid: Boolean?,
+    val overallScore: Float
+)
+
+data class ForensicsCheck(
+    val name: String,
+    val passed: Boolean,
+    val confidence: Float = 0f,
+    val details: String? = null
+)
 ```
 
 ---
 
-## 5. Оценка размеров
-
-### Исходные бандлы (полные)
-
-| Бандл | Размер |
-|-------|--------|
-| bundle_international_faces_liveness.se | 119 MB |
-| bundle_codeengine_full.se | 5.8 MB |
-| bundle_textengine.se | 27 MB |
-| **Итого** | **152 MB** |
+## 6. Оценка размеров
 
 ### Минимальные бандлы
 
-| Бандл | Содержимое | Размер (оценка) |
-|-------|------------|-----------------|
-| passport_rus.se | Паспорт + прописка | ~3 MB |
-| barcode_card.se | Штрих-коды + карты | ~2 MB |
-| phone_ocr.se | OCR телефонов | ~18 MB |
-| **Итого** | | **~23 MB** |
+| Бандл | Содержимое | Размер |
+|-------|------------|--------|
+| **passport_cis.se** | 11 стран + liveness + forensics + handwritten | ~20 MB |
+| **barcode_card.se** | Штрих-коды + карты | ~2 MB |
+| **phone_ocr.se** | OCR телефонов | ~10 MB |
+| **Итого бандлы** | | **~32 MB** |
 
-### Итоговый размер SDK
+### Полный SDK
 
 | Компонент | Размер |
 |-----------|--------|
 | libjnimultiengine.so (arm64) | 42 MB |
 | libjnimultiengine.so (arm32) | 35 MB |
-| Минимальные бандлы | 23 MB |
-| Kotlin обёртка | < 1 MB |
-| **Android arm64 only** | **~66 MB** |
-| **Android arm64 + arm32** | **~101 MB** |
+| Бандлы | 32 MB |
+| Kotlin код | < 1 MB |
+| **Android arm64** | **~75 MB** |
+| **Android arm64 + arm32** | **~110 MB** |
 
 ---
 
-## 6. План реализации
+## 7. Сравнение с оригиналом
 
-### Этап 1: Подготовка бандлов (1-2 дня)
-- [ ] Создать скрипт извлечения файлов
-- [ ] Собрать минимальные TAR архивы
-- [ ] Зашифровать в .se формат
-- [ ] Проверить загрузку через SmartEngines API
-
-### Этап 2: Kotlin обёртка (2-3 дня)
-- [ ] Реализовать EngineManager
-- [ ] Реализовать PassportScanner
-- [ ] Реализовать BarcodeScanner
-- [ ] Реализовать CardScanner
-- [ ] Реализовать PhoneOcrScanner
-
-### Этап 3: Тестирование (2-3 дня)
-- [ ] Unit тесты
-- [ ] Интеграционные тесты с реальными изображениями
-- [ ] Проверка на разных устройствах
-
-### Этап 4: iOS порт (3-5 дней)
-- [ ] Скомпилировать .framework
-- [ ] Swift обёртка
-- [ ] Тестирование
+| Метрика | Оригинал | Минимальный |
+|---------|----------|-------------|
+| Бандлы | 200 MB | 32 MB |
+| Страны | 200+ | 11 (СНГ) |
+| Face Liveness | ✓ | ✓ |
+| Forensics | ✓ | ✓ |
+| Handwritten OCR | ✓ | ✓ |
+| Штрих-коды | ✓ | ✓ |
+| Банковские карты | ✓ | ✓ |
+| OCR телефонов | ✓ | ✓ |
+| **Экономия** | | **~85%** |
 
 ---
 
-## 7. Альтернатива: Без пересборки бандлов
-
-Если пересборка бандлов слишком сложна, можно использовать оригинальные бандлы с ленивой загрузкой:
-
-```kotlin
-class LazyDocumentScanner(context: Context) {
-    // Загружать бандлы только при первом использовании модуля
-    private val passportEngine by lazy {
-        val data = context.assets.open("bundle_international_faces_liveness.se").readBytes()
-        IdEngine.Create(data, false, 1, false)
-    }
-
-    private val codeEngine by lazy {
-        val data = context.assets.open("bundle_codeengine_full.se").readBytes()
-        CodeEngine.Create(data, false)
-    }
-}
-```
-
-**Размер**: ~200 MB, но загрузка по требованию.
-
----
-
-*Документ создан: 2026-01-31*
+*Документ обновлён: 2026-01-31*
